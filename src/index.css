@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Coconat is a display/editorial font — loaded as a local web font via base64 fallback or self-hosted.
+   Since it's not on Google Fonts, we declare it here and fall back gracefully. */
+@font-face {
+  font-family: 'Coconat';
+  src: url('/fonts/Coconat-Regular-new.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html, body {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  body {
+    @apply antialiased;
+    font-family: 'Commissioner', sans-serif;
+    color: #1a1a2e;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Coconat', 'Georgia', serif;
+  }
+}
+
+/* ─── Page-transition system ─────────────────────────────────── */
+
+/*  Container that holds all "pages" stacked on top of each other */
+#page-root {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Each page slot fills the viewport */
+.page-slot {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: clip;
+  will-change: transform, opacity, clip-path;
+}
+
+/* ── Resting states ── */
+.page-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  clip-path: inset(0% 0% 0% 0%);
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.page-hidden {
+  opacity: 0;
+  transform: translateY(0) scale(1);
+  clip-path: inset(0% 0% 100% 0%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Forward transition (next page) ─────────────────────────── */
+@keyframes leaveForward {
+  0%   { opacity: 1; transform: translateY(0) scale(1);    clip-path: inset(0% 0% 0% 0%); }
+  30%  { opacity: 1; transform: translateY(0) scale(0.97); clip-path: inset(0% 0% 0% 0%); }
+  100% { opacity: 0; transform: translateY(-4%) scale(0.96); clip-path: inset(0% 0% 0% 0%); }
+}
+
+@keyframes enterForward {
+  0%   { opacity: 0; transform: translateY(5%) scale(0.98);  clip-path: inset(0% 0% 0% 0%); }
+  20%  { opacity: 0; transform: translateY(5%) scale(0.98);  clip-path: inset(0% 0% 0% 0%); }
+  100% { opacity: 1; transform: translateY(0) scale(1);      clip-path: inset(0% 0% 0% 0%); }
+}
+
+/* ── Backward transition (previous page) ────────────────────── */
+@keyframes leaveBackward {
+  0%   { opacity: 1; transform: translateY(0) scale(1);   clip-path: inset(0% 0% 0% 0%); }
+  30%  { opacity: 1; transform: translateY(0) scale(0.97);clip-path: inset(0% 0% 0% 0%); }
+  100% { opacity: 0; transform: translateY(4%) scale(0.96);clip-path: inset(0% 0% 0% 0%); }
+}
+
+@keyframes enterBackward {
+  0%   { opacity: 0; transform: translateY(-5%) scale(0.98); clip-path: inset(0% 0% 0% 0%); }
+  20%  { opacity: 0; transform: translateY(-5%) scale(0.98); clip-path: inset(0% 0% 0% 0%); }
+  100% { opacity: 1; transform: translateY(0) scale(1);      clip-path: inset(0% 0% 0% 0%); }
+}
+
+.page-leaving-forward {
+  animation: leaveForward 0.65s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.page-entering-forward {
+  animation: enterForward 0.65s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.page-leaving-backward {
+  animation: leaveBackward 0.65s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.page-entering-backward {
+  animation: enterBackward 0.65s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2d6b;
+  border-radius: 3px;
+}

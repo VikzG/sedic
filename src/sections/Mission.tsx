@@ -212,7 +212,7 @@ export default function Mission() {
               style={{ ...commissioner, fontSize: '15px', lineHeight: '1.30', letterSpacing: '0' }}
             >
               La SEDIC aspire à devenir l'acteur de référence dans la gestion et le
-              développement des infrastructures au<br />Congo, en garantissant la durabilité,
+              développement des infrastructures au Congo, en garantissant la durabilité,
               la valorisation et la performance de ses actifs publics.
             </p>
           </div>

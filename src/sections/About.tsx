@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
-import About_2 from "./About_2";
+import About_2 from "./Gouvernance";
 import DirectionGenerale from "./DirectionGenetale";
+import Contacform from "./Contactform";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
@@ -305,6 +306,7 @@ export default function About() {
     </section>
     <About_2/>
     <DirectionGenerale/>
+    <Contacform />
     </div>
   );
 }

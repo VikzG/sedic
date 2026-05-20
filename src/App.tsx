@@ -4,11 +4,8 @@ import Footer from './components/Footer';
 import PageTransition from './components/PageTransition';
 import Hero from './sections/Hero';
 import About from './sections/About';
-import Mission from './sections/Mission';
 import Projects from './sections/Projects';
-import Partners from './sections/Partners';
-import News from './sections/News';
-import Contact from './sections/Contact';
+import Heronews from './sections/Heronews';
 import { usePage, PAGE_ORDER } from './hooks/usePage';
 import type { PageId } from './hooks/usePage';
 
@@ -29,10 +26,9 @@ export function useNav() {
 const PAGES: { id: PageId; component: React.ReactNode; withFooter?: boolean }[] = [
   { id: 'home',      component: <Hero /> },
   { id: 'about',     component: <About /> },
-  { id: 'mission',   component: <Mission /> },
   { id: 'projects',  component: <Projects /> },
-  { id: 'news',      component: <News /> },
-  { id: 'contact',   component: <Contact />, withFooter: true },
+  { id: 'news',      component: <Heronews /> },
+//  { id: 'contact',    withFooter: true },
 ];
 
 export default function App() {

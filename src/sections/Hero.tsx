@@ -4,6 +4,7 @@ import Mission from './Mission';
 import Partners from './Partners';
 import Details from './Details';
 import News from './News';
+import Contactform from './Contactform';
 
 const coconat: React.CSSProperties = { fontFamily: 'Coconat, Georgia, serif' };
 const commissioner: React.CSSProperties = { fontFamily: 'Commissioner, sans-serif' };
@@ -137,6 +138,7 @@ export default function Hero() {
     <Partners />
     <Details />
     <News />
+    <Contactform/>
     </div>
   );
 }

@@ -155,7 +155,9 @@ export default function Lastnews() {
             {/* LABEL */}
             <div
               style={{
-                display: "inline-block",
+                display: "inline-flex",
+                width: "fit-content",
+                alignSelf: "flex-start",
                 backgroundColor: "#223078",
                 padding: "10px 20px",
                 marginBottom: "24px",
@@ -197,6 +199,7 @@ export default function Lastnews() {
               }}
             >
               <p
+                className="text-justify"
                 style={{
                   ...commissioner,
                   color: "#1e1e1e",
@@ -283,19 +286,30 @@ export default function Lastnews() {
               </div>
 
               {/* Title */}
-              <p
+              <div
                 style={{
-                  ...commissioner,
-                  color: "#223078",
-                  fontSize: "15px",
-                  fontWeight: active ? 700 : 600,
-                  lineHeight: "1.35",
-                  maxWidth: "280px",
-                  margin: "0 auto",
+                  minHeight: "52px",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                  padding: "0 8px",
                 }}
               >
-                {news.title}
-              </p>
+                <p
+                  style={{
+                    ...commissioner,
+                    color: "#223078",
+                    fontSize: "15px",
+                    fontWeight: active ? 700 : 600,
+                    lineHeight: "1.35",
+                    maxWidth: "280px",
+                    margin: 0,
+                    textAlign: "center",
+                  }}
+                >
+                  {news.title}
+                </p>
+              </div>
             </button>
           );
         })}

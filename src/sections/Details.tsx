@@ -22,7 +22,7 @@ export default function Details() {
           setVisible(true);
         }
       },
-      { threshold: 0.9 }
+      { threshold: 0.7 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();

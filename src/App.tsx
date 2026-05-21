@@ -6,6 +6,7 @@ import Hero from './sections/Hero';
 import About from './sections/About';
 import Projects from './sections/Projects';
 import Heronews from './sections/Heronews';
+import HomePartners from './sections/HomePartners';
 import { usePage, PAGE_ORDER } from './hooks/usePage';
 import type { PageId } from './hooks/usePage';
 
@@ -27,6 +28,7 @@ const PAGES: { id: PageId; component: React.ReactNode; withFooter?: boolean }[] 
   { id: 'home',      component: <Hero /> },
   { id: 'about',     component: <About /> },
   { id: 'projects',  component: <Projects /> },
+  { id: 'partners',      component: <HomePartners /> },
   { id: 'news',      component: <Heronews /> },
 //  { id: 'contact',    withFooter: true },
 ];

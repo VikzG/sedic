@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
 
-
 const coconat: React.CSSProperties = { fontFamily: 'Coconat, Georgia, serif' };
 const commissioner: React.CSSProperties = { fontFamily: 'Commissioner, sans-serif' };
 const charisSIL: React.CSSProperties = { fontFamily: "'Charis SIL', 'Georgia', serif" };
@@ -39,8 +38,34 @@ export default function Mission() {
   const pillarCellRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [cardTop, setCardTop] = useState(0);
   const [pillarHeights, setPillarHeights] = useState<number[]>([0, 0, 0, 0]);
-
   const [step, setStep] = useState(0);
+
+  // ── Détection mobile ──────────────────────────────────────
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  // Accordion state — pilier actif (ouvert par défaut : '01')
+  const [openPillar, setOpenPillar] = useState<string>('01');
+
+  // ── Animation de transition de la grande carte ─────────────
+  const [displayedPillar, setDisplayedPillar] = useState<string>('01');
+  const [cardAnim, setCardAnim] = useState<'idle' | 'exit' | 'enter'>('idle');
+
+  const selectPillar = (num: string) => {
+    if (num === openPillar || cardAnim !== 'idle') return;
+    setCardAnim('exit');
+    setTimeout(() => {
+      setOpenPillar(num);
+      setDisplayedPillar(num);
+      setCardAnim('enter');
+      setTimeout(() => setCardAnim('idle'), 400);
+    }, 260);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -66,7 +91,6 @@ export default function Mission() {
         const sectionRect = sectionRef.current.getBoundingClientRect();
         const pillarsRect = pillarsRef.current.getBoundingClientRect();
         setCardTop(pillarsRect.top - sectionRect.top);
-
         const heights = pillarCellRefs.current.map(el => el ? el.getBoundingClientRect().height : 0);
         setPillarHeights(heights);
       }
@@ -76,6 +100,184 @@ export default function Mission() {
     return () => window.removeEventListener('resize', measure);
   }, []);
 
+  // ── Layout MOBILE ─────────────────────────────────────────
+  if (isMobile) {
+    const activePillar = pillars.find(p => p.num === displayedPillar) ?? pillars[0];
+    const smallPillars = pillars.filter(p => p.num !== openPillar);
+
+    return (
+      <section
+        id="mission"
+        ref={sectionRef}
+        className="relative flex flex-col overflow-hidden min-h-[80vh]"
+        style={{ background: '#0a1628' }}
+      >
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-bottom bg-cover bg-no-repeat"
+          style={{ backgroundImage: "url('/images/bg_mission.png')" }}
+        />
+        <div className="absolute inset-0" style={{ background: 'rgba(10,22,40,0.50)' }} />
+
+        <div className="relative z-10 flex flex-col px-5 pt-14 pb-10 gap-7">
+
+          {/* ── En-tête ── */}
+          <div
+            className="flex flex-col gap-3 text-center"
+            style={{
+              opacity: step >= 1 ? 1 : 0,
+              transform: step >= 1 ? 'translateY(0)' : 'translateY(-24px)',
+              transition: 'opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1)',
+            }}
+          >
+            <p
+              className="uppercase"
+              style={{ ...commissioner, fontSize: '14px', letterSpacing: '0.18em', color: 'white' }}
+            >
+              Notre Mission
+            </p>
+            <h2
+              className="text-white font-normal"
+              style={{ ...coconat, fontSize: '27px', lineHeight: '1.1', letterSpacing: '-0.01em' }}
+            >
+              <span style={{ color: '#7A9BBF' }}>Des actions ciblées</span>{' '}
+              pour un impact économique, social et territorial durable.
+            </h2>
+          </div>
+
+          {/* ── Grande carte active ── */}
+          <div
+            className="w-full rounded-lg px-6 py-8 flex flex-col items-center gap-5"
+            style={{
+              background: 'rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(14px)',
+              WebkitBackdropFilter: 'blur(14px)',
+              opacity: step >= 2 ? (cardAnim === 'exit' ? 0 : 1) : 0,
+              transform: step >= 2
+                ? cardAnim === 'exit'
+                  ? 'translateY(14px) scale(0.98)'
+                  : cardAnim === 'enter'
+                  ? 'translateY(-10px) scale(0.99)'
+                  : 'translateY(0) scale(1)'
+                : 'translateY(20px) scale(1)',
+              transition: cardAnim === 'exit'
+                ? 'opacity 0.26s cubic-bezier(0.4,0,1,1), transform 0.26s cubic-bezier(0.4,0,1,1)'
+                : cardAnim === 'enter'
+                ? 'opacity 0.40s cubic-bezier(0,0,0.2,1), transform 0.40s cubic-bezier(0,0,0.2,1)'
+                : 'opacity 0.5s ease, transform 0.5s ease',
+              willChange: 'opacity, transform',
+            }}
+          >
+            {/* Numéro */}
+            <span
+              style={{
+                ...charisSIL,
+                fontSize: '26px',
+                fontWeight: 700,
+                fontStyle: 'italic',
+                lineHeight: '1',
+                color: '#7A9BBF',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              {activePillar.num}
+            </span>
+
+            {/* Label */}
+            <span
+              className="text-white uppercase text-center"
+              style={{ ...coconat, fontSize: '17px', lineHeight: '1', letterSpacing: '0.06em' }}
+            >
+              {activePillar.label}
+            </span>
+
+            {/* Description */}
+            <p
+              className="text-center"
+              style={{
+                ...commissioner,
+                fontSize: '14px',
+                fontWeight: 400,
+                lineHeight: '1.6',
+                color: 'rgba(255,255,255,0.78)',
+              }}
+            >
+              {activePillar.desc}
+            </p>
+          </div>
+
+          {/* ── 3 petites cartes (ordre croissant) ── */}
+          <div
+            className="grid grid-cols-3 gap-3"
+            style={{
+              opacity: step >= 2 ? 1 : 0,
+              transition: 'opacity 0.6s ease 0.15s',
+            }}
+          >
+            {smallPillars
+              .slice()
+              .sort((a, b) => a.num.localeCompare(b.num))
+              .map(({ num, label }, idx) => (
+                <button
+                  key={num}
+                  onClick={() => selectPillar(num)}
+                  className="flex flex-col items-center justify-center gap-2 rounded-lg py-5 px-2"
+                  style={{
+                    background: 'rgba(255,255,255,0.06)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    cursor: 'pointer',
+                    opacity: cardAnim === 'exit' ? 0.5 : 1,
+                    transform: cardAnim === 'enter' ? 'translateY(4px)' : 'translateY(0)',
+                    transition: `opacity 0.26s ease ${idx * 40}ms, transform 0.40s cubic-bezier(0,0,0.2,1) ${idx * 40}ms`,
+                  }}
+                >
+                  <span
+                    style={{
+                      ...charisSIL,
+                      fontSize: '28px',
+                      fontWeight: 700,
+                      fontStyle: 'italic',
+                      lineHeight: '1',
+                      color: '#7A9BBF',
+                      letterSpacing: '-0.02em',
+                    }}
+                  >
+                    {num}
+                  </span>
+                  <span
+                    className="text-white uppercase text-center"
+                    style={{ ...coconat, fontSize: '13px', lineHeight: '1.2', letterSpacing: '0.05em' }}
+                  >
+                    {label}
+                  </span>
+                </button>
+              ))}
+          </div>
+
+          {/* ── Bouton bas ── */}
+          <div
+            className="flex justify-center pt-1"
+            style={{
+              opacity: step >= 3 ? 1 : 0,
+              transform: step >= 3 ? 'translateY(0)' : 'translateY(16px)',
+              transition: 'opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1)',
+            }}
+          >
+            <button
+              className="px-8 py-2 w-full backdrop-blur-md border border-white/40 rounded-xl text-white active:bg-white/20 transition-all duration-300"
+              style={{ ...coconat, fontSize: '16px', lineHeight: '1', letterSpacing: '-0.02em' }}
+            >
+              Découvrir notre vision
+            </button>
+          </div>
+
+        </div>
+      </section>
+    );
+  }
+
+  // ── Layout DESKTOP (inchangé) ─────────────────────────────
   return (
     <section
       id="mission"
@@ -89,7 +291,7 @@ export default function Mission() {
         style={{ backgroundImage: "url('/images/bg_mission.png')" }}
       />
 
-      {/* Full-column hover zones — cover entire card area including pillar row */}
+      {/* Full-column hover zones */}
       {pillars.map(({ num }, i) => (
         <div
           key={`hover-zone-${num}`}
@@ -107,7 +309,7 @@ export default function Mission() {
         />
       ))}
 
-      {/* Hover cards — positioned from pillars row top to section bottom */}
+      {/* Hover cards */}
       {pillars.map(({ num, desc, align }, i) => (
         <div
           key={`card-${num}`}
@@ -125,10 +327,7 @@ export default function Mission() {
             zIndex: 1,
           }}
         >
-          {/* Transparent spacer matching exact pillar cell height so content starts right below */}
           <div style={{ height: pillarHeights[i] || 0, flexShrink: 0 }} />
-
-          {/* Middle zone: line + text centered, fade in on hover */}
           <div className="flex-1 relative">
             <div
               className="absolute left-0 right-0 px-12"
@@ -155,7 +354,6 @@ export default function Mission() {
               </p>
             </div>
           </div>
-
           <div className="px-12 pb-10" style={{ position: 'relative', zIndex: 25 }}>
             <button
               className="pointer-events-auto w-full py-3 rounded-xl text-center transition-all duration-300 hover:bg-[#E4E4E0]"
@@ -218,7 +416,7 @@ export default function Mission() {
           </div>
         </div>
 
-        {/* Four pillars — z-30 so num+label always render above the hover cards */}
+        {/* Four pillars */}
         <div ref={pillarsRef} className="grid grid-cols-2 md:grid-cols-4">
           {pillars.map(({ num, label, align }, i) => (
             <div

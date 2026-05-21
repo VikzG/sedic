@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNav } from '../App';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 
 const coconat: React.CSSProperties = { fontFamily: 'Coconat, Georgia, serif' };
 const commissioner: React.CSSProperties = { fontFamily: 'Commissioner, sans-serif' };
-const charisSil: React.CSSProperties = { fontFamily: "'Charis SIL', Charter, Georgia, serif" };
 
 const SLIDES = [
   {
@@ -39,6 +44,15 @@ export default function HomeCarousel() {
   const sectionRef = useRef<HTMLElement>(null);
   const [step, setStep] = useState(0);
   const [hovered, setHovered] = useState(false);
+
+  // ── Détection mobile ──────────────────────────────────────
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -109,11 +123,192 @@ export default function HomeCarousel() {
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, []); // eslint-disable-line
 
-  const handleDot = (i: number) => {
-    advance(i);
-    startTimer();
-  };
 
+  // ── Layout MOBILE — Swiper ────────────────────────────────
+  if (isMobile) {
+    return (
+      <section
+        ref={sectionRef}
+        className="flex flex-col bg-[#F5F4F0] overflow-hidden py-8 pb-8"
+      >
+        {/* Titre */}
+        <div
+          className="text-center px-7 pt-9 pb-0"
+          style={{
+            opacity: step >= 1 ? 1 : 0,
+            transform: step >= 1 ? 'translateY(0)' : 'translateY(-24px)',
+            transition: 'opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1)',
+          }}
+        >
+          <h2
+            className="font-normal text-black"
+            style={{
+              ...coconat,
+              fontSize: '21px',
+              fontWeight: 400,
+              lineHeight: '1.15',
+              letterSpacing: '-0.01em',
+            }}
+          >
+            Derrière les grands projets qui transforment{' '}
+            <em
+              className="text-corpo-blue"
+              style={{
+                fontFamily: "'Charis SIL', Charter, Georgia, serif",
+                fontSize: '21px',
+                fontWeight: 700,
+                fontStyle: 'italic',
+              }}
+            >
+              Brazzaville…
+            </em>
+          </h2>
+        </div>
+
+        {/* ── Swiper carousel ── */}
+        <div className="mt-7 w-full" style={{ paddingBottom: '2px' }}>
+          <style>{`
+            .swiper-mobile-sedic {
+              padding: 16px 0 28px !important;
+              overflow: visible !important;
+            }
+            .swiper-mobile-sedic .swiper-slide {
+              border-radius: 10px;
+              overflow: hidden;
+              transition: transform 0.4s ease, opacity 0.4s ease;
+            }
+            .swiper-mobile-sedic .swiper-pagination {
+              bottom: 0px;
+            }
+            .swiper-mobile-sedic .swiper-pagination-bullet {
+              width: 6px;
+              height: 4px;
+              border-radius: 2px;
+              background: #c0bfba;
+              opacity: 1;
+              transition: width 0.3s ease, background 0.3s ease;
+            }
+            .swiper-mobile-sedic .swiper-pagination-bullet-active {
+              width: 20px;
+              background: #223078;
+            }
+          `}</style>
+
+          <Swiper
+            modules={[EffectCoverflow ]}
+            effect="coverflow"
+            grabCursor
+            centeredSlides
+            loop
+            slidesPerView={1.4}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 120,
+              modifier: 2.5,
+              slideShadows: false,
+            }}
+            pagination={{ clickable: true }}
+            onSwiper={(swiper: SwiperType) => setActive(swiper.realIndex)}
+            onSlideChange={(swiper: SwiperType) => setActive(swiper.realIndex)}
+            className="swiper-mobile-sedic"
+          >
+            {SLIDES.map((slide, i) => (
+              <SwiperSlide key={i} style={{ height: '300px' }}>
+                {({ isActive }) => (
+                  <div className="relative w-full h-full">
+                    <img
+                      src={slide.image}
+                      alt={slide.title.replace('\n', ' ')}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+
+                    {/* Overlay titre + CTA — visible uniquement sur la carte active */}
+                    <div
+                      className="absolute inset-0 flex flex-col items-center justify-around px-4"
+                      style={{
+                        opacity: isActive ? 1 : 0,
+                        transition: 'opacity 0.35s ease',
+                      }}
+                    >
+                      <h3
+                        className="text-center text-white uppercase mb-4"
+                        style={{
+                          ...coconat,
+                          fontSize: '13.5px',
+                          fontWeight: 400,
+                          letterSpacing: '0.06em',
+                          lineHeight: '1.3',
+                          whiteSpace: 'pre-line',
+                        }}
+                      >
+                        {slide.title}
+                      </h3>
+                      <button
+                        onClick={() => navigate('projects')}
+                        className="bg-white/12 backdrop-blur-md min-w-full px-5 py-2 border border-white/40 rounded-xl text-white active:bg-white/25"
+                        style={{ ...coconat, fontSize: '14px', letterSpacing: '-0.01em' }}
+                      >
+                        Parcourir
+                      </button>
+                    </div>
+
+                    {/* Counter */}
+                    {isActive && (
+                      <div
+                        className="absolute top-3 right-3 text-white/60 tabular-nums"
+                        style={{ ...commissioner, fontSize: '10px', letterSpacing: '0.08em' }}
+                      >
+                        {String(i + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Bloc texte */}
+        <div
+          className="px-6 pt-2 text-center flex flex-col items-center gap-5"
+          style={{
+            opacity: step >= 2 ? 1 : 0,
+            transform: step >= 2 ? 'translateY(0)' : 'translateY(40px)',
+            transition: 'opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1)',
+          }}
+        >
+          <p
+            className="text-black"
+            style={{
+              fontFamily: 'Commissioner, sans-serif',
+              fontSize: '14px',
+              fontWeight: 400,
+              fontStyle: 'normal',
+              lineHeight: '1.55',
+              letterSpacing: '0',
+            }}
+          >
+            À travers ses initiatives, la SEDIC améliore le cadre de vie des populations et concrétise les ambitions des
+            programmes immobiliers commerciaux, en incarnant le pilier 6 du{' '}
+            <strong style={{ fontWeight: 700 }}>Plan National de Développement 2022–2026</strong>
+            , dédié au développement des infrastructures et à l'aménagement du territoire.
+          </p>
+
+          <button
+            onClick={() => navigate('about')}
+            className="w-full px-6 py-2 border border-[#223078] rounded-xl bg-[#223078] text-white active:bg-white active:text-[#223078] transition-colors duration-200"
+            style={{ ...coconat, fontSize: '17px', lineHeight: '1', letterSpacing: '-0.02em' }}
+          >
+            Découvrir l'entreprise
+          </button>
+        </div>
+      </section>
+    );
+  }
+
+  // ── Layout DESKTOP (inchangé) ─────────────────────────────
   return (
     <section ref={sectionRef} className="relative flex flex-col md:flex-row bg-[#F5F4F0] items-stretch py-8 px-4 overflow-hidden min-h-[900px]">
 
@@ -218,7 +413,7 @@ export default function HomeCarousel() {
         </div>
         </div>{/* end relative slider box */}
 
-        {/* Star wheel — calé sur le bord droit du carousel-box, centré verticalement */}
+        {/* Star wheel */}
         <div
           className="absolute z-30 pointer-events-none"
           style={{
@@ -241,14 +436,12 @@ export default function HomeCarousel() {
 
       </div>{/* end left panel */}
 
-
-      {/* Spacer to offset the absolute-positioned left panel */}
+      {/* Spacer */}
       <div className="w-full md:w-[760px] flex-shrink-0" />
 
       {/* ── Right — editorial text ───────────────────────────── */}
       <div className="flex flex-col justify-between items-end text-right px-6 md:px-10 lg:px-16 py-8 md:py-10 flex-1 min-w-0 self-stretch">
 
-        {/* Titre-Desktop — aligné en haut, même padding que le slider */}
         <div
           className="w-full pt-8 md:pt-14"
           style={{
@@ -285,7 +478,6 @@ export default function HomeCarousel() {
           </h2>
         </div>
 
-        {/* Groupe bas */}
         <div
           className="w-full flex flex-col items-end gap-6"
           style={{
@@ -294,9 +486,6 @@ export default function HomeCarousel() {
             transition: 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
-
-
-          {/* Sous-titre-Desktop */}
           <p
             className="uppercase text-[#223078] text-right"
             style={{
@@ -310,7 +499,6 @@ export default function HomeCarousel() {
             L'exigence d'un acteur clé<br className="hidden md:block" /> au service du développement
           </p>
 
-          {/* Legend-Desktop */}
           <p
             className="max-w-xl ml-auto text-right text-[#223078]"
             style={{
@@ -325,7 +513,6 @@ export default function HomeCarousel() {
             Opérateur public de référence, elle développe, exploite et transforme les grands projets immobiliers structurants de la République du Congo.
           </p>
 
-          {/* Corps-Desktop — noir */}
           <p
             className="max-w-xl ml-auto text-right text-black"
             style={{
@@ -339,7 +526,6 @@ export default function HomeCarousel() {
             À travers ses initiatives, elle améliore le cadre de vie des populations et concrétise les ambitions des programmes immobiliers commerciaux, en incarnant le pilier 6 du Plan National de Développement 2022–2026, dédié au développement des infrastructures et à l'aménagement du territoire. Portée par des valeurs d'excellence et d'engagement, la SEDIC agit comme un véritable levier de modernisation et de rayonnement économique du pays.
           </p>
 
-          {/* Bouton — défaut : corpo blue bg + blanc / hover : blanc bg + corpo blue */}
           <button
             onClick={() => navigate('about')}
             className="px-6 py-3 border border-[#223078] rounded-xl bg-[#223078] text-white hover:bg-white hover:text-[#223078] transition-all duration-300"
@@ -347,7 +533,6 @@ export default function HomeCarousel() {
           >
             Découvrir l'entreprise
           </button>
-
         </div>
       </div>
     </section>

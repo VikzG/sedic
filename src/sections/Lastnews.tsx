@@ -192,25 +192,51 @@ export default function Lastnews() {
             {/* DESCRIPTION */}
             <div
               style={{
+                position: "relative",
                 flex: 1,
-                overflowY: "auto",
-                paddingRight: "10px",
-                scrollbarWidth: "thin",
+                overflow: "hidden",
               }}
             >
-              <p
-                className="text-justify"
+              {/* Scrollable content */}
+              <div
                 style={{
-                  ...commissioner,
-                  color: "#1e1e1e",
-                  fontSize: "15px",
-                  lineHeight: "1.7",
-                  whiteSpace: "pre-line",
-                  margin: 0,
+                  height: "100%",
+                  overflowY: "auto",
+                  paddingRight: "12px",
+                  scrollbarWidth: "none",
+                  msOverflowStyle: "none",
                 }}
+                className="hide-scrollbar"
               >
-                {selectedNews.description}
-              </p>
+                <p
+                  style={{
+                    ...commissioner,
+                    color: "#1e1e1e",
+                    fontSize: "15px",
+                    lineHeight: "1.7",
+                    whiteSpace: "pre-line",
+                    margin: 0,
+                    paddingBottom: "80px",
+                  }}
+                >
+                  {selectedNews.description}
+                </p>
+              </div>
+
+              {/* Blur / fade bottom */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "90px",
+                  pointerEvents: "none",
+                  background:
+                    "linear-gradient(to bottom, rgba(239,238,235,0) 0%, rgba(239,238,235,0.75) 45%, rgba(239,238,235,1) 100%)",
+                  backdropFilter: "blur(0.5px)",
+                }}
+              />
             </div>
           </div>
         </div>

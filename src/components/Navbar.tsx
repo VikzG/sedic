@@ -147,6 +147,7 @@ export default function Navbar() {
           <nav className="flex flex-col items-end px-6 pt-2 pb-6 gap-5">
             {NAV_LINKS.map((link) => (
               <button
+                disabled
                 key={link.page}
                 onClick={() => { navigate(link.page); setMenuOpen(false); }}
                 className="transition-all duration-200"
@@ -205,6 +206,7 @@ export default function Navbar() {
         <nav className="flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <button
+            disabled
               key={link.page}
               onClick={() => navigate(link.page)}
               className={`text-corpo-blue hover:text-grey-blue hover:translate-y-0.5 transition-all duration-200 ${
@@ -218,6 +220,7 @@ export default function Navbar() {
 
           <button
             onClick={() => navigate('contact')}
+            disabled
             aria-label="Contact"
             className="ml-1 hover:translate-y-0.5 transition-all duration-200 group"
           >

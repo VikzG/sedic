@@ -111,7 +111,7 @@ function OptionButton({
         cursor: "pointer",
         width: "100%",
         textAlign: "left",
-        padding: "4px 16px",
+        padding: "10px 16px",
         border: "none",
         lineHeight: "1.5",
         opacity: mounted ? 1 : 0,
@@ -124,7 +124,6 @@ function OptionButton({
   );
 }
 
-/* Animated view wrapper — fades in on mount */
 function ViewPane({ children, id }: { children: React.ReactNode; id: string }) {
   const [visible, setVisible] = useState(false);
   const prevId = useRef(id);
@@ -166,13 +165,16 @@ export default function ContactForm() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
-
-  /* Animate border on view change */
   const [borderActive, setBorderActive] = useState(true);
-  const triggerBorder = () => {
-    setBorderActive(false);
-    setTimeout(() => setBorderActive(true), 50);
-  };
+
+  // ── Détection mobile ──────────────────────────────────────
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const isAutre = selectedCategory?.id === "autre";
   const canSubmit = !!(
@@ -181,6 +183,11 @@ export default function ContactForm() {
     freeText.email &&
     freeText.message
   );
+
+  const triggerBorder = () => {
+    setBorderActive(false);
+    setTimeout(() => setBorderActive(true), 50);
+  };
 
   const navigate = (next: "main" | "sub" | "form") => {
     triggerBorder();
@@ -224,21 +231,269 @@ export default function ContactForm() {
         ? selectedCategory?.label
         : "Autre demande";
 
-  /* viewKey drives the ViewPane re-mount animation */
   const viewKey = view + (selectedCategory?.id ?? "");
 
+  // ── Contenu formulaire partagé (mobile + desktop) ─────────
+  const FormContent = (
+    <ViewPane id={viewKey}>
+      {/* ════ MAIN ════ */}
+      {view === "main" && (
+        <>
+          <p
+            className="uppercase text-[#223078] mb-6"
+            style={{
+              ...coconat,
+              fontSize: isMobile ? "17px" : "20px",
+              letterSpacing: "0.10em",
+              lineHeight: "1.15",
+              fontWeight: 400,
+            }}
+          >
+            Quel est l'objet de<br />votre demande ?
+          </p>
+          <div className="flex flex-col gap-2">
+            {CATEGORIES.map((cat, i) => (
+              <OptionButton
+                key={cat.id}
+                label={cat.label}
+                onClick={() => handleCategoryClick(cat)}
+                delay={i * 55}
+                visible={view === "main"}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* ════ SUB ════ */}
+      {view === "sub" && selectedCategory && (
+        <>
+          <div className="flex items-center gap-3 mb-6">
+            <button
+              onClick={handleBack}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: "#223078",
+                fontSize: "25px",
+                lineHeight: 1,
+                padding: 0,
+                flexShrink: 0,
+              }}
+            >
+              ‹
+            </button>
+            <p
+              className="uppercase text-[#223078]"
+              style={{
+                ...coconat,
+                fontSize: isMobile ? "14px" : "20px",
+                letterSpacing: isMobile ? "0.06em" : "0.15em",
+                lineHeight: "1.05",
+                fontWeight: 400,
+                margin: 0,
+              }}
+            >
+              {selectedCategory.label}
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            {selectedCategory.options.map((opt, i) => (
+              <OptionButton
+                key={opt}
+                label={opt}
+                onClick={() => handleOptionClick(opt)}
+                delay={i * 60}
+                visible={view === "sub"}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* ════ FORM ════ */}
+      {view === "form" && (
+        <>
+          <div className="flex items-center gap-3 mb-5">
+            <button
+              onClick={handleBack}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: "#223078",
+                fontSize: "25px",
+                lineHeight: 1,
+                padding: 0,
+                flexShrink: 0,
+              }}
+            >
+              ‹
+            </button>
+            <p
+              className="uppercase text-[#223078]"
+              style={{
+                ...coconat,
+                fontSize: isMobile ? "14px" : "20px",
+                letterSpacing: isMobile ? "0.06em" : "0.15em",
+                lineHeight: "1.05",
+                fontWeight: 400,
+                margin: 0,
+              }}
+            >
+              {headerLabel}
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3 mb-5">
+            <input
+              type="text"
+              placeholder="Saisissez l'objet de votre demande"
+              value={freeText.objet}
+              readOnly={!isAutre}
+              onChange={(e) =>
+                setFreeText((p) => ({ ...p, objet: e.target.value }))
+              }
+              style={{
+                ...inputStyle,
+                color: !isAutre ? "#223078" : "#222",
+                fontWeight: !isAutre ? 500 : 400,
+                cursor: !isAutre ? "default" : "text",
+              }}
+            />
+            <div className={`flex ${isMobile ? "flex-col" : "flex-row"} gap-2`}>
+              <input
+                type="text"
+                placeholder="Votre nom"
+                value={freeText.nom}
+                onChange={(e) =>
+                  setFreeText((p) => ({ ...p, nom: e.target.value }))
+                }
+                style={{ ...inputStyle, flex: 1, width: "auto" }}
+              />
+              <input
+                type="email"
+                placeholder="Votre e-mail"
+                value={freeText.email}
+                onChange={(e) =>
+                  setFreeText((p) => ({ ...p, email: e.target.value }))
+                }
+                style={{ ...inputStyle, flex: 1, width: "auto" }}
+              />
+            </div>
+            <textarea
+              placeholder="Tapez votre message…"
+              rows={4}
+              value={freeText.message}
+              onChange={(e) =>
+                setFreeText((p) => ({ ...p, message: e.target.value }))
+              }
+              style={{ ...inputStyle, resize: "vertical" }}
+            />
+          </div>
+
+          <button
+            className="py-3"
+            onClick={handleSubmit}
+            disabled={!canSubmit}
+            style={{
+              ...coconat,
+              width: "100%",
+              fontSize: "18px",
+              fontWeight: 400,
+              letterSpacing: "0.02em",
+              color: "#fff",
+              backgroundColor: canSubmit ? "#223078" : "#b3c2e9",
+              borderRadius: "8px",
+              border: "none",
+              cursor: canSubmit ? "pointer" : "not-allowed",
+              transition: "background-color 0.2s ease",
+            }}
+          >
+            {submitted ? "Message envoyé ✓" : "Envoyer"}
+          </button>
+        </>
+      )}
+    </ViewPane>
+  );
+
+  // ── Layout MOBILE ─────────────────────────────────────────
+  if (isMobile) {
+    return (
+      <section
+        className="w-full flex flex-col"
+        style={{ backgroundColor: "#f0efea" }}
+      >
+        {/* Titre + description */}
+        <div className="px-6 pt-12 pb-8 text-center flex flex-col gap-4">
+          <h2
+            className="font-normal text-[#223078]"
+            style={{
+              ...coconat,
+              fontSize: "30px",
+              lineHeight: "1.1",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Entrons en contact
+          </h2>
+          <p
+            style={{
+              ...commissioner,
+              fontSize: "14px",
+              lineHeight: "1.55",
+              color: "black",
+              textAlign: "center",
+            }}
+          >
+            La SEDIC est à votre disposition pour répondre à vos demandes,
+            qu'il s'agisse d'un projet de partenariat, d'une opportunité
+            d'investissement ou d'une simple prise de contact. Notre équipe
+            vous répondra dans les meilleurs délais.
+          </p>
+        </div>
+
+        {/* Card formulaire */}
+        <div className="px-5 pb-8">
+          <div
+            className="rounded-xl w-full"
+            style={{
+              padding: "24px 20px",
+              border: "1.5px solid #223078",
+              backgroundColor: "#f0efea",
+              opacity: borderActive ? 1 : 0,
+              transition: "opacity 0.3s ease",
+            }}
+          >
+            {FormContent}
+          </div>
+        </div>
+
+        {/* Image porte en bas */}
+        <div
+          className="w-full flex items-end justify-center overflow-hidden"
+          style={{ marginTop: "8px" }}
+        >
+          <HoverDoorImage />
+        </div>
+      </section>
+    );
+  }
+
+  // ── Layout DESKTOP (inchangé) ─────────────────────────────
   return (
     <section className="w-full" style={{ backgroundColor: "#f0efea" }}>
       <div
         className="flex items-center justify-center pt-20"
         style={{ minHeight: "680px" }}
       >
-        {/* ── Image gauche — réduite et centrée ── */}
+        {/* Image gauche */}
         <div className="flex items-end justify-center px-12 py-0">
           <HoverDoorImage />
         </div>
 
-        {/* ── Colonne droite ── */}
+        {/* Colonne droite */}
         <div className="flex flex-col items-center justify-center self-start py-12 px-12">
           {/* Titre + description */}
           <div className="text-center px-8 pb-10">
@@ -271,7 +526,7 @@ export default function ContactForm() {
             </p>
           </div>
 
-          {/* Card formulaire — border animée */}
+          {/* Card formulaire */}
           <div
             className="rounded-xl max-w-xl"
             style={{
@@ -282,187 +537,7 @@ export default function ContactForm() {
               transition: "opacity 0.3s ease",
             }}
           >
-            <ViewPane id={viewKey}>
-              {/* ════ MAIN ════ */}
-              {view === "main" && (
-                <>
-                  <p
-                    className="uppercase text-[#223078] mb-8"
-                    style={{
-                      ...coconat,
-                      fontSize: "20px",
-                      letterSpacing: "0.15em",
-                      lineHeight: "1.05",
-                      fontWeight: 400,
-                    }}
-                  >
-                    Quel est l'objet de votre demande ?
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    {CATEGORIES.map((cat, i) => (
-                      <OptionButton
-                        key={cat.id}
-                        label={cat.label}
-                        onClick={() => handleCategoryClick(cat)}
-                        delay={i * 55}
-                        visible={view === "main"}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {/* ════ SUB ════ */}
-              {view === "sub" && selectedCategory && (
-                <>
-                  <div className="flex justify-between items-center gap-3 mb-6">
-                    <button
-                      onClick={handleBack}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                        color: "#223078",
-                        fontSize: "25px",
-                        lineHeight: 1,
-                        padding: 0,
-                        flexShrink: 0,
-                      }}
-                    >
-                      ‹
-                    </button>
-                    <p
-                      className="uppercase text-[#223078]"
-                      style={{
-                        ...coconat,
-                        fontSize: "20px",
-                        letterSpacing: "0.15em",
-                        lineHeight: "1.05",
-                        fontWeight: 400,
-                        margin: 0,
-                      }}
-                    >
-                      {selectedCategory.label}
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    {selectedCategory.options.map((opt, i) => (
-                      <OptionButton
-                        key={opt}
-                        label={opt}
-                        onClick={() => handleOptionClick(opt)}
-                        delay={i * 60}
-                        visible={view === "sub"}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {/* ════ FORM ════ */}
-              {view === "form" && (
-                <>
-                  <div className="flex items-center justify-between gap-3 mb-6">
-                    <button
-                      onClick={handleBack}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                        color: "#223078",
-                        fontSize: "25px",
-                        lineHeight: 1,
-                        padding: 0,
-                        flexShrink: 0,
-                      }}
-                    >
-                      ‹
-                    </button>
-                    <p
-                      className="uppercase text-[#223078]"
-                      style={{
-                        ...coconat,
-                        fontSize: "20px",
-                        letterSpacing: "0.15em",
-                        lineHeight: "1.05",
-                        fontWeight: 400,
-                        margin: 0,
-                      }}
-                    >
-                      {headerLabel}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-3 mb-6">
-                    <input
-                      type="text"
-                      placeholder="Saisissez l'objet de votre demande"
-                      value={freeText.objet}
-                      readOnly={!isAutre}
-                      onChange={(e) =>
-                        setFreeText((p) => ({ ...p, objet: e.target.value }))
-                      }
-                      style={{
-                        ...inputStyle,
-                        color: !isAutre ? "#223078" : "#222",
-                        fontWeight: !isAutre ? 500 : 400,
-                        cursor: !isAutre ? "default" : "text",
-                      }}
-                    />
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        placeholder="Votre nom"
-                        value={freeText.nom}
-                        onChange={(e) =>
-                          setFreeText((p) => ({ ...p, nom: e.target.value }))
-                        }
-                        style={{ ...inputStyle, flex: 1, width: "auto" }}
-                      />
-                      <input
-                        type="email"
-                        placeholder="Votre e-mail"
-                        value={freeText.email}
-                        onChange={(e) =>
-                          setFreeText((p) => ({ ...p, email: e.target.value }))
-                        }
-                        style={{ ...inputStyle, flex: 1, width: "auto" }}
-                      />
-                    </div>
-                    <textarea
-                      placeholder="Tapez votre message…"
-                      rows={5}
-                      value={freeText.message}
-                      onChange={(e) =>
-                        setFreeText((p) => ({ ...p, message: e.target.value }))
-                      }
-                      style={{ ...inputStyle, resize: "vertical" }}
-                    />
-                  </div>
-
-                  <button
-                    className="py-1"
-                    onClick={handleSubmit}
-                    disabled={!canSubmit}
-                    style={{
-                      ...coconat,
-                      width: "100%",
-                      fontSize: "18px",
-                      fontWeight: 400,
-                      letterSpacing: "0.02em",
-                      color: "#fff",
-                      backgroundColor: canSubmit ? "#223078" : "#b3c2e9",
-                      borderRadius: "8px",
-                      border: "none",
-                      cursor: canSubmit ? "pointer" : "not-allowed",
-                      transition: "background-color 0.2s ease",
-                    }}
-                  >
-                    {submitted ? "Message envoyé ✓" : "Envoyer"}
-                  </button>
-                </>
-              )}
-            </ViewPane>
+            {FormContent}
           </div>
         </div>
       </div>

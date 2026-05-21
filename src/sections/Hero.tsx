@@ -11,7 +11,7 @@ import Contactform from './Contactform';
 const coconat: React.CSSProperties = { fontFamily: 'Coconat, Georgia, serif' };
 const commissioner: React.CSSProperties = { fontFamily: 'Commissioner, sans-serif' };
 
-function useIsMobile(breakpoint = 768) {
+function useIsMobile(breakpoint = 1200) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
   useEffect(() => {
     const h = () => setIsMobile(window.innerWidth < breakpoint);
@@ -33,7 +33,7 @@ export default function Hero() {
   if (isMobile) {
     return (
       <div>
-        <section className="relative min-h-screen flex flex-col justify-around gap-20 pt-48">
+        <section className="relative min-h-screen flex flex-col justify-end gap-6 pt-24">
 
           <Loader onComplete={handleLoaderComplete} />
 
@@ -49,13 +49,13 @@ export default function Hero() {
               src="/images/bg_hero__1.png"
               alt=""
               className="w-full h-full object-cover"
-              style={{ objectPosition: 'top top' }}
+              style={{ objectPosition: 'center center' }}
             />
           </div>
 
           {/* ── SEDIC + titre groupés ── */}
           <div
-            className="relative z-10 flex flex-col items-center px-6"
+            className="relative z-10 mb-24 flex flex-col items-center px-6"
             style={{
               opacity: loaderDone ? 1 : 0,
               transform: loaderDone ? 'translateY(0)' : 'translateY(20px)',
@@ -69,7 +69,7 @@ export default function Hero() {
               className="text-white uppercase leading-none select-none"
               style={{
                 ...coconat,
-                fontSize: 'clamp(6rem, 24vw, 10rem)',
+                fontSize: 'clamp(5rem, 22vw, 8rem)',
                 lineHeight: '0.9',
                 whiteSpace: 'nowrap',
               }}
@@ -114,14 +114,16 @@ export default function Hero() {
             <div className="flex flex-col gap-3 w-full" style={{ maxWidth: '340px' }}>
               <button
                 onClick={() => navigate('contact')}
-                className="w-full py-2 backdrop-blur-md border border-white/50 bg-white/10 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
+                disabled
+                className="w-full py-3 bg-white/10 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
                 style={{ ...coconat, fontSize: '16px', lineHeight: '1', letterSpacing: '-0.01em' }}
               >
                 Investir avec nous
               </button>
               <button
                 onClick={() => navigate('projects')}
-                className="w-full py-2 backdrop-blur-md border border-white/50 bg-white/10 rounded-xl text-white hover:bg-[#223078] hover:text-[#E4E4E0] hover:border-[#223078] transition-all duration-300"
+                disabled
+                className="w-full py-3 bg-white/10 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#223078] hover:text-[#E4E4E0] hover:border-[#223078] transition-all duration-300"
                 style={{ ...coconat, fontSize: '16px', lineHeight: '1', letterSpacing: '-0.01em' }}
               >
                 Parcourir nos projets
@@ -133,7 +135,6 @@ export default function Hero() {
 
         <HomeCarousel />
         <Mission />
-        <Partners />
         <Details />
         <News />
         <Contactform />
@@ -213,6 +214,7 @@ export default function Hero() {
 
               <div className="flex flex-wrap items-center gap-4">
                 <button
+                disabled
                   onClick={() => navigate('contact')}
                   aria-label="Contact"
                   className="flex items-center justify-center transition-transform duration-200 hover:scale-110 group"
@@ -227,6 +229,7 @@ export default function Hero() {
                   />
                 </button>
                 <button
+                disabled
                   onClick={() => navigate('contact')}
                   className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
                   style={{ ...coconat, fontSize: '18px', lineHeight: '1', letterSpacing: '-0.02em' }}
@@ -234,6 +237,7 @@ export default function Hero() {
                   Investir avec nous
                 </button>
                 <button
+                disabled
                   onClick={() => navigate('projects')}
                   className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#223078] hover:text-[#E4E4E0] hover:border-[#223078] transition-all duration-300"
                   style={{ ...coconat, fontSize: '18px', lineHeight: '1', letterSpacing: '-0.02em' }}

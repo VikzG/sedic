@@ -31,7 +31,7 @@ const pillars = [
   },
 ];
 
-export default function Mission() {
+export default function Mission({ current }: { current: string }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const pillarsRef = useRef<HTMLDivElement>(null);
@@ -265,10 +265,16 @@ export default function Mission() {
             }}
           >
             <button
+              onClick={() => {
+    document.getElementById(current)?.scrollTo({
+      top: document.getElementById(current)!.scrollHeight,
+      behavior: 'smooth',
+    });
+  }}
               className="px-8 py-2 w-full backdrop-blur-md border border-white/40 rounded-xl text-white active:bg-white/20 transition-all duration-300"
               style={{ ...coconat, fontSize: '16px', lineHeight: '1', letterSpacing: '-0.02em' }}
             >
-              Découvrir notre vision
+              Devenir partenaire
             </button>
           </div>
 
@@ -384,10 +390,16 @@ export default function Mission() {
               Notre mission.
             </h2>
             <button
-              className="px-8 py-3 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
+              onClick={() => {
+    document.getElementById(current)?.scrollTo({
+      top: document.getElementById(current)!.scrollHeight,
+      behavior: 'smooth',
+    });
+  }}
+              className="px-8 py-2 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
               style={{ ...coconat, fontSize: '18px', lineHeight: '1', letterSpacing: '-0.02em' }}
             >
-              Découvrir notre vision
+              Devenir partenaire
             </button>
           </div>
 

@@ -21,7 +21,7 @@ export default function News() {
 
   return (
     <div>
-    <section id="news" style={{ minHeight: '1000px' }} className="bg-white pt-32" ref={sectionRef}>
+    <section style={{ minHeight: '1000px' }} className="bg-white pt-32" ref={sectionRef}>
       {/*
         Outer wrapper: centres the fixed-width composition and clips overflow.
         The entire image composition is fixed at 1200px wide (= 80% of 1500px,

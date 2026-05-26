@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import { useNav } from '../App';
-import type { PageId } from '../hooks/usePage';
+import { useState, useEffect } from "react";
+import { useNav } from "../App";
+import type { PageId } from "../hooks/usePage";
 
 const NAV_LINKS: { label: string; page: PageId }[] = [
-  { label: 'À PROPOS',    page: 'about' },
-  { label: 'PROJETS',     page: 'projects' },
-  { label: 'PARTENAIRES', page: 'partners' },
-  { label: 'ACTUALITÉS',  page: 'news' },
+  { label: "À PROPOS", page: "about" },
+  { label: "PROJETS", page: "projects" },
+  { label: "PARTENAIRES", page: "partners" },
+  { label: "ACTUALITÉS", page: "news" },
 ];
 
 const navLinkStyle: React.CSSProperties = {
-  fontFamily: 'Coconat, Georgia, serif',
+  fontFamily: "Coconat, Georgia, serif",
   fontWeight: 400,
-  fontSize: '13.5px',
-  letterSpacing: '0.08em',
+  fontSize: "13.5px",
+  letterSpacing: "0.08em",
 };
 
 /* ── Hook isMobile ── */
@@ -21,8 +21,8 @@ function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
   useEffect(() => {
     const handler = () => setIsMobile(window.innerWidth < breakpoint);
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
   }, [breakpoint]);
   return isMobile;
 }
@@ -33,35 +33,35 @@ function BurgerIcon({ open }: { open: boolean }) {
     <div className="flex flex-col justify-center items-end gap-[5px] w-6 h-6 cursor-pointer">
       <span
         style={{
-          display: 'block',
-          height: '1.5px',
-          backgroundColor: '#223078',
-          borderRadius: '2px',
-          width: open ? '100%' : '100%',
-          transform: open ? 'translateY(6.5px) rotate(45deg)' : 'none',
-          transition: 'transform 0.25s ease, width 0.25s ease',
+          display: "block",
+          height: "1.5px",
+          backgroundColor: "#223078",
+          borderRadius: "2px",
+          width: open ? "100%" : "100%",
+          transform: open ? "translateY(6.5px) rotate(45deg)" : "none",
+          transition: "transform 0.25s ease, width 0.25s ease",
         }}
       />
       <span
         style={{
-          display: 'block',
-          height: '1.5px',
-          backgroundColor: '#223078',
-          borderRadius: '2px',
-          width: '75%',
+          display: "block",
+          height: "1.5px",
+          backgroundColor: "#223078",
+          borderRadius: "2px",
+          width: "75%",
           opacity: open ? 0 : 1,
-          transition: 'opacity 0.2s ease',
+          transition: "opacity 0.2s ease",
         }}
       />
       <span
         style={{
-          display: 'block',
-          height: '1.5px',
-          backgroundColor: '#223078',
-          borderRadius: '2px',
-          width: '100%',
-          transform: open ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
-          transition: 'transform 0.25s ease',
+          display: "block",
+          height: "1.5px",
+          backgroundColor: "#223078",
+          borderRadius: "2px",
+          width: "100%",
+          transform: open ? "translateY(-6.5px) rotate(-45deg)" : "none",
+          transition: "transform 0.25s ease",
         }}
       />
     </div>
@@ -85,10 +85,12 @@ export default function Navbar() {
     };
     const slot = document.getElementById(current);
     if (slot) {
-      slot.addEventListener('scroll', onScroll, { passive: true });
+      slot.addEventListener("scroll", onScroll, { passive: true });
       setScrolled(slot.scrollTop > 10);
     }
-    return () => { if (slot) slot.removeEventListener('scroll', onScroll); };
+    return () => {
+      if (slot) slot.removeEventListener("scroll", onScroll);
+    };
   }, [current]);
 
   /* ════════════════════════════════════════
@@ -97,15 +99,14 @@ export default function Navbar() {
   if (isMobile) {
     return (
       <header className="fixed top-0 left-0 right-0 z-50">
-
         {/* Top bar — toujours blanc sur mobile */}
         <div
           className="flex items-center justify-between px-5 h-16"
-          style={{ backgroundColor: '#fff' }}
+          style={{ backgroundColor: "#fff" }}
         >
           {/* Logo */}
           <button
-            onClick={() => navigate('home')}
+            onClick={() => navigate("home")}
             className="relative flex items-center flex-shrink-0 h-8 cursor-pointer"
             onMouseEnter={() => setLogoHovered(true)}
             onMouseLeave={() => setLogoHovered(false)}
@@ -138,23 +139,25 @@ export default function Navbar() {
         {/* Drawer — liens alignés à droite, fond transparent sur le hero */}
         <div
           style={{
-            backgroundColor: '#fff',
-            overflow: 'hidden',
-            maxHeight: menuOpen ? '320px' : '0px',
-            transition: 'max-height 0.35s cubic-bezier(0.22,1,0.36,1)',
+            backgroundColor: "#fff",
+            overflow: "hidden",
+            maxHeight: menuOpen ? "320px" : "0px",
+            transition: "max-height 0.35s cubic-bezier(0.22,1,0.36,1)",
           }}
         >
           <nav className="flex flex-col items-end px-6 pt-2 pb-6 gap-5">
             {NAV_LINKS.map((link) => (
               <button
-                disabled
                 key={link.page}
-                onClick={() => { navigate(link.page); setMenuOpen(false); }}
+                onClick={() => {
+                  navigate(link.page);
+                  setMenuOpen(false);
+                }}
                 className="transition-all duration-200"
                 style={{
                   ...navLinkStyle,
-                  color: current === link.page ? '#8fa3d4' : '#223078',
-                  textAlign: 'right',
+                  color: current === link.page ? "#8fa3d4" : "#223078",
+                  textAlign: "right",
                 }}
               >
                 {link.label}
@@ -162,7 +165,6 @@ export default function Navbar() {
             ))}
           </nav>
         </div>
-
       </header>
     );
   }
@@ -174,15 +176,14 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/10 backdrop-blur-md border-b border-corpo-blue/10 shadow-sm'
-          : 'bg-transparent border-b border-transparent'
+          ? "bg-white/10 backdrop-blur-md border-b border-corpo-blue/10 shadow-sm"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
       <div className="mx-auto px-20 h-20 flex items-center justify-between">
-
         {/* Logo */}
         <button
-          onClick={() => navigate('home')}
+          onClick={() => navigate("home")}
           className="relative flex items-center flex-shrink-0 h-8 cursor-pointer"
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
@@ -206,11 +207,10 @@ export default function Navbar() {
         <nav className="flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <button
-            disabled
               key={link.page}
               onClick={() => navigate(link.page)}
               className={`text-corpo-blue hover:text-grey-blue hover:translate-y-0.5 transition-all duration-200 ${
-                current === link.page ? 'opacity-50' : ''
+                current === link.page ? "opacity-50" : ""
               }`}
               style={navLinkStyle}
             >
@@ -219,8 +219,12 @@ export default function Navbar() {
           ))}
 
           <button
-            onClick={() => navigate('contact')}
-            disabled
+            onClick={() => {
+              const slot = document.getElementById(current);
+              if (slot) {
+                slot.scrollTo({ top: slot.scrollHeight, behavior: "smooth" });
+              }
+            }}
             aria-label="Contact"
             className="ml-1 hover:translate-y-0.5 transition-all duration-200 group"
           >
@@ -231,7 +235,6 @@ export default function Navbar() {
             />
           </button>
         </nav>
-
       </div>
     </header>
   );

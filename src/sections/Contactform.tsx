@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import HoverDoorImage from "../components/HoverDoorImage";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
@@ -154,6 +155,7 @@ function ViewPane({ children, id }: { children: React.ReactNode; id: string }) {
 }
 
 export default function ContactForm() {
+  const [sending, setSending] = useState(false);
   const [view, setView] = useState<"main" | "sub" | "form">("main");
   const [selectedCategory, setSelectedCategory] = useState<
     (typeof CATEGORIES)[0] | null
@@ -214,14 +216,36 @@ export default function ContactForm() {
     else navigate("main");
   };
 
-  const handleSubmit = () => {
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      navigate("main");
-      setSelectedCategory(null);
-      setFreeText({ objet: "", nom: "", email: "", message: "" });
-    }, 3000);
+  const handleSubmit = async () => {
+    if (!canSubmit) return;
+    setSending(true);
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          objet: freeText.objet,
+          nom: freeText.nom,
+          email: freeText.email,
+          message: freeText.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        navigate("main");
+        setSelectedCategory(null);
+        setFreeText({ objet: "", nom: "", email: "", message: "" });
+      }, 3000);
+    } catch (error) {
+      console.error("Erreur EmailJS :", error);
+      alert("Une erreur est survenue, veuillez réessayer.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const headerLabel =
@@ -249,7 +273,9 @@ export default function ContactForm() {
               fontWeight: 400,
             }}
           >
-            Quel est l'objet de<br />votre demande ?
+            Quel est l'objet de
+            <br />
+            votre demande ?
           </p>
           <div className="flex flex-col gap-2">
             {CATEGORIES.map((cat, i) => (
@@ -396,7 +422,7 @@ export default function ContactForm() {
           <button
             className="py-3"
             onClick={handleSubmit}
-            disabled={!canSubmit}
+            disabled={!canSubmit || sending}
             style={{
               ...coconat,
               width: "100%",
@@ -404,14 +430,18 @@ export default function ContactForm() {
               fontWeight: 400,
               letterSpacing: "0.02em",
               color: "#fff",
-              backgroundColor: canSubmit ? "#223078" : "#b3c2e9",
+              backgroundColor: canSubmit && !sending ? "#223078" : "#b3c2e9",
               borderRadius: "8px",
               border: "none",
-              cursor: canSubmit ? "pointer" : "not-allowed",
+              cursor: canSubmit && !sending ? "pointer" : "not-allowed",
               transition: "background-color 0.2s ease",
             }}
           >
-            {submitted ? "Message envoyé ✓" : "Envoyer"}
+            {submitted
+              ? "Message envoyé ✓"
+              : sending
+                ? "Envoi en cours…"
+                : "Envoyer"}
           </button>
         </>
       )}
@@ -447,10 +477,10 @@ export default function ContactForm() {
               textAlign: "center",
             }}
           >
-            La SEDIC est à votre disposition pour répondre à vos demandes,
-            qu'il s'agisse d'un projet de partenariat, d'une opportunité
-            d'investissement ou d'une simple prise de contact. Notre équipe
-            vous répondra dans les meilleurs délais.
+            La SEDIC est à votre disposition pour répondre à vos demandes, qu'il
+            s'agisse d'un projet de partenariat, d'une opportunité
+            d'investissement ou d'une simple prise de contact. Notre équipe vous
+            répondra dans les meilleurs délais.
           </p>
         </div>
 

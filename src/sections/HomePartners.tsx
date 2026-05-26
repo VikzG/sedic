@@ -159,7 +159,7 @@ export default function Partners() {
 
   return (
     <div>
-    <section ref={sectionRef} id="partners" className="w-full bg-white mt-16">
+    <section ref={sectionRef} className="w-full bg-white mt-16">
       {/* ── Header ── */}
       <div className="text-center px-16 pt-20 pb-16">
         <p

@@ -45,7 +45,7 @@ export default function WhyCollaborate() {
     <section
       ref={sectionRef}
       id="why-collaborate"
-      className="w-full bg-white"
+      className="w-full bg-[#E4E4E0]"
       style={{ padding: '80px 64px' }}
     >
       <div className="flex items-center justify-around gap-16">

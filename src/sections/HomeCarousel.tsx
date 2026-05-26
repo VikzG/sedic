@@ -245,7 +245,6 @@ export default function HomeCarousel() {
                         {slide.title}
                       </h3>
                       <button
-                      disabled
                         onClick={() => navigate('projects')}
                         className="bg-white/12 backdrop-blur-md min-w-full px-5 py-2 border border-white/40 rounded-xl text-white active:bg-white/25"
                         style={{ ...coconat, fontSize: '14px', letterSpacing: '-0.01em' }}
@@ -297,7 +296,7 @@ export default function HomeCarousel() {
           </p>
 
           <button
-          disabled
+          
             onClick={() => navigate('about')}
             className="w-full px-6 py-2 border border-[#223078] rounded-xl bg-[#223078] text-white active:bg-white active:text-[#223078] transition-colors duration-200"
             style={{ ...coconat, fontSize: '17px', lineHeight: '1', letterSpacing: '-0.02em' }}
@@ -397,7 +396,7 @@ export default function HomeCarousel() {
 
           {/* CTA */}
           <button
-          disabled
+          
             onClick={() => navigate('projects')}
             className="pointer-events-auto bg-white/10 backdrop-blur-md mt-7 px-6 py-3 border border-white/50 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
             style={{ ...coconat, fontSize: '18px', lineHeight: '1', letterSpacing: '-0.02em' }}
@@ -529,7 +528,7 @@ export default function HomeCarousel() {
           </p>
 
           <button
-          disabled
+          
             onClick={() => navigate('about')}
             className="px-6 py-3 border border-[#223078] rounded-xl bg-[#223078] text-white hover:bg-white hover:text-[#223078] transition-all duration-300"
             style={{ ...coconat, fontSize: '18px', lineHeight: '1', letterSpacing: '-0.02em' }}

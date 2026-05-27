@@ -16,7 +16,18 @@ const navLinkStyle: React.CSSProperties = {
   letterSpacing: "0.08em",
 };
 
-/* ── Hook isMobile ── */
+/*
+  ─── Logos ───────────────────────────────────────────────
+  Pour changer le logo mobile, modifiez uniquement ces deux
+  constantes — le reste du composant n'a pas besoin de changer.
+*/
+const LOGO_MOBILE         = "/logos/logo_nav_mob.svg";
+
+/* Logo desktop (inchangé) */
+const LOGO_DESKTOP        = "/logos/logo_nav.svg";
+const LOGO_DESKTOP_HOVER  = "/logos/logo_nav_hover.svg";
+/* ──────────────────────────────────────────────────────── */
+
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
   useEffect(() => {
@@ -27,7 +38,6 @@ function useIsMobile(breakpoint = 768) {
   return isMobile;
 }
 
-/* ── Burger icon (3 lignes) ── */
 function BurgerIcon({ open }: { open: boolean }) {
   return (
     <div className="flex flex-col justify-center items-end gap-[5px] w-6 h-6 cursor-pointer">
@@ -37,9 +47,9 @@ function BurgerIcon({ open }: { open: boolean }) {
           height: "1.5px",
           backgroundColor: "#223078",
           borderRadius: "2px",
-          width: open ? "100%" : "100%",
+          width: "100%",
           transform: open ? "translateY(6.5px) rotate(45deg)" : "none",
-          transition: "transform 0.25s ease, width 0.25s ease",
+          transition: "transform 0.25s ease",
         }}
       />
       <span
@@ -75,7 +85,6 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [logoHovered, setLogoHovered] = useState(false);
 
-  /* Close menu on page change */
   useEffect(() => setMenuOpen(false), [current]);
 
   useEffect(() => {
@@ -99,34 +108,23 @@ export default function Navbar() {
   if (isMobile) {
     return (
       <header className="fixed top-0 left-0 right-0 z-50">
-        {/* Top bar — toujours blanc sur mobile */}
         <div
           className="flex items-center justify-between px-5 h-16"
           style={{ backgroundColor: "#fff" }}
         >
-          {/* Logo */}
+          {/* Logo mobile — pas de hover, pas de absolute */}
           <button
             onClick={() => navigate("home")}
-            className="relative flex items-center flex-shrink-0 h-8 cursor-pointer"
-            onMouseEnter={() => setLogoHovered(true)}
-            onMouseLeave={() => setLogoHovered(false)}
+            className="flex items-center flex-shrink-0 cursor-pointer"
             aria-label="Accueil"
           >
             <img
-              src="/logos/logo_nav.svg"
+              src={LOGO_MOBILE}
               alt="Logo"
-              className="h-10 w-auto absolute top-0 left-0 transition-opacity duration-300"
-              style={{ opacity: logoHovered ? 0 : 1 }}
-            />
-            <img
-              src="/logos/logo_nav_hover.svg"
-              alt="Logo"
-              className="h-10 w-auto transition-opacity duration-300"
-              style={{ opacity: logoHovered ? 1 : 0 }}
+              className="h-10 w-auto"
             />
           </button>
 
-          {/* Burger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
@@ -136,7 +134,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Drawer — liens alignés à droite, fond transparent sur le hero */}
         <div
           style={{
             backgroundColor: "#fff",
@@ -149,10 +146,7 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => (
               <button
                 key={link.page}
-                onClick={() => {
-                  navigate(link.page);
-                  setMenuOpen(false);
-                }}
+                onClick={() => { navigate(link.page); setMenuOpen(false); }}
                 className="transition-all duration-200"
                 style={{
                   ...navLinkStyle,
@@ -170,7 +164,7 @@ export default function Navbar() {
   }
 
   /* ════════════════════════════════════════
-     DESKTOP (code original)
+     DESKTOP
   ════════════════════════════════════════ */
   return (
     <header
@@ -181,7 +175,7 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto px-20 h-20 flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo desktop */}
         <button
           onClick={() => navigate("home")}
           className="relative flex items-center flex-shrink-0 h-8 cursor-pointer"
@@ -190,20 +184,19 @@ export default function Navbar() {
           aria-label="Accueil"
         >
           <img
-            src="/logos/logo_nav.svg"
+            src={LOGO_DESKTOP}
             alt="Logo"
             className="h-12 w-auto absolute top-0 left-0 transition-opacity duration-300 ease-in-out"
             style={{ opacity: logoHovered ? 0 : 1 }}
           />
           <img
-            src="/logos/logo_nav_hover.svg"
+            src={LOGO_DESKTOP_HOVER}
             alt="Logo"
             className="h-12 w-auto transition-opacity duration-300 ease-in-out"
             style={{ opacity: logoHovered ? 1 : 0 }}
           />
         </button>
 
-        {/* Desktop nav */}
         <nav className="flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <button
@@ -221,9 +214,7 @@ export default function Navbar() {
           <button
             onClick={() => {
               const slot = document.getElementById(current);
-              if (slot) {
-                slot.scrollTo({ top: slot.scrollHeight, behavior: "smooth" });
-              }
+              if (slot) slot.scrollTo({ top: slot.scrollHeight, behavior: "smooth" });
             }}
             aria-label="Contact"
             className="ml-1 hover:translate-y-0.5 transition-all duration-200 group"

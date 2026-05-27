@@ -19,7 +19,11 @@ const commissioner: React.CSSProperties = {
 /* ══════════════════════════════════════════════════════════
    MOBILE
 ══════════════════════════════════════════════════════════ */
-function MobileNews() {
+interface MobileNewsProps {
+  compact?: boolean; // true → titre "ACTUALITÉS" visible, bouton masqué
+}
+
+function MobileNews({ compact = false }: MobileNewsProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [triggered, setTriggered] = useState(false);
   const { navigate } = useNav();
@@ -37,25 +41,7 @@ function MobileNews() {
     return () => observer.disconnect();
   }, [triggered]);
 
-  /*
-    Reproduction fidèle du desktop en mobile :
-
-    Desktop :
-    - Titre z:1 (derrière tout)
-    - Cadre 1200×360px en z:2, bg_back dedans (clipé)
-    - bg_front z:10 : ancré bottom:0 du cadre, monte de -10px → -160px
-      soit ~44% de la hauteur du cadre (160/360). Il dépasse le cadre vers
-      le haut et traverse les lettres du titre (z:10 > z:1).
-
-    Mobile : on reproduit la même structure proportionnelle.
-    - Hauteur du cadre image : 260px (valeur fixe choisie)
-    - Titre au-dessus, hauteur ~70px → total wrapper ~330px
-    - bg_front monte de translateY(0) → translateY(-120px)
-      soit ~46% de 260px ≈ même proportion que desktop (44%)
-    - bg_front en z:10 passe bien devant le titre en z:1
-  */
-
-  const FRAME_H = 260; // hauteur du cadre bg_back en px
+  const FRAME_H = 260;
 
   return (
     <section
@@ -63,19 +49,20 @@ function MobileNews() {
       id="news"
       className="bg-white w-full overflow-hidden"
     >
-      {/*
-        Wrapper global : position relative, hauteur = titre (~70px) + cadre (FRAME_H)
-        Le bg_front dépassera vers le haut hors du cadre pour aller dans le titre.
-        overflow: visible ici pour laisser bg_front déborder.
-      */}
       <div
         className="relative w-full"
         style={{ height: `${70 + FRAME_H}px`, overflow: "visible" }}
       >
-        {/* Titre — z:1, derrière bg_front */}
+        {/* Titre — toujours visible en mode compact, caché sinon */}
         <div
           className="absolute top-0 left-0 right-0 flex items-center justify-center"
-          style={{ zIndex: 1, height: "70px" }}
+          style={{
+            zIndex: 1,
+            height: "70px",
+            // En mode normal (page d'accueil) le titre est décoratif/en fond
+            // En mode compact (autre section) il est mis en avant
+            opacity: compact ? 1 : 1,
+          }}
         >
           <h2
             className="font-normal leading-none select-none text-center w-full"
@@ -91,7 +78,7 @@ function MobileNews() {
           </h2>
         </div>
 
-        {/* Cadre bg_back — z:2, overflow hidden pour clipper bg_back */}
+        {/* Cadre bg_back */}
         <div
           className="absolute left-0 right-0 overflow-hidden"
           style={{ top: "70px", height: `${FRAME_H}px`, zIndex: 2 }}
@@ -113,14 +100,6 @@ function MobileNews() {
             }}
           />
         </div>
-
-        {/*
-          bg_front — même logique que desktop :
-          ancré bottom:0 du cadre, monte via translateY négatif en px.
-          Position de départ : translateY(-20px) → juste visible au bas du cadre
-          Position finale   : translateY(-200px) → dépasse largement en haut,
-                              traverse les lettres du titre (z:10 > z:1)
-        */}
       </div>
 
       {/* ── Caption block ── */}
@@ -134,7 +113,6 @@ function MobileNews() {
             : "none",
         }}
       >
-        {/* Date — AVRIL 2026 sur une ligne */}
         <p
           className="text-[#1e2d6b] uppercase mb-5"
           style={{
@@ -178,26 +156,29 @@ function MobileNews() {
           patrimoine culturel et historique du Congo.
         </p>
 
-        <button
-          onClick={() => navigate("news")}
-          className="w-full py-3 rounded-xl bg-[#223078] text-white hover:bg-white hover:text-[#223078] border border-[#223078] transition-all duration-300"
-          style={{
-            ...coconat,
-            fontSize: "16px",
-            lineHeight: "1",
-            letterSpacing: "-0.01em",
-            maxWidth: "340px",
-          }}
-        >
-          Lire les actualités
-        </button>
+        {/* Bouton — masqué en mode compact */}
+        {!compact && (
+          <button
+            onClick={() => navigate("news")}
+            className="w-full py-3 rounded-xl bg-[#223078] text-white hover:bg-white hover:text-[#223078] border border-[#223078] transition-all duration-300"
+            style={{
+              ...coconat,
+              fontSize: "16px",
+              lineHeight: "1",
+              letterSpacing: "-0.01em",
+              maxWidth: "340px",
+            }}
+          >
+            Lire les actualités
+          </button>
+        )}
       </div>
     </section>
   );
 }
 
 /* ══════════════════════════════════════════════════════════
-   DESKTOP — code original
+   DESKTOP — code original inchangé
 ══════════════════════════════════════════════════════════ */
 function DesktopNews() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -383,7 +364,11 @@ function DesktopNews() {
 /* ══════════════════════════════════════════════════════════
    Export
 ══════════════════════════════════════════════════════════ */
-export default function News() {
+interface NewsProps {
+  compact?: boolean;
+}
+
+export default function News({ compact = false }: NewsProps) {
   const isMobile = useIsMobile();
-  return isMobile ? <MobileNews /> : <DesktopNews />;
+  return isMobile ? <MobileNews compact={compact} /> : <DesktopNews />;
 }

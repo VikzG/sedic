@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import useIsMobile from "../components/useIsmobile";
 import ContactForm from "./Contactform";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
@@ -130,7 +131,7 @@ d’une offre résidentielle durable et qualitative à Brazzaville.`,
   },
 ];
 
-export default function ProjectsSection() {
+function ProjectsDesktop() {
   const [activeId, setActiveId] = useState(1);
 
   const activeProject = useMemo(
@@ -421,4 +422,274 @@ export default function ProjectsSection() {
       <ContactForm />
     </div>
   );
+}
+
+function MobileProjectCard({
+  project,
+  open,
+  onToggle,
+}: {
+  project: (typeof projects)[0];
+  open: boolean;
+  onToggle: () => void;
+}): JSX.Element {
+  
+  const [selectedImage, setSelectedImage] = useState(project.cover);
+
+  return (
+    <motion.div
+      layout
+      transition={{
+        duration: 0.65,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="border-b border-white overflow-hidden bg-white"
+    >
+      {/* HEADER IMAGE */}
+      <motion.button
+        layout
+        onClick={onToggle}
+        className="relative w-full overflow-hidden"
+        animate={{
+          height: open ? 220 : 92,
+        }}
+        transition={{
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        {/* IMAGE TRANSITION */}
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={selectedImage}
+            src={selectedImage}
+            initial={{
+              opacity: 0,
+              scale: 1.06,
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </AnimatePresence>
+
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-black/35" />
+
+        {/* TITLE */}
+        <motion.div
+          layout
+          className="absolute inset-0 flex items-center justify-center px-6"
+          animate={{
+            alignItems: open ? "flex-start" : "center",
+          }}
+          transition={{
+            duration: 0.5,
+          }}
+          style={{
+            paddingTop: open ? "24px" : "0px",
+          }}
+        >
+          <motion.h3
+            layout
+            className="uppercase text-center text-white"
+            style={{
+              ...coconat,
+              fontSize:"16px",
+              lineHeight: "1.05",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            {project.title}
+          </motion.h3>
+        </motion.div>
+      </motion.button>
+
+      {/* EXPANDABLE CONTENT */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{
+              height: 0,
+              opacity: 0,
+            }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            style={{
+              background:
+                "linear-gradient(180deg, #6a645d 0%, #2c3443 100%)",
+            }}
+          >
+            {/* THUMBNAILS */}
+            <motion.div
+              initial={{ y: 16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.15 }}
+              className="flex gap-2 px-2 pt-2"
+            >
+              {project.images.map((img, i) => {
+                const active = selectedImage === img;
+
+                return (
+                  <motion.button
+                    key={i}
+                    whileTap={{ scale: 0.96 }}
+                    onClick={() => setSelectedImage(img)}
+                    className="overflow-hidden rounded-sm"
+                    animate={{
+                      opacity: active ? 1 : 0.7,
+                      scale: active ? 1 : 0.96,
+                    }}
+                    transition={{
+                      duration: 0.35,
+                    }}
+                    style={{
+                      width: "33.333%",
+                      height: "74px",
+                    }}
+                  >
+                    <motion.img
+                      whileHover={{ scale: 1.05 }}
+                      src={img}
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.button>
+                );
+              })}
+            </motion.div>
+
+            {/* TEXT */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                delay: 0.2,
+                duration: 0.5,
+              }}
+              className="px-5 py-5 text-center"
+            >
+              <p
+                style={{
+                  ...commissioner,
+                  fontSize: "13px",
+                  lineHeight: "1.45",
+                  color: "white",
+                }}
+              >
+                {project.description}
+              </p>
+
+              {/* BUTTON */}
+              {project.url && (
+                <motion.a
+                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.02 }}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex py-1 items-center justify-center border border-white/60 rounded-lg"
+                  style={{
+                    width: "100%",
+                    color: "white",
+                    ...coconat,
+                    fontSize: "16px",
+                  }}
+                >
+                  Voir le site
+                </motion.a>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+function ProjectsMobile() {
+  const [activeId, setActiveId] = useState(1);
+
+  return (
+    <div>
+      <section className="bg-white pt-28">
+        {/* HEADER */}
+        <div className="px-6 mb-10 text-center">
+          <p
+            className="uppercase text-[#1e2d6b] mb-3"
+            style={{
+              ...coconat,
+              fontSize: "16px",
+              letterSpacing: "0.08em",
+            }}
+          >
+            NOS PROJETS
+          </p>
+
+          <h2
+            style={{
+              ...coconat,
+              fontSize: "26px",
+              lineHeight: "0.95",
+              letterSpacing: "-0.04em",
+            }}
+          >
+            Des infrastructures qui façonnent{" "}
+            <em
+              style={{
+                fontFamily: "'Charis SIL', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                color: "#1e2d6b",
+              }}
+            >
+              le Congo de demain.
+            </em>
+          </h2>
+        </div>
+
+        {/* PROJECTS */}
+        <div className="flex flex-col">
+          {projects.map((project) => (
+            <MobileProjectCard
+              key={project.id}
+              project={project}
+              open={activeId === project.id}
+              onToggle={() =>
+                setActiveId(
+                  activeId === project.id ? 0 : project.id
+                )
+              }
+            />
+          ))}
+        </div>
+      </section>
+
+      <ContactForm />
+    </div>
+  );
+}
+
+
+export default function ProjectsSection() {
+  const isMobile = useIsMobile();
+
+  return isMobile ? <ProjectsMobile /> : <ProjectsDesktop />;
 }

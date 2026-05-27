@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import  useIsMobile  from "../components/useIsmobile";
 import Contactform from "./Contactform";
 import Collaborate from "./Collaborate";
 import Details from "./Details";
@@ -140,7 +141,7 @@ function PartnerCard({
 }
 
 /* ── Main section ── */
-export default function Partners() {
+function PartnersDesktop () {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -299,4 +300,209 @@ export default function Partners() {
     <Contactform />
     </div>
   );
+}
+
+function MobilePartnerCard({
+  partner,
+}: {
+  partner: (typeof PARTNERS)[0];
+}) {
+  return (
+    <a
+      href={partner.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="shrink-0 snap-center"
+      style={{
+        width: "82vw",
+      }}
+    >
+      <div
+        className="relative overflow-hidden rounded-xl"
+        style={{
+          height: "360px",
+          backgroundColor: "#f0efea",
+        }}
+      >
+        <img
+          src={partner.image}
+          alt={partner.name}
+          className="w-full h-full object-cover"
+        />
+
+        {/* Bande logo */}
+        <div
+          className="absolute left-0 right-0 flex items-center justify-center"
+          style={{
+            top: "50%",
+            transform: "translateY(-50%)",
+            backgroundColor: "white",
+            height: "82px",
+            padding: "10px 20px",
+          }}
+        >
+          <img
+            src={partner.logo}
+            alt={partner.name}
+            style={{
+              maxWidth: "140px",
+              maxHeight: "60px",
+              objectFit: "contain",
+            }}
+          />
+        </div>
+      </div>
+    </a>
+  );
+}
+
+function PartnersMobile() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div>
+      <section
+        ref={sectionRef}
+        className="w-full bg-white overflow-hidden"
+      >
+        {/* HEADER */}
+        <div className="px-2 pt-28 pb-12 text-center">
+          <p
+            className="uppercase text-[#1e2d6b] mb-2"
+            style={{
+              ...coconat,
+              fontSize: "16px",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Partenariats
+          </p>
+
+          <h2
+            style={{
+              ...coconat,
+              fontSize: "26px",
+              lineHeight: "0.95",
+              letterSpacing: "-0.04em",
+            }}
+            className="mb-6"
+          >
+            Construire{" "}
+            <em
+              style={{
+                fontFamily: "'Charis SIL', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                color: "#1e2d6b",
+              }}
+            >
+              ensemble
+            </em>{" "}
+            les infrastructures de{" "}
+            <em
+              style={{
+                fontFamily: "'Charis SIL', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                color: "#1e2d6b",
+              }}
+            >
+              demain.
+            </em>
+          </h2>
+
+          <p
+            style={{
+              fontFamily: "'Charis SIL', Georgia, serif",
+              fontStyle: "italic",
+              fontWeight: 700,
+              fontSize: "14px",
+              color: "#1e2d6b",
+              lineHeight: "1.3",
+            }}
+          >
+            La SEDIC place la collaboration au cœur de son action.
+          </p>
+
+          <p
+            style={{
+              ...commissioner,
+              fontSize: "14px",
+              lineHeight: "1.55",
+              color: "#222",
+            }}
+          >
+            Nous travaillons avec des partenaires publics et privés
+            pour concevoir, financer, développer et exploiter des
+            projets structurants en République du Congo.
+          </p>
+        </div>
+
+        {/* LABEL */}
+        <div 
+          className="py-10"
+          style={{
+            backgroundColor: "#E4E4E0",
+          }}
+        >
+          <p
+            className="uppercase text-center text-[#1e2d6b]"
+            style={{
+              ...coconat,
+              fontSize: "16px",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Nos partenaires
+          </p>
+        </div>
+
+        {/* SCROLL HORIZONTAL */}
+        <div
+          className="flex gap-4 bg-[#E4E4E0] overflow-x-auto px-4 py-2 snap-x snap-mandatory"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
+          {PARTNERS.map((partner) => (
+            <MobilePartnerCard
+              key={partner.id}
+              partner={partner}
+            />
+          ))}
+        </div>
+      </section>
+
+      <Collaborate />
+      <Details />
+      <Contactform />
+    </div>
+  );
+}
+
+export default function Partners() {
+  const isMobile = useIsMobile();
+
+  return isMobile ? <PartnersMobile /> : <PartnersDesktop />;
 }

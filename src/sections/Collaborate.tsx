@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
+import useIsMobile from '../components/useIsmobile';
 
 const coconat: React.CSSProperties = { fontFamily: 'Coconat, Georgia, serif' };
 const commissioner: React.CSSProperties = { fontFamily: 'Commissioner, sans-serif' };
@@ -26,7 +27,7 @@ const REASONS = [
   },
 ];
 
-export default function WhyCollaborate() {
+function WhyCollaborateDesktop() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -222,4 +223,164 @@ export default function WhyCollaborate() {
       </div>
     </section>
   );
+}
+
+function WhyCollaborateMobile() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="why-collaborate"
+      className="w-full bg-[#E4E4E0]"
+      style={{
+        padding: "72px 16px",
+      }}
+    >
+      {/* HEADER */}
+      <div className="text-center">
+        <p
+          className="uppercase text-[#1e2d6b] mb-2"
+          style={{
+            ...coconat,
+            fontSize: "16px",
+            letterSpacing: "0.08em",
+          }}
+        >
+          Notre Approche
+        </p>
+
+        <h2
+          className="mb-8"
+          style={{
+            ...coconat,
+            fontSize: "26px",
+            lineHeight: "1.05",
+            letterSpacing: "-0.03em",
+          }}
+        >
+          Pourquoi{" "}
+          <em
+            style={{
+              fontFamily: "'Charis SIL', Georgia, serif",
+              fontStyle: "italic",
+              fontWeight: 700,
+              color: "#1e2d6b",
+            }}
+          >
+            collaborer
+          </em>{" "}
+          avec la SEDIC ?
+        </h2>
+
+        <p
+          style={{
+            ...commissioner,
+            fontSize: "14px",
+            lineHeight: "1.55",
+            color: "#223078",
+            marginBottom: "42px",
+          }}
+        >
+          Nous développons des partenariats basés sur la confiance,
+          la transparence et une vision commune du développement.
+          Chaque collaboration est pensée pour créer de la valeur durable,
+          en combinant expertises locales et standards internationaux.
+        </p>
+      </div>
+
+      {/* AMBITION */}
+      <div className="text-center mb-10">
+        <p
+          className="uppercase mb-4"
+          style={{
+            ...coconat,
+            fontSize: "16px",
+            letterSpacing: "0.08em",
+          }}
+        >
+          Une ambition commune
+        </p>
+
+        <p
+          style={{
+            fontFamily: "'Charis SIL', Georgia, serif",
+            fontStyle: "italic",
+            fontWeight: 700,
+            fontSize: "18px",
+            color: "#1e2d6b",
+            lineHeight: "1.45",
+          }}
+        >
+          Contribuer au développement d'infrastructures modernes,
+          durables et créatrices d'opportunités pour l'économie
+          congolaise
+        </p>
+      </div>
+
+      {/* CARD */}
+      <div
+        style={{
+          backgroundColor: "#B3C2E9",
+          borderRadius: "12px",
+          padding: "24px 18px",
+        }}
+      >
+        <div className="flex flex-col gap-8">
+          {REASONS.map((reason) => (
+            <div key={reason.title} className="text-center">
+              <p
+                style={{
+                  fontFamily: "'Charis SIL', Georgia, serif",
+                  fontStyle: "italic",
+                  fontWeight: 700,
+                  fontSize: "15px",
+                  color: "#1e2d6b",
+                  lineHeight: "1.3",
+                  marginBottom: "8px",
+                }}
+              >
+                {reason.title}
+              </p>
+
+              <p
+                style={{
+                  ...commissioner,
+                  fontSize: "14px",
+                  lineHeight: "1.5",
+                  color: "#1a1a2e",
+                }}
+              >
+                {reason.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function WhyCollaborate() {
+  const isMobile = useIsMobile();
+
+  return isMobile ? <WhyCollaborateMobile /> : <WhyCollaborateDesktop />;
 }

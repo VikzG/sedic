@@ -109,7 +109,7 @@ export default function Mission({ current }: { current: string }) {
       <section
         id="mission"
         ref={sectionRef}
-        className="relative flex flex-col overflow-hidden min-h-[80vh]"
+        className="relative flex flex-col overflow-hidden min-h-[850px]"
         style={{ background: '#0a1628' }}
       >
         {/* Background image */}
@@ -117,7 +117,6 @@ export default function Mission({ current }: { current: string }) {
           className="absolute inset-0 bg-bottom bg-cover bg-no-repeat"
           style={{ backgroundImage: "url('/images/bg_mission.png')" }}
         />
-        <div className="absolute inset-0" style={{ background: 'rgba(10,22,40,0.50)' }} />
 
         <div className="relative z-10 flex flex-col px-5 pt-14 pb-10 gap-7">
 
@@ -253,29 +252,6 @@ export default function Mission({ current }: { current: string }) {
                   </span>
                 </button>
               ))}
-          </div>
-
-          {/* ── Bouton bas ── */}
-          <div
-            className="flex justify-center pt-1"
-            style={{
-              opacity: step >= 3 ? 1 : 0,
-              transform: step >= 3 ? 'translateY(0)' : 'translateY(16px)',
-              transition: 'opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1)',
-            }}
-          >
-            <button
-              onClick={() => {
-    document.getElementById(current)?.scrollTo({
-      top: document.getElementById(current)!.scrollHeight,
-      behavior: 'smooth',
-    });
-  }}
-              className="px-8 py-2 w-full backdrop-blur-md border border-white/40 rounded-xl text-white active:bg-white/20 transition-all duration-300"
-              style={{ ...coconat, fontSize: '16px', lineHeight: '1', letterSpacing: '-0.02em' }}
-            >
-              Devenir partenaire
-            </button>
           </div>
 
         </div>

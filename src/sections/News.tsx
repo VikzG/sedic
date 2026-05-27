@@ -47,7 +47,7 @@ function MobileNews({ compact = false }: MobileNewsProps) {
     <section
       ref={sectionRef}
       id="news"
-      className="bg-white w-full overflow-hidden"
+      className="bg-white w-full overflow-hidden pt-4"
     >
       <div
         className="relative w-full"
@@ -160,7 +160,7 @@ function MobileNews({ compact = false }: MobileNewsProps) {
         {!compact && (
           <button
             onClick={() => navigate("news")}
-            className="w-full py-3 rounded-xl bg-[#223078] text-white hover:bg-white hover:text-[#223078] border border-[#223078] transition-all duration-300"
+            className="w-full py-2 rounded-lg bg-[#223078] text-white hover:bg-white hover:text-[#223078] border border-[#223078] transition-all duration-300"
             style={{
               ...coconat,
               fontSize: "16px",

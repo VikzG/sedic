@@ -76,7 +76,7 @@ function MobileDetails() {
     /* Un seul conteneur — bg image unique couvre toute la section */
     <div
       ref={sectionRef}
-      className="relative w-full flex flex-col overflow-hidden"
+      className="relative w-full flex flex-col overflow-hidden py-4"
     >
       {/* ── Background image unique ── */}
       <img

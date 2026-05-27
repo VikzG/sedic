@@ -49,14 +49,15 @@ export default function ProjectsSwiper({ height = 300, onNavigate, onSlideChange
         modules={[EffectCoverflow]}
         effect="coverflow"
         centeredSlides
-        loopAdditionalSlides={1}       /* slides de marge pour éviter les trous */
-        slidesPerView={1.25}            /* légèrement réduit pour stabiliser le loop */
+        loopAdditionalSlides={1}
+        spaceBetween={50}     /* slides de marge pour éviter les trous */
+        slidesPerView={1.4}            /* légèrement réduit pour stabiliser le loop */
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
           depth: 140,
           modifier: 2.2,
-          slideShadows: false,
+          slideShadows: true,
         }}
         onRealIndexChange={(swiper) => {
           setActiveIndex(swiper.realIndex);
@@ -87,7 +88,7 @@ export default function ProjectsSwiper({ height = 300, onNavigate, onSlideChange
                       className="text-center text-white uppercase"
                       style={{
                         ...coconat,
-                        fontSize: '13.5px',
+                        fontSize: '15px',
                         fontWeight: 400,
                         letterSpacing: '0.06em',
                         lineHeight: '1.3',
@@ -111,10 +112,10 @@ export default function ProjectsSwiper({ height = 300, onNavigate, onSlideChange
                     >
                       <button
                         onClick={onNavigate}
-                        className="w-full backdrop-blur-md px-5 py-2.5 border border-white/40 rounded-xl text-white active:bg-white/25"
+                        className="w-full backdrop-blur-md px-5 py-1 border border-white/40 rounded-xl text-white active:bg-white/25"
                         style={{
                           ...coconat,
-                          fontSize: '14px',
+                          fontSize: '18px',
                           letterSpacing: '-0.01em',
                           background: 'rgba(255,255,255,0.10)',
                         }}
@@ -123,20 +124,6 @@ export default function ProjectsSwiper({ height = 300, onNavigate, onSlideChange
                       </button>
                     </div>
                   )}
-
-                  {/* Counter */}
-                  <div
-                    className="absolute top-3 right-3 text-white/60 tabular-nums"
-                    style={{
-                      ...commissioner,
-                      fontSize: '10px',
-                      letterSpacing: '0.08em',
-                      opacity: isActive ? 1 : 0,
-                      transition: 'opacity 0.35s ease',
-                    }}
-                  >
-                    {String(i + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}
-                  </div>
                 </div>
               );
             })()}

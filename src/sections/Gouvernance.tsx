@@ -335,7 +335,7 @@ function MobileGouvernance() {
           transition: "opacity 0.9s ease 0.7s",
         }}
       >
-        <ProjectsSwiper height={380} onNavigate={() => navigate("projects")} />
+        <ProjectsSwiper height={350} onNavigate={() => navigate("projects")} />
       </div>
     </section>
   );

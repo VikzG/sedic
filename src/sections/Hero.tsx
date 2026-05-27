@@ -44,6 +44,7 @@ export default function Hero() {
             style={{
               filter: loaderDone ? "blur(0px)" : "blur(12px)",
               transition: "filter 1s ease",
+              isolation: "isolate",
             }}
           >
             <video
@@ -51,7 +52,7 @@ export default function Hero() {
               muted
               loop
               playsInline
-              className="absolute top-0 right-0 h-full w-auto min-w-full object-cover scale-[1.7] origin-top-right"
+              className="absolute top-0 right-0 h-full brightness-25 w-auto min-w-full object-cover scale-[1.5] origin-top-right"
             >
               <source
                 src="https://res.cloudinary.com/dynpasxkm/video/upload/v1779383028/bg_hero_video_cfptxb.mp4"
@@ -113,7 +114,7 @@ export default function Hero() {
               className="uppercase text-white text-center mb-3"
               style={{
                 ...coconat,
-                fontSize: "13px",
+                fontSize: "15px",
                 lineHeight: "1.05",
                 letterSpacing: "0.08em",
               }}
@@ -124,7 +125,7 @@ export default function Hero() {
               className="text-white text-center mb-8"
               style={{
                 ...commissioner,
-                fontSize: "13.5px",
+                fontSize: "13px",
                 lineHeight: "1.5",
                 letterSpacing: "0",
                 maxWidth: "320px",
@@ -149,7 +150,7 @@ export default function Hero() {
                       behavior: "smooth",
                     });
                 }}
-                className="w-full py-3 bg-white/10 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
+                className="w-full py-2 bg-white/10 backdrop-blur-md border border-white/50 rounded-lg text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
                 style={{
                   ...coconat,
                   fontSize: "16px",
@@ -161,7 +162,7 @@ export default function Hero() {
               </button>
               <button
                 onClick={() => navigate("projects")}
-                className="w-full py-3 bg-white/10 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#223078] hover:text-[#E4E4E0] hover:border-[#223078] transition-all duration-300"
+                className="w-full py-2 bg-white/10 backdrop-blur-md border border-white/50 rounded-lg text-white hover:bg-[#223078] hover:text-[#E4E4E0] hover:border-[#223078] transition-all duration-300"
                 style={{
                   ...coconat,
                   fontSize: "16px",
@@ -198,6 +199,7 @@ export default function Hero() {
           style={{
             filter: loaderDone ? "blur(0px)" : "blur(12px)",
             transition: "filter 1s ease",
+            isolation: "isolate",
           }}
         >
           <video

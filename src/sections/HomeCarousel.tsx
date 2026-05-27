@@ -130,11 +130,11 @@ export default function HomeCarousel() {
     return (
       <section
         ref={sectionRef}
-        className="flex flex-col bg-[#F5F4F0] overflow-hidden py-8 pb-8"
+        className="flex flex-col bg-[#F5F4F0] overflow-hidden py-12"
       >
         {/* Titre */}
         <div
-          className="text-center px-7 pt-9 pb-0"
+          className="text-center px-7 pb-0"
           style={{
             opacity: step >= 1 ? 1 : 0,
             transform: step >= 1 ? "translateY(0)" : "translateY(-24px)",
@@ -168,11 +168,11 @@ export default function HomeCarousel() {
         </div>
 
         {/* ── Swiper carousel ── */}
-        <ProjectsSwiper height={400} onNavigate={() => navigate("projects")} />
+        <ProjectsSwiper height={380} onNavigate={() => navigate("projects")} />
 
         {/* Bloc texte */}
         <div
-          className="px-6 pt-2 text-center flex flex-col items-center gap-5"
+          className="px-6 pt-10 text-center flex flex-col items-center gap-5"
           style={{
             opacity: step >= 2 ? 1 : 0,
             transform: step >= 2 ? "translateY(0)" : "translateY(40px)",
@@ -203,7 +203,7 @@ export default function HomeCarousel() {
 
           <button
             onClick={() => navigate("about")}
-            className="w-full px-6 py-2 border border-[#223078] rounded-xl bg-[#223078] text-white active:bg-white active:text-[#223078] transition-colors duration-200"
+            className="w-full px-6 py-2 border border-[#223078] rounded-lg bg-[#223078] text-white active:bg-white active:text-[#223078] transition-colors duration-200"
             style={{
               ...coconat,
               fontSize: "17px",

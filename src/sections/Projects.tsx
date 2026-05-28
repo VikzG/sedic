@@ -511,7 +511,7 @@ function ProjectsMobile() {
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 </AnimatePresence>
-                <div className="absolute inset-0 bg-black/35 flex items-start justify-center pt-6 px-6">
+                <div className="absolute inset-0  flex items-start justify-center pt-6 px-6">
                   <h3 className="uppercase text-center text-white"
                     style={{ ...coconat, fontSize: "16px", lineHeight: "1.15", letterSpacing: "-0.01em" }}>
                     {project.title}

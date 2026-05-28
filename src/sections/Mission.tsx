@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useNav } from "../App";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
@@ -43,6 +44,7 @@ export default function Mission({ current }: { current: string }) {
   const [cardTop, setCardTop] = useState(0);
   const [pillarHeights, setPillarHeights] = useState<number[]>([0, 0, 0, 0]);
   const [step, setStep] = useState(0);
+  const { navigate } = useNav();
 
   // ── Détection mobile ──────────────────────────────────────
   const [isMobile, setIsMobile] = useState(false);
@@ -304,23 +306,27 @@ export default function Mission({ current }: { current: string }) {
         style={{ backgroundImage: "url('/images/bg_mission.png')" }}
       />
 
-      {/* Full-column hover zones */}
-      {pillars.map(({ num }, i) => (
-        <div
-          key={`hover-zone-${num}`}
-          className="absolute"
-          style={{
-            left: `${i * 25}%`,
-            width: "25%",
-            top: cardTop,
-            bottom: 0,
-            zIndex: 20,
-            cursor: "pointer",
-          }}
-          onMouseEnter={() => setHovered(num)}
-          onMouseLeave={() => setHovered(null)}
-        />
-      ))}
+{/* Full-column hover zones */}
+{pillars.map(({ num }, i) => (
+  <button
+    key={`hover-zone-${num}`}
+    onClick={() => navigate("about")}
+    className="absolute"
+    style={{
+      left: `${i * 25}%`,
+      width: "25%",
+      top: cardTop,
+      bottom: 0,
+      zIndex: 20,
+      cursor: "pointer",
+      background: "transparent",
+      border: "none",
+      padding: 0,
+    }}
+    onMouseEnter={() => setHovered(num)}
+    onMouseLeave={() => setHovered(null)}
+  />
+))}
 
       {/* Hover cards */}
       {pillars.map(({ num, desc, align }, i) => (
@@ -377,6 +383,27 @@ export default function Mission({ current }: { current: string }) {
                 {desc}
               </p>
             </div>
+          </div>
+          <div
+            className="px-12 pb-10"
+            style={{ position: "relative", zIndex: 25 }}
+          >
+            {" "}
+            <button
+              className="pointer-events-auto w-full py-2 rounded-lg text-center transition-all duration-300 hover:bg-[#E4E4E0]"
+              style={{
+                ...coconat,
+                fontSize: "18px",
+                lineHeight: "1",
+                letterSpacing: "-0.02em",
+                background: "#7A9BBF",
+                color: "#223078",
+                border: "none",
+              }}
+            >
+              {" "}
+              En savoir +{" "}
+            </button>{" "}
           </div>
         </div>
       ))}

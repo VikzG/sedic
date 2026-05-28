@@ -378,25 +378,6 @@ export default function Mission({ current }: { current: string }) {
               </p>
             </div>
           </div>
-          <div
-            className="px-12 pb-10"
-            style={{ position: "relative", zIndex: 25 }}
-          >
-            <button
-              className="pointer-events-auto w-full py-2 rounded-lg text-center transition-all duration-300 hover:bg-[#E4E4E0]"
-              style={{
-                ...coconat,
-                fontSize: "18px",
-                lineHeight: "1",
-                letterSpacing: "-0.02em",
-                background: "#7A9BBF",
-                color: "#223078",
-                border: "none",
-              }}
-            >
-              En savoir +
-            </button>
-          </div>
         </div>
       ))}
 

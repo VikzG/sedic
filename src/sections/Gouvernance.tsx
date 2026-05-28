@@ -164,25 +164,6 @@ function Carousel() {
           Parcourir tous nos projets
         </button>
       </div>
-      <div
-        className="absolute z-50 pointer-events-none"
-        style={{
-          right: 0,
-          top: "50%",
-          transform: "translateX(50%) translateY(-50%)",
-        }}
-      >
-        <img
-          src="/logos/star_wheel.svg"
-          alt=""
-          width={64}
-          height={64}
-          style={{
-            transform: `rotate(${wheelRotation}deg)`,
-            transition: "transform 0.6s cubic-bezier(0.4,0,0.2,1)",
-          }}
-        />
-      </div>
     </div>
   );
 }

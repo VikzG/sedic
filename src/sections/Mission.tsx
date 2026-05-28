@@ -338,7 +338,7 @@ export default function Mission({ current }: { current: string }) {
           </div>
           <div className="px-12 pb-10" style={{ position: 'relative', zIndex: 25 }}>
             <button
-              className="pointer-events-auto w-full py-3 rounded-xl text-center transition-all duration-300 hover:bg-[#E4E4E0]"
+              className="pointer-events-auto w-full py-2 rounded-lg text-center transition-all duration-300 hover:bg-[#E4E4E0]"
               style={{ ...coconat, fontSize: '18px', lineHeight: '1', letterSpacing: '-0.02em', background: '#7A9BBF', color: '#223078', border: 'none' }}
             >
               En savoir +
@@ -372,7 +372,7 @@ export default function Mission({ current }: { current: string }) {
       behavior: 'smooth',
     });
   }}
-              className="px-8 py-2 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
+              className="px-8 py-2 backdrop-blur-md border border-white/50 rounded-lg text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
               style={{ ...coconat, fontSize: '18px', lineHeight: '1', letterSpacing: '-0.02em' }}
             >
               Devenir partenaire

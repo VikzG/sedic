@@ -568,7 +568,7 @@ export default function About() {
                 behavior: "smooth",
               });
             }}
-            className="px-6 py-3 rounded-xl bg-[#223078] text-white hover:bg-[#B3C2E9] hover:text-[#223078] transition-all duration-300"
+            className="px-6 py-2 rounded-lg bg-[#223078] text-white hover:bg-[#B3C2E9] hover:text-[#223078] transition-all duration-300"
             style={{
               ...coconat,
               fontSize: "18px",

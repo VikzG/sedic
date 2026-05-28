@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNav } from "../App";
-
+ 
 function useIsMobile(breakpoint = 1100) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
   useEffect(() => {
@@ -10,24 +10,24 @@ function useIsMobile(breakpoint = 1100) {
   }, [breakpoint]);
   return isMobile;
 }
-
+ 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
   fontFamily: "Commissioner, sans-serif",
 };
-
+ 
 /* ══════════════════════════════════════════════════════════
    MOBILE
 ══════════════════════════════════════════════════════════ */
 interface MobileNewsProps {
   compact?: boolean; // true → titre "ACTUALITÉS" visible, bouton masqué
 }
-
+ 
 function MobileNews({ compact = false }: MobileNewsProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [triggered, setTriggered] = useState(false);
   const { navigate } = useNav();
-
+ 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -40,35 +40,27 @@ function MobileNews({ compact = false }: MobileNewsProps) {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, [triggered]);
-
-  const FRAME_H = 260;
-
+ 
   return (
     <section
       ref={sectionRef}
       id="news"
-      className="bg-white w-full overflow-hidden pt-4"
+      className="bg-white w-full overflow-hidden py-6"
     >
       <div
         className="relative w-full"
-        style={{ height: `${70 + FRAME_H}px`, overflow: "visible" }}
+        style={{ height: "270px", overflow: "visible" }}
       >
         {/* Titre — toujours visible en mode compact, caché sinon */}
         <div
           className="absolute top-0 left-0 right-0 flex items-center justify-center"
-          style={{
-            zIndex: 1,
-            height: "70px",
-            // En mode normal (page d'accueil) le titre est décoratif/en fond
-            // En mode compact (autre section) il est mis en avant
-            opacity: compact ? 1 : 1,
-          }}
+          style={{ zIndex: 1, height: "70px" }}
         >
           <h2
             className="font-normal leading-none select-none text-center w-full"
             style={{
               ...coconat,
-              fontSize: "clamp(48px, 15vw, 80px)",
+              fontSize: compact ? "50px" : "55px",
               color: "#1e2d6b",
               letterSpacing: "0.03em",
               lineHeight: 1,
@@ -77,39 +69,117 @@ function MobileNews({ compact = false }: MobileNewsProps) {
             ACTUALITÉS
           </h2>
         </div>
+ 
+        {/* Cadre bg_back — overflow hidden pour clipper l'image de fond */}
+<div
+  className="absolute overflow-hidden"
+  style={{
+    top: "70px",
+    left: "50%",
+    transform: "translateX(-50%)",
 
-        {/* Cadre bg_back */}
-        <div
-          className="absolute left-0 right-0 overflow-hidden"
-          style={{ top: "70px", height: `${FRAME_H}px`, zIndex: 2 }}
-        >
-          <img
-            src="/images/actu_bg_back.jpg"
-            alt=""
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              display: "block",
-              transform: triggered ? "translateY(0px)" : "translateY(80px)",
-              transition: triggered
-                ? "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1)"
-                : "none",
-              willChange: "transform",
-            }}
-          />
+    width: "384px",
+    height: "200px",
+
+    zIndex: 2,
+  }}
+>
+  <img
+    src="/images/actu_bg_back.jpg"
+    alt=""
+    style={{
+      position: "absolute",
+      left: 0,
+      top: 0,
+
+      width: "384px",
+      height: "200px",
+
+      minWidth: "384px",
+      minHeight: "200px",
+      maxWidth: "none",
+
+      objectFit: "cover",
+      objectPosition: "center",
+      display: "block",
+
+      transform: triggered
+        ? "translateY(-40px)"
+        : "translateY(-10px)",
+
+      transition: triggered
+        ? "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1s"
+        : "none",
+
+      willChange: "transform",
+    }}
+  />
+</div>
+ 
+        {/*
+          bg_front — logique desktop reproduite en mobile :
+          - position: absolute, bottom: 0 du CADRE bg_back (ancré en bas)
+          - z:10 → passe devant le titre (z:1) et le cadre (z:2)
+          - état initial  : translateY(-10px)  → juste dans le cadre, à peine visible
+          - état final    : translateY(-160px) → dépasse largement en haut,
+                            traverse les lettres du titre (parallaxe/relief)
+          - même timing que bg_back pour la synchronisation
+        */}
+<div
+  className="absolute pointer-events-none"
+  style={{
+    top: "70px",
+
+    width: "384px",          // même largeur que bg_back
+    height: "200px",
+
+    left: "50%",
+    transform: "translateX(-50%)",
+
+    zIndex: 10,
+    overflow: "visible",
+  }}
+>
+<img
+  src="/images/actu_bg_front.png"
+  alt=""
+  style={{
+    position: "absolute",
+    bottom: 0,
+    left: "50%",
+
+    width: "275px",
+    height: "100px",
+
+    minWidth: "275px",
+    minHeight: "100px",
+    maxWidth: "none",
+    flexShrink: 0,
+
+    display: "block",
+
+transform: triggered
+  ? "translateX(calc(-50% - 1px)) translateY(-130px)"
+  : "translateX(calc(-50% - 1px)) translateY(-100px)",
+
+    transition: triggered
+      ? "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1s"
+      : "none",
+
+    willChange: "transform",
+  }}
+/>
         </div>
       </div>
-
+ 
       {/* ── Caption block ── */}
       <div
-        className="bg-white px-6 pt-8 pb-10 flex flex-col items-center text-center"
+        className="bg-white px-6 pt-4 pb-4 flex flex-col items-center text-center"
         style={{
           opacity: triggered ? 1 : 0,
           transform: triggered ? "translateY(0px)" : "translateY(40px)",
           transition: triggered
-            ? "opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s"
+            ? "opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 1s"
             : "none",
         }}
       >
@@ -118,19 +188,19 @@ function MobileNews({ compact = false }: MobileNewsProps) {
           style={{
             ...coconat,
             fontSize: "15px",
-            fontWeight: 400,
+            fontWeight: 100,
             lineHeight: "1.05",
             letterSpacing: "0.08em",
           }}
         >
           Avril 2026
         </p>
-
+ 
         <h3
           className="font-normal text-[#1a1a1a] mb-5"
           style={{
             ...coconat,
-            fontSize: "clamp(22px, 6vw, 30px)",
+            fontSize: "26px",
             fontWeight: 400,
             lineHeight: "1.1",
             letterSpacing: "-0.02em",
@@ -139,7 +209,7 @@ function MobileNews({ compact = false }: MobileNewsProps) {
           Cérémonie d'ouverture du{" "}
           <span className="text-[#1e2d6b]">Musée National</span>
         </h3>
-
+ 
         <p
           className="text-black mb-7"
           style={{
@@ -155,7 +225,7 @@ function MobileNews({ compact = false }: MobileNewsProps) {
           du Musée national, un projet structurant dédié à la valorisation du
           patrimoine culturel et historique du Congo.
         </p>
-
+ 
         {/* Bouton — masqué en mode compact */}
         {!compact && (
           <button
@@ -176,6 +246,8 @@ function MobileNews({ compact = false }: MobileNewsProps) {
     </section>
   );
 }
+ 
+ 
 
 /* ══════════════════════════════════════════════════════════
    DESKTOP — code original inchangé

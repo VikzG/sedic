@@ -295,7 +295,7 @@ export default function Hero() {
                         behavior: "smooth",
                       });
                   }}
-                  className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
+                  className="px-6 py-2 bg-white/10 backdrop-blur-md border border-white/50 rounded-lg text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
                   style={{
                     ...coconat,
                     fontSize: "18px",
@@ -307,7 +307,7 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={() => navigate("projects")}
-                  className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/50 rounded-xl text-white hover:bg-[#223078] hover:text-[#E4E4E0] hover:border-[#223078] transition-all duration-300"
+                  className="px-6 py-2 bg-white/10 backdrop-blur-md border border-white/50 rounded-lg text-white hover:bg-[#223078] hover:text-[#E4E4E0] hover:border-[#223078] transition-all duration-300"
                   style={{
                     ...coconat,
                     fontSize: "18px",

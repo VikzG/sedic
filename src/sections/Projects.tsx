@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useMemo, useState,useRef } from "react";
 import useIsMobile from "../components/useIsmobile";
 import ContactForm from "./Contactform";
 
@@ -424,264 +424,200 @@ function ProjectsDesktop() {
   );
 }
 
-function MobileProjectCard({
-  project,
-  open,
-  onToggle,
-}: {
-  project: (typeof projects)[0];
-  open: boolean;
-  onToggle: () => void;
-}): JSX.Element {
-  
-  const [selectedImage, setSelectedImage] = useState(project.cover);
-
-  return (
-    <motion.div
-      layout
-      transition={{
-        duration: 0.65,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className="border-b border-white overflow-hidden bg-white"
-    >
-      {/* HEADER IMAGE */}
-      <motion.button
-        layout
-        onClick={onToggle}
-        className="relative w-full overflow-hidden"
-        animate={{
-          height: open ? 220 : 92,
-        }}
-        transition={{
-          duration: 0.7,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-      >
-        {/* IMAGE TRANSITION */}
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={selectedImage}
-            src={selectedImage}
-            initial={{
-              opacity: 0,
-              scale: 1.06,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            exit={{
-              opacity: 0,
-            }}
-            transition={{
-              duration: 0.7,
-            }}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </AnimatePresence>
-
-        {/* OVERLAY */}
-        <div className="absolute inset-0 bg-black/35" />
-
-        {/* TITLE */}
-        <motion.div
-          layout
-          className="absolute inset-0 flex items-center justify-center px-6"
-          animate={{
-            alignItems: open ? "flex-start" : "center",
-          }}
-          transition={{
-            duration: 0.5,
-          }}
-          style={{
-            paddingTop: open ? "24px" : "0px",
-          }}
-        >
-          <motion.h3
-            layout
-            className="uppercase text-center text-white"
-            style={{
-              ...coconat,
-              fontSize:"16px",
-              lineHeight: "1.05",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {project.title}
-          </motion.h3>
-        </motion.div>
-      </motion.button>
-
-      {/* EXPANDABLE CONTENT */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{
-              height: 0,
-              opacity: 0,
-            }}
-            animate={{
-              height: "auto",
-              opacity: 1,
-            }}
-            exit={{
-              height: 0,
-              opacity: 0,
-            }}
-            transition={{
-              duration: 0.7,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            style={{
-              background:
-                "linear-gradient(180deg, #6a645d 0%, #2c3443 100%)",
-            }}
-          >
-            {/* THUMBNAILS */}
-            <motion.div
-              initial={{ y: 16, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.15 }}
-              className="flex gap-2 px-2 pt-2"
-            >
-              {project.images.map((img, i) => {
-                const active = selectedImage === img;
-
-                return (
-                  <motion.button
-                    key={i}
-                    whileTap={{ scale: 0.96 }}
-                    onClick={() => setSelectedImage(img)}
-                    className="overflow-hidden rounded-sm"
-                    animate={{
-                      opacity: active ? 1 : 0.7,
-                      scale: active ? 1 : 0.96,
-                    }}
-                    transition={{
-                      duration: 0.35,
-                    }}
-                    style={{
-                      width: "33.333%",
-                      height: "74px",
-                    }}
-                  >
-                    <motion.img
-                      whileHover={{ scale: 1.05 }}
-                      src={img}
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.button>
-                );
-              })}
-            </motion.div>
-
-            {/* TEXT */}
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{
-                delay: 0.2,
-                duration: 0.5,
-              }}
-              className="px-5 py-5 text-center"
-            >
-              <p
-                style={{
-                  ...commissioner,
-                  fontSize: "13px",
-                  lineHeight: "1.45",
-                  color: "white",
-                }}
-              >
-                {project.description}
-              </p>
-
-              {/* BUTTON */}
-              {project.url && (
-                <motion.a
-                  whileTap={{ scale: 0.98 }}
-                  whileHover={{ scale: 1.02 }}
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex py-1 items-center justify-center border border-white/60 rounded-lg"
-                  style={{
-                    width: "100%",
-                    color: "white",
-                    ...coconat,
-                    fontSize: "16px",
-                  }}
-                >
-                  Voir le site
-                </motion.a>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
 function ProjectsMobile() {
-  const [activeId, setActiveId] = useState(1);
-
+  const [activeId, setActiveId]       = useState(0);
+  const [selectedImage, setSelectedImage] = useState(projects[0].cover);
+  const [direction, setDirection]     = useState(1); // 1 = next, -1 = prev
+ 
+  // Touch swipe
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+ 
+  const project = projects[activeId];
+  const total   = projects.length;
+ 
+  const goTo = (idx: number, dir: number) => {
+    const next = (idx + total) % total;
+    setDirection(dir);
+    setActiveId(next);
+    setSelectedImage(projects[next].cover);
+  };
+ 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+ 
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const dx = touchStartX.current - e.changedTouches[0].clientX;
+    const dy = Math.abs(touchStartY.current - e.changedTouches[0].clientY);
+    // Swipe horizontal seulement si dx > 40px et plus horizontal que vertical
+    if (Math.abs(dx) > 40 && Math.abs(dx) > dy) {
+      dx > 0 ? goTo(activeId + 1, 1) : goTo(activeId - 1, -1);
+    }
+  };
+ 
+  /* Variants pour le slide */
+  const variants = {
+    enter:  (dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit:   (dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 0 }),
+  };
+ 
   return (
     <div>
-      <section className="bg-white pt-28">
+      <section className="bg-white pt-20">
+ 
         {/* HEADER */}
-        <div className="px-6 mb-10 text-center">
-          <p
-            className="uppercase text-[#1e2d6b] mb-3"
-            style={{
-              ...coconat,
-              fontSize: "16px",
-              letterSpacing: "0.08em",
-            }}
-          >
+        <div className="px-6 mb-8 text-center">
+          <p className="uppercase text-[#1e2d6b] mb-3" style={{ ...coconat, fontSize: "16px", letterSpacing: "0.08em" }}>
             NOS PROJETS
           </p>
-
-          <h2
-            style={{
-              ...coconat,
-              fontSize: "26px",
-              lineHeight: "0.95",
-              letterSpacing: "-0.04em",
-            }}
-          >
+          <h2 style={{ ...coconat, fontSize: "26px", lineHeight: "0.95", letterSpacing: "-0.04em" }}>
             Des infrastructures qui façonnent{" "}
-            <em
-              style={{
-                fontFamily: "'Charis SIL', Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 700,
-                color: "#1e2d6b",
-              }}
-            >
+            <em style={{ fontFamily: "'Charis SIL', Georgia, serif", fontStyle: "italic", fontWeight: 700, color: "#1e2d6b" }}>
               le Congo de demain.
             </em>
           </h2>
         </div>
-
-        {/* PROJECTS */}
-        <div className="flex flex-col">
-          {projects.map((project) => (
-            <MobileProjectCard
+ 
+        {/* CARD SLIDER */}
+        <div
+          className="relative overflow-hidden"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
               key={project.id}
-              project={project}
-              open={activeId === project.id}
-              onToggle={() =>
-                setActiveId(
-                  activeId === project.id ? 0 : project.id
-                )
-              }
-            />
-          ))}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col"
+            >
+              {/* MAIN IMAGE */}
+              <div className="relative w-full overflow-hidden" style={{ height: "350px" }}>
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={selectedImage}
+                    src={selectedImage}
+                    initial={{ opacity: 0, scale: 1.06 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </AnimatePresence>
+                <div className="absolute inset-0 bg-black/35 flex items-start justify-center pt-6 px-6">
+                  <h3 className="uppercase text-center text-white"
+                    style={{ ...coconat, fontSize: "16px", lineHeight: "1.15", letterSpacing: "-0.01em" }}>
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+ 
+              {/* BLOC BAS — fond flouté + overlay + contenu */}
+              <div className="relative overflow-hidden">
+ 
+                {/* Fond flouté */}
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={selectedImage}
+                    src={selectedImage}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+                    style={{ filter: "blur(18px)", transform: "scale(1.15)" }}
+                  />
+                </AnimatePresence>
+ 
+                {/* Overlay sombre */}
+                <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+ 
+                {/* ── Tout le contenu en relative z-10 ── */}
+                <div className="relative z-10 flex flex-col">
+ 
+                  {/* THUMBNAILS */}
+                  <div
+                    style={{
+                      overflowX: "auto",
+                      scrollbarWidth: "none",
+                      msOverflowStyle: "none",
+                      paddingTop: "10px",
+                      paddingLeft: "8px",
+                      paddingRight: "8px",
+                    }}
+                  >
+                    <div className="flex gap-2" style={{ width: "max-content" }}>
+                      {project.images.map((img, i) => {
+                        const active = selectedImage === img;
+                        return (
+                          <motion.button
+                            key={i}
+                            onClick={() => setSelectedImage(img)}
+                            className="overflow-hidden rounded-sm flex-shrink-0"
+                            animate={{ opacity: active ? 1 : 0.55, scale: active ? 1 : 0.95 }}
+                            transition={{ duration: 0.3 }}
+                            style={{ width: "140px", height: "100px" }}
+                          >
+                            <img src={img} className="w-full h-full object-cover" />
+                          </motion.button>
+                        );
+                      })}
+                    </div>
+                  </div>
+ 
+                  {/* TEXTE + BOUTON SITE */}
+                  <div className="px-5 py-5 text-center">
+                    <p style={{ ...commissioner, fontSize: "13px", lineHeight: "1.45", color: "white" }}>
+                      {project.description}
+                    </p>
+                    {project.url && (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-5 inline-flex py-1 items-center justify-center border border-white rounded-lg w-full backdrop-blur-sm"
+                        style={{ color: "white", background: "rgba(255,255,255,0.08)", ...coconat, fontSize: "16px" }}
+                      >
+                        Voir le site
+                      </a>
+                    )}
+                  </div>
+ 
+                  {/* NAVIGATION */}
+                  <div className="flex items-center justify-between px-5 pb-5">
+                    <button
+                      onClick={() => goTo(activeId - 1, -1)}
+                      className="rounded-full border border-white transition-all active:scale-95 backdrop-blur-md"
+                      style={{ width: "25px", height: "25px", background: "rgba(255,255,255,0.1)" }}
+                      aria-label="Projet précédent"
+                    />
+                    <span className="text-white/70 tabular-nums"
+                      style={{ ...commissioner, fontSize: "15px", letterSpacing: "0.1em" }}>
+                      {activeId + 1}/{total}
+                    </span>
+                    <button
+                      onClick={() => goTo(activeId + 1, 1)}
+                      className="rounded-full border border-white transition-all active:scale-95 backdrop-blur-md"
+                      style={{ width: "25px", height: "25px", background: "rgba(255,255,255,0.1)" }}
+                      aria-label="Projet suivant"
+                    />
+                  </div>
+ 
+                </div>{/* fin relative z-10 */}
+              </div>{/* fin bloc bas */}
+ 
+            </motion.div>
+          </AnimatePresence>
         </div>
+ 
       </section>
-
       <ContactForm />
     </div>
   );

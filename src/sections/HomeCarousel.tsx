@@ -315,7 +315,7 @@ export default function HomeCarousel() {
             {/* CTA */}
             <button
               onClick={() => navigate("projects")}
-              className="pointer-events-auto bg-white/10 backdrop-blur-md mt-7 px-6 py-3 border border-white/50 rounded-xl text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
+              className="pointer-events-auto bg-white/10 backdrop-blur-md mt-7 px-6 py-2 border border-white/50 rounded-lg text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
               style={{
                 ...coconat,
                 fontSize: "18px",
@@ -468,7 +468,7 @@ export default function HomeCarousel() {
 
           <button
             onClick={() => navigate("about")}
-            className="px-6 py-3 border border-[#223078] rounded-xl bg-[#223078] text-white hover:bg-white hover:text-[#223078] transition-all duration-300"
+            className="px-6 py-2 border border-[#223078] rounded-lg bg-[#223078] text-white hover:bg-white hover:text-[#223078] transition-all duration-300"
             style={{
               ...coconat,
               fontSize: "18px",

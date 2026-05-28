@@ -106,10 +106,10 @@ export default function Partners() {
             className="max-w-lg"
             style={{
               ...commissioner,
-              fontSize: '15px',
+              fontSize: '16px',
               fontWeight: 400,
               lineHeight: '1.30',
-              letterSpacing: '0',
+              letterSpacing: '0.02em',
               textAlign: 'justify',
               color: 'black',
               opacity: visible ? 1 : 0,

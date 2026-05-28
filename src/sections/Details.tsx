@@ -267,7 +267,7 @@ function MobileDetails() {
               behavior: "smooth",
             });
           }}
-          className="w-full py-2 rounded-xl bg-[#223078] text-[#E4E4E0] hover:bg-[#E4E4E0] hover:text-[#223078] transition-all duration-300"
+          className="w-full py-2 rounded-lg bg-[#223078] text-[#E4E4E0] hover:bg-[#E4E4E0] hover:text-[#223078] transition-all duration-300"
           style={{
             ...coconat,
             fontSize: "16px",
@@ -368,7 +368,7 @@ function DesktopDetails() {
               behavior: "smooth",
             });
           }}
-          className="group px-32 py-3 rounded-xl bg-[#223078] text-[#E4E4E0] hover:bg-[#E4E4E0] hover:text-[#223078] transition-all duration-300"
+          className="group px-32 py-2 rounded-lg bg-[#223078] text-[#E4E4E0] hover:bg-[#E4E4E0] hover:text-[#223078] transition-all duration-300"
           style={{
             ...coconat,
             fontSize: "18px",

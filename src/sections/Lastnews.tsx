@@ -399,7 +399,7 @@ function DesktopLastnews() {
         <p className="max-w-2xl mb-8" style={{ ...commissioner, fontSize: "15px", fontWeight: 400, lineHeight: "1.30", color: "#222", textAlign: "center" }}>
           La SEDIC continue de développer de nouveaux projets et de franchir des étapes clés. Suivez régulièrement nos actualités pour ne rien manquer de nos avancées.
         </p>
-        <a className="inline-block px-6 py-3 rounded-xl bg-[#223078] text-white hover:bg-[#B3C2E9] hover:text-[#223078] transition-all duration-300"
+        <a className="inline-block px-6 py-2 rounded-lg bg-[#223078] text-white hover:bg-[#B3C2E9] hover:text-[#223078] transition-all duration-300"
           href="mailto:armel.samoue@sedic.cg"
           style={{ ...coconat, fontSize: "18px", lineHeight: "1", letterSpacing: "-0.02em" }}>
           Nous contacter

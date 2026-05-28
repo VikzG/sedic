@@ -39,39 +39,41 @@ function useIsMobile(breakpoint = 768) {
 }
 
 function BurgerIcon({ open }: { open: boolean }) {
+  const lineStyle: React.CSSProperties = {
+    display: "block",
+    width: "24px",
+    height: "2px",
+    backgroundColor: "#223078",
+    borderRadius: "999px",
+    transition: "transform 0.25s ease, opacity 0.2s ease",
+    transformOrigin: "center",
+    willChange: "transform",
+  };
+
   return (
-    <div className="flex flex-col justify-center items-end gap-[5px] w-6 h-6 cursor-pointer">
+    <div className="flex flex-col justify-center gap-[5px] w-6 h-6 cursor-pointer">
       <span
         style={{
-          display: "block",
-          height: "1.5px",
-          backgroundColor: "#223078",
-          borderRadius: "2px",
-          width: "100%",
-          transform: open ? "translateY(6.5px) rotate(45deg)" : "none",
-          transition: "transform 0.25s ease",
+          ...lineStyle,
+          transform: open
+            ? "translateY(7px) rotate(45deg)"
+            : "translateY(0)",
         }}
       />
+
       <span
         style={{
-          display: "block",
-          height: "1.5px",
-          backgroundColor: "#223078",
-          borderRadius: "2px",
-          width: "75%",
-          opacity: open ? 0 : 1,
-          transition: "opacity 0.2s ease",
+          ...lineStyle,
+          opacity: open ? 0 : 0.92,
         }}
       />
+
       <span
         style={{
-          display: "block",
-          height: "1.5px",
-          backgroundColor: "#223078",
-          borderRadius: "2px",
-          width: "100%",
-          transform: open ? "translateY(-6.5px) rotate(-45deg)" : "none",
-          transition: "transform 0.25s ease",
+          ...lineStyle,
+          transform: open
+            ? "translateY(-7px) rotate(-45deg)"
+            : "translateY(0)",
         }}
       />
     </div>

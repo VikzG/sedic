@@ -39,7 +39,6 @@ export default function App() {
   return (
     <NavContext.Provider value={{ current: state.current, navigate }}>
       <Navbar />
-
       <div id="page-root">
         {PAGES.map(({ id, component, withFooter }) => (
           <PageTransition

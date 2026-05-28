@@ -52,10 +52,13 @@ export default function Hero() {
               muted
               loop
               playsInline
-              className="absolute top-0 right-0 h-full brightness-25 w-auto min-w-full object-cover scale-[1.5] origin-top-right"
+              className="absolute top-0 right-0 h-full brightness-25 w-auto min-w-full object-cover"
+              style={{
+                objectPosition: "5% center",
+              }}
             >
               <source
-                src="https://res.cloudinary.com/dynpasxkm/video/upload/v1779383028/bg_hero_video_cfptxb.mp4"
+                src="https://res.cloudinary.com/dynpasxkm/video/upload/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
                 type="video/mp4"
               />
             </video>
@@ -125,6 +128,7 @@ export default function Hero() {
               className="text-white text-center mb-8"
               style={{
                 ...commissioner,
+                fontWeight: 200,
                 fontSize: "13px",
                 lineHeight: "1.5",
                 letterSpacing: "0",
@@ -143,12 +147,10 @@ export default function Hero() {
             >
               <button
                 onClick={() => {
-                  document
-                    .getElementById(current)
-                    ?.scrollTo({
-                      top: document.getElementById(current)!.scrollHeight,
-                      behavior: "smooth",
-                    });
+                  document.getElementById(current)?.scrollTo({
+                    top: document.getElementById(current)!.scrollHeight,
+                    behavior: "smooth",
+                  });
                 }}
                 className="w-full py-2 bg-white/10 backdrop-blur-md border border-white/50 rounded-lg text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
                 style={{
@@ -207,10 +209,10 @@ export default function Hero() {
             muted
             loop
             playsInline
-            className="absolute top-0 right-0 h-full w-auto min-w-full object-cover scale-[1.7] origin-top-right"
+            className="absolute top-0 right-0 h-full w-auto min-w-full object-cover"
           >
             <source
-              src="https://res.cloudinary.com/dynpasxkm/video/upload/v1779383028/bg_hero_video_cfptxb.mp4"
+              src="https://res.cloudinary.com/dynpasxkm/video/upload/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
               type="video/mp4"
             />
           </video>
@@ -288,12 +290,10 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={() => {
-                    document
-                      .getElementById(current)
-                      ?.scrollTo({
-                        top: document.getElementById(current)!.scrollHeight,
-                        behavior: "smooth",
-                      });
+                    document.getElementById(current)?.scrollTo({
+                      top: document.getElementById(current)!.scrollHeight,
+                      behavior: "smooth",
+                    });
                   }}
                   className="px-6 py-2 bg-white/10 backdrop-blur-md border border-white/50 rounded-lg text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
                   style={{

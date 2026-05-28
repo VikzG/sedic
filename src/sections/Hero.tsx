@@ -35,7 +35,7 @@ export default function Hero() {
   if (isMobile) {
     return (
       <div>
-        <section className="relative min-h-screen flex flex-col justify-end gap-6 pt-24">
+        <section className="relative min-h-[900px] flex flex-col justify-end gap-6 pt-24">
           <Loader onComplete={handleLoaderComplete} />
 
           {/* Background */}
@@ -54,8 +54,9 @@ export default function Hero() {
               playsInline
               className="absolute top-0 right-0 h-full w-auto min-w-full object-cover"
               style={{
-                objectPosition: "10% center",
+                objectPosition: "30% center",
               }}
+
             >
               <source
                 src="https://res.cloudinary.com/dynpasxkm/video/upload/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
@@ -66,7 +67,7 @@ export default function Hero() {
 
           {/* ── SEDIC + titre groupés ── */}
           <div
-            className="relative z-10 mb-24 flex flex-col items-center px-6"
+            className="relative z-10 mb-32 flex flex-col items-center px-6"
             style={{
               opacity: loaderDone ? 1 : 0,
               transform: loaderDone ? "translateY(0)" : "translateY(20px)",
@@ -115,7 +116,7 @@ export default function Hero() {
             }}
           >
             <p
-              className="uppercase text-white text-center mb-3"
+              className="uppercase text-white text-center mb-2"
               style={{
                 ...coconat,
                 fontSize: "15px",

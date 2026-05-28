@@ -172,7 +172,7 @@ export default function ContactForm() {
   // ── Détection mobile ──────────────────────────────────────
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+    const check = () => setIsMobile(window.innerWidth < 1300);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);

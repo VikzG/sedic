@@ -50,6 +50,152 @@ export default function HoverDoorImage() {
           pointerEvents: "none",
         }}
       />
+{/* Wrapper overlay */}
+<div
+  style={{
+    position: "absolute",
+    top: "45%",
+    left: "50%",
+
+    transform: hovered
+      ? "translate(-50%, -50%)"
+      : "translate(-50%, -48%)",
+
+    opacity: hovered ? 1 : 0,
+
+    transition:
+      "opacity 0.45s ease, transform 0.45s cubic-bezier(0.22,1,0.36,1)",
+
+    zIndex: 5,
+    pointerEvents: "none",
+
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  }}
+>
+  {/* Titre OUTSIDE */}
+  <div
+    style={{
+      fontFamily: "Coconat, Georgia, serif",
+      fontWeight: 400,
+      fontSize: "20.5px",
+      lineHeight: "105%",
+      letterSpacing: "0.02em",
+      textTransform: "uppercase",
+      textAlign: "center",
+      color: "#223078",
+
+      marginBottom: "18px",
+
+      textShadow: "0 2px 10px rgba(255,255,255,0.25)",
+    }}
+  >
+    CONTACT
+  </div>
+
+  {/* Overlay glass */}
+  <div
+    style={{
+      background: "rgba(255,255,255,0.22)",
+      backdropFilter: "blur(1px)",
+
+      border: "1px solid rgba(255,255,255,0.18)",
+
+      borderRadius: "18px",
+
+      padding: "22px 24px",
+
+
+      boxShadow: "0 8px 40px rgba(0,0,0,0.18)",
+    }}
+  >
+    {/* Infos */}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+
+        fontFamily: "Commissioner, sans-serif",
+        fontWeight: 600,
+        fontSize: "15px",
+        lineHeight: "130%",
+        letterSpacing: "0",
+
+        color: "#223078",
+      }}
+    >
+      {/* Téléphone */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+        }}
+      >
+        <img
+          src="/images/contact_form/form_icon_call.svg"
+          alt=""
+          style={{
+            width: "20px",
+            height: "20px",
+            flexShrink: 0,
+          }}
+        />
+
+        <span>+242 06 809 0880</span>
+      </div>
+
+      {/* Mail */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+        }}
+      >
+        <img
+          src="/images/contact_form/form_icon_contact.svg"
+          alt=""
+          style={{
+            width: "20px",
+            height: "20px",
+            flexShrink: 0,
+          }}
+        />
+
+        <span>armel.samoue@sedic.cg</span>
+      </div>
+
+      {/* Adresse */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "12px",
+        }}
+      >
+        <img
+          src="/images/contact_form/form_icon_map.svg"
+          alt=""
+          style={{
+            width: "20px",
+            height: "20px",
+            flexShrink: 0,
+            marginTop: "1px",
+          }}
+        />
+
+        <span>
+          Tours Jumelles,
+          <br />
+          Brazzaville, 28e étage
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   );
 }

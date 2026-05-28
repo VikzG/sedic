@@ -6,8 +6,8 @@
    Since it's not on Google Fonts, we declare it here and fall back gracefully. */
 @font-face {
   font-family: 'Coconat';
-  src: url('/fonts/Coconat-Regular.otf') format('opentype');
-  font-weight: 200;
+  src: url('/fonts/Coconat-Regular.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }

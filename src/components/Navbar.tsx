@@ -21,11 +21,12 @@ const navLinkStyle: React.CSSProperties = {
   Pour changer le logo mobile, modifiez uniquement ces deux
   constantes — le reste du composant n'a pas besoin de changer.
 */
-const LOGO_MOBILE         = "/logos/logo_nav_mob.svg";
+const LOGO_MOBILE = "/logos/logo_nav_mob.svg";
 
 /* Logo desktop (inchangé) */
-const LOGO_DESKTOP        = "/logos/logo_nav.svg";
-const LOGO_DESKTOP_HOVER  = "/logos/logo_nav_hover.svg";
+const LOGO_DESKTOP = "/logos/logo_nav.svg";
+const LOGO_DESKTOP_HOVER = "/logos/logo_nav_hover.svg";
+const LOGO_DESKTOP_WHITE = "/logos/logo_nav_white.svg";
 /* ──────────────────────────────────────────────────────── */
 
 function useIsMobile(breakpoint = 768) {
@@ -55,9 +56,7 @@ function BurgerIcon({ open }: { open: boolean }) {
       <span
         style={{
           ...lineStyle,
-          transform: open
-            ? "translateY(7px) rotate(45deg)"
-            : "translateY(0)",
+          transform: open ? "translateY(7px) rotate(45deg)" : "translateY(0)",
         }}
       />
 
@@ -71,9 +70,7 @@ function BurgerIcon({ open }: { open: boolean }) {
       <span
         style={{
           ...lineStyle,
-          transform: open
-            ? "translateY(-7px) rotate(-45deg)"
-            : "translateY(0)",
+          transform: open ? "translateY(-7px) rotate(-45deg)" : "translateY(0)",
         }}
       />
     </div>
@@ -120,11 +117,7 @@ export default function Navbar() {
             className="flex items-center flex-shrink-0 cursor-pointer"
             aria-label="Accueil"
           >
-            <img
-              src={LOGO_MOBILE}
-              alt="Logo"
-              className="h-10 w-auto"
-            />
+            <img src={LOGO_MOBILE} alt="Logo" className="h-10 w-auto" />
           </button>
 
           <button
@@ -148,7 +141,10 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => (
               <button
                 key={link.page}
-                onClick={() => { navigate(link.page); setMenuOpen(false); }}
+                onClick={() => {
+                  navigate(link.page);
+                  setMenuOpen(false);
+                }}
                 className="transition-all duration-200"
                 style={{
                   ...navLinkStyle,
@@ -185,17 +181,35 @@ export default function Navbar() {
           onMouseLeave={() => setLogoHovered(false)}
           aria-label="Accueil"
         >
+          {/* Logo blanc sur hero */}
+          <img
+            src={LOGO_DESKTOP_WHITE}
+            alt="Logo"
+            className="h-12 w-auto absolute top-0 left-0 transition-opacity duration-300 ease-in-out"
+            style={{
+              opacity: current === "home" && !scrolled && !logoHovered ? 1 : 0,
+            }}
+          />
+
+          {/* Logo normal */}
           <img
             src={LOGO_DESKTOP}
             alt="Logo"
             className="h-12 w-auto absolute top-0 left-0 transition-opacity duration-300 ease-in-out"
-            style={{ opacity: logoHovered ? 0 : 1 }}
+            style={{
+              opacity:
+                current === "home" && !scrolled ? 0 : logoHovered ? 0 : 1,
+            }}
           />
+
+          {/* Logo hover */}
           <img
             src={LOGO_DESKTOP_HOVER}
             alt="Logo"
             className="h-12 w-auto transition-opacity duration-300 ease-in-out"
-            style={{ opacity: logoHovered ? 1 : 0 }}
+            style={{
+              opacity: logoHovered ? 1 : 0,
+            }}
           />
         </button>
 
@@ -204,10 +218,13 @@ export default function Navbar() {
             <button
               key={link.page}
               onClick={() => navigate(link.page)}
-              className={`text-corpo-blue hover:text-grey-blue hover:translate-y-0.5 transition-all duration-200 ${
+              className={`hover:translate-y-0.5 transition-all duration-200 ${
                 current === link.page ? "opacity-50" : ""
               }`}
-              style={navLinkStyle}
+              style={{
+                ...navLinkStyle,
+                color: current === "home" && !scrolled ? "#ffffff" : "#223078",
+              }}
             >
               {link.label}
             </button>
@@ -216,7 +233,8 @@ export default function Navbar() {
           <button
             onClick={() => {
               const slot = document.getElementById(current);
-              if (slot) slot.scrollTo({ top: slot.scrollHeight, behavior: "smooth" });
+              if (slot)
+                slot.scrollTo({ top: slot.scrollHeight, behavior: "smooth" });
             }}
             aria-label="Contact"
             className="ml-1 hover:translate-y-0.5 transition-all duration-200 group"
@@ -224,7 +242,9 @@ export default function Navbar() {
             <img
               src="/logos/contact.svg"
               alt="Contact"
-              className="h-5 w-auto transition-all duration-200 group-hover:[filter:invert(69%)_sepia(25%)_saturate(500%)_hue-rotate(186deg)_brightness(100%)_contrast(90%)]"
+              className={`h-5 w-auto transition-all duration-200 ${
+                current === "home" && !scrolled ? "brightness-0 invert" : ""
+              }`}
             />
           </button>
         </nav>

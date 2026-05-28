@@ -79,7 +79,7 @@ function MobileNews({ compact = false }: MobileNewsProps) {
     transform: "translateX(-50%)",
 
     width: "384px",
-    height: "200px",
+    height: "150px",
 
     zIndex: 2,
   }}

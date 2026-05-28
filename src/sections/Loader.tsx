@@ -32,9 +32,11 @@ const styles = `
 `;
 
 export default function Loader({ onComplete }: LoaderProps) {
-  const [logoPhase,  setLogoPhase]  = useState<"in" | "out">("in");
-  const [sedicPhase, setSedicPhase] = useState<"hidden" | "in" | "out">("hidden");
-  const [mounted,    setMounted]    = useState(true);
+  const [logoPhase, setLogoPhase] = useState<"in" | "out">("in");
+  const [sedicPhase, setSedicPhase] = useState<"hidden" | "in" | "out">(
+    "hidden",
+  );
+  const [mounted, setMounted] = useState(true);
   // Attend que tous les assets soient chargés avant de lancer la séquence
   const [ready, setReady] = useState(false);
 
@@ -53,17 +55,22 @@ export default function Loader({ onComplete }: LoaderProps) {
   useEffect(() => {
     if (!ready) return;
 
-    const t1 = setTimeout(() => setLogoPhase("out"),    200);
-    const t2 = setTimeout(() => setSedicPhase("in"),    400);
-    const t3 = setTimeout(() => setSedicPhase("out"),  1400);
+    const t1 = setTimeout(() => setLogoPhase("out"), 200);
+
+    const t2 = setTimeout(() => setSedicPhase("in"), 900);
+
+    const t3 = setTimeout(() => setSedicPhase("out"), 1900);
+
     const t4 = setTimeout(() => {
       onComplete();
       setTimeout(() => setMounted(false), 500);
-    }, 1900);
+    }, 2400);
 
     return () => {
-      clearTimeout(t1); clearTimeout(t2);
-      clearTimeout(t3); clearTimeout(t4);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
     };
   }, [ready, onComplete]);
 

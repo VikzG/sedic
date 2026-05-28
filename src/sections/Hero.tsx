@@ -52,9 +52,9 @@ export default function Hero() {
               muted
               loop
               playsInline
-              className="absolute top-0 right-0 h-full brightness-25 w-auto min-w-full object-cover"
+              className="absolute top-0 right-0 h-full w-auto min-w-full object-cover"
               style={{
-                objectPosition: "5% center",
+                objectPosition: "10% center",
               }}
             >
               <source
@@ -91,6 +91,7 @@ export default function Hero() {
               className="text-center font-normal text-white tracking-tighter mt-3"
               style={{
                 ...coconat,
+                fontWeight: 400,
                 fontSize: "clamp(22px, 7vw, 32px)",
                 lineHeight: "1.2",
               }}
@@ -125,7 +126,7 @@ export default function Hero() {
               La Sedic bâtit le Congo de demain
             </p>
             <p
-              className="text-white text-center mb-8"
+              className="text-white text-center mb-4"
               style={{
                 ...commissioner,
                 fontWeight: 200,
@@ -335,6 +336,7 @@ export default function Hero() {
                 className="uppercase text-white mb-8"
                 style={{
                   ...coconat,
+                  fontWeight: 400,
                   fontSize: "20.5px",
                   lineHeight: "1.05",
                   letterSpacing: "0.02em",

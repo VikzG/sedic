@@ -43,8 +43,8 @@ export default function Hero() {
             className="absolute inset-0 overflow-hidden"
             style={{
               filter: loaderDone ? "blur(0px)" : "blur(12px)",
-              transition: "filter 1s ease",
-              isolation: "isolate",
+              transform: loaderDone ? "scale(1)" : "scale(1.08)",
+              transition: "filter 1s ease, transform 1s ease",
             }}
           >
             <video
@@ -56,10 +56,9 @@ export default function Hero() {
               style={{
                 objectPosition: "30% center",
               }}
-
             >
               <source
-                src="https://res.cloudinary.com/dynpasxkm/video/upload/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
+                src="https://res.cloudinary.com/dynpasxkm/video/upload/q_auto:good/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
                 type="video/mp4"
               />
             </video>
@@ -202,7 +201,8 @@ export default function Hero() {
           className="absolute inset-0 overflow-hidden"
           style={{
             filter: loaderDone ? "blur(0px)" : "blur(12px)",
-            transition: "filter 1s ease",
+            transform: loaderDone ? "scale(1)" : "scale(1.08)",
+            transition: "filter 1s ease, transform 1s ease",
             isolation: "isolate",
           }}
         >
@@ -214,7 +214,7 @@ export default function Hero() {
             className="absolute top-0 right-0 h-full w-auto min-w-full object-cover"
           >
             <source
-              src="https://res.cloudinary.com/dynpasxkm/video/upload/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
+              src="https://res.cloudinary.com/dynpasxkm/video/upload/q_auto:good/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
               type="video/mp4"
             />
           </video>

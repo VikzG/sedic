@@ -83,8 +83,17 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [logoHovered, setLogoHovered] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => setMenuOpen(false), [current]);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setVisible(true);
+    }, 3400); // 2400ms loader + 500ms
+
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     const onScroll = (e: Event) => {
@@ -106,7 +115,15 @@ export default function Navbar() {
   ════════════════════════════════════════ */
   if (isMobile) {
     return (
-      <header className="fixed top-0 left-0 right-0 z-50">
+      <header
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(-12px)",
+          transition: "opacity .6s ease, transform .6s ease",
+          pointerEvents: visible ? "auto" : "none",
+        }}
+      >
         <div
           className="flex items-center justify-between px-5 h-16"
           style={{ backgroundColor: "#fff" }}
@@ -171,6 +188,12 @@ export default function Navbar() {
           ? "bg-white/10 backdrop-blur-md border-b border-corpo-blue/10 shadow-sm"
           : "bg-transparent border-b border-transparent"
       }`}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(-12px)",
+        transition: "opacity .6s ease, transform .6s ease",
+        pointerEvents: visible ? "auto" : "none",
+      }}
     >
       <div className="mx-auto px-20 h-20 flex items-center justify-between">
         {/* Logo desktop */}

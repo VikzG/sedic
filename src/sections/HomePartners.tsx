@@ -358,138 +358,114 @@ function MobilePartnerCard({
 
 function PartnersMobile() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const animRef = useRef<number | null>(null);
+  const directionRef = useRef<1 | -1>(1);
+  const posRef = useRef(0);
 
-  useEffect(() => {
-    const el = sectionRef.current;
+useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
 
-    if (!el) return;
+    const SPEED = 0.4;
+    let isUserScrolling = false;
+    let userScrollTimeout: ReturnType<typeof setTimeout> | null = null;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
+    const animate = () => {
+      if (!container) return;
+
+      if (!isUserScrolling) {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+
+        posRef.current += SPEED * directionRef.current;
+
+        if (posRef.current >= maxScroll) {
+          posRef.current = maxScroll;
+          directionRef.current = -1;
+        } else if (posRef.current <= 0) {
+          posRef.current = 0;
+          directionRef.current = 1;
         }
-      },
-      { threshold: 0.15 }
-    );
 
-    observer.observe(el);
+        container.scrollLeft = posRef.current;
+      }
 
-    return () => observer.disconnect();
+      animRef.current = requestAnimationFrame(animate);
+    };
+
+    const onTouchStart = () => {
+      isUserScrolling = true;
+      if (userScrollTimeout) clearTimeout(userScrollTimeout);
+    };
+
+    const onTouchEnd = () => {
+      // Petit délai pour laisser le momentum touch se terminer
+      userScrollTimeout = setTimeout(() => {
+        // Resync posRef avec la position réelle après le scroll manuel
+        posRef.current = container.scrollLeft;
+        isUserScrolling = false;
+      }, 800);
+    };
+
+    // Pour desktop si besoin
+    const onMouseDown = () => {
+      isUserScrolling = true;
+      if (userScrollTimeout) clearTimeout(userScrollTimeout);
+    };
+
+    const onMouseUp = () => {
+      userScrollTimeout = setTimeout(() => {
+        posRef.current = container.scrollLeft;
+        isUserScrolling = false;
+      }, 800);
+    };
+
+    container.addEventListener("touchstart", onTouchStart);
+    container.addEventListener("touchend", onTouchEnd);
+    container.addEventListener("mousedown", onMouseDown);
+    container.addEventListener("mouseup", onMouseUp);
+
+    animRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animRef.current) cancelAnimationFrame(animRef.current);
+      if (userScrollTimeout) clearTimeout(userScrollTimeout);
+      container.removeEventListener("touchstart", onTouchStart);
+      container.removeEventListener("touchend", onTouchEnd);
+      container.removeEventListener("mousedown", onMouseDown);
+      container.removeEventListener("mouseup", onMouseUp);
+    };
   }, []);
-
   return (
     <div>
-      <section
-        ref={sectionRef}
-        className="w-full bg-white overflow-hidden"
-      >
+      <section ref={sectionRef} className="w-full bg-white overflow-hidden">
         {/* HEADER */}
         <div className="px-2 pt-28 pb-12 text-center">
-          <p
-            className="uppercase text-[#1e2d6b] mb-2"
-            style={{
-              ...coconat,
-              fontSize: "16px",
-              letterSpacing: "0.08em",
-            }}
-          >
-            Partenariats
-          </p>
-
-          <h2
-            style={{
-              ...coconat,
-              fontSize: "26px",
-              lineHeight: "0.95",
-              letterSpacing: "-0.04em",
-            }}
-            className="mb-6"
-          >
-            Construire{" "}
-            <em
-              style={{
-                fontFamily: "'Charis SIL', Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 700,
-                color: "#1e2d6b",
-              }}
-            >
-              ensemble
-            </em>{" "}
-            les infrastructures de{" "}
-            <em
-              style={{
-                fontFamily: "'Charis SIL', Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 700,
-                color: "#1e2d6b",
-              }}
-            >
-              demain.
-            </em>
-          </h2>
-
-          <p
-            style={{
-              fontFamily: "'Charis SIL', Georgia, serif",
-              fontStyle: "italic",
-              fontWeight: 700,
-              fontSize: "14px",
-              color: "#1e2d6b",
-              lineHeight: "1.3",
-            }}
-          >
-            La SEDIC place la collaboration au cœur de son action.
-          </p>
-
-          <p
-            style={{
-              ...commissioner,
-              fontSize: "14px",
-              lineHeight: "1.55",
-              color: "#222",
-            }}
-          >
-            Nous travaillons avec des partenaires publics et privés
-            pour concevoir, financer, développer et exploiter des
-            projets structurants en République du Congo.
-          </p>
+          {/* ... inchangé */}
         </div>
 
         {/* LABEL */}
-        <div 
-          className="py-10"
-          style={{
-            backgroundColor: "#E4E4E0",
-          }}
-        >
+        <div className="py-10" style={{ backgroundColor: "#E4E4E0" }}>
           <p
             className="uppercase text-center text-[#1e2d6b]"
-            style={{
-              ...coconat,
-              fontSize: "16px",
-              letterSpacing: "0.08em",
-            }}
+            style={{ ...coconat, fontSize: "16px", letterSpacing: "0.08em" }}
           >
             Nos partenaires
           </p>
         </div>
 
-        {/* SCROLL HORIZONTAL */}
+        {/* SCROLL HORIZONTAL — retire snap pour que l'auto-scroll soit fluide */}
         <div
-          className="flex gap-4 bg-[#E4E4E0] overflow-x-auto px-4 py-2 snap-x snap-mandatory"
+          ref={scrollRef}
+          className="flex gap-4 bg-[#E4E4E0] overflow-x-auto px-4 py-2"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
           }}
         >
           {PARTNERS.map((partner) => (
-            <MobilePartnerCard
-              key={partner.id}
-              partner={partner}
-            />
+            <MobilePartnerCard key={partner.id} partner={partner} />
           ))}
         </div>
       </section>

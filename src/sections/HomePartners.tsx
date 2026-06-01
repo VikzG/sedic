@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import  useIsMobile  from "../components/useIsmobile";
+import useIsMobile from "../components/useIsmobile";
 import Contactform from "./Contactform";
 import Collaborate from "./Collaborate";
 import Details from "./Details";
@@ -141,7 +141,7 @@ function PartnerCard({
 }
 
 /* ── Main section ── */
-function PartnersDesktop () {
+function PartnersDesktop() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -160,153 +160,149 @@ function PartnersDesktop () {
 
   return (
     <div>
-    <section ref={sectionRef} className="w-full bg-white mt-16">
-      {/* ── Header ── */}
-      <div className="text-center px-16 pt-20 pb-16">
-        <p
-          className="uppercase text-[#1e2d6b] mb-4"
-          style={{
-            ...coconat,
-            fontSize: "20.5px",
-            letterSpacing: "0.02em",
-            lineHeight: "1.05",
-            fontWeight: 400,
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(-12px)",
-            transition: "opacity 1s ease 0.1s, transform 1s ease 0.1s",
-          }}
-        >
-          Partenariats
-        </p>
-
-        <h2
-          className="font-normal text-black mb-6"
-          style={{
-            ...coconat,
-            fontSize: "clamp(30px, 4vw, 38px)",
-            lineHeight: "1.1",
-            letterSpacing: "-0.02em",
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(-12px)",
-            transition: "opacity 1s ease 0.3s, transform 1s ease 0.3s",
-          }}
-        >
-          Construire{" "}
-          <em
+      <section ref={sectionRef} className="w-full bg-white mt-16">
+        {/* ── Header ── */}
+        <div className="text-center px-16 pt-20 pb-16">
+          <p
+            className="uppercase text-[#1e2d6b] mb-4"
             style={{
-              fontFamily: "'Charis SIL', Georgia, serif",
-              fontStyle: "italic",
-              fontWeight: 700,
-              color: "#1e2d6b",
-              fontSize: "clamp(34px, 4.5vw, 38px)",
-              lineHeight: "1",
+              ...coconat,
+              fontSize: "20.5px",
+              letterSpacing: "0.02em",
+              lineHeight: "1.05",
+              fontWeight: 400,
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(-12px)",
+              transition: "opacity 1s ease 0.1s, transform 1s ease 0.1s",
             }}
           >
-            ensemble
-          </em>
-          <br />
-          les infrastructures de{" "}
-          <em
+            Partenariats
+          </p>
+
+          <h2
+            className="font-normal text-black mb-6"
             style={{
-              fontFamily: "'Charis SIL', Georgia, serif",
-              fontStyle: "italic",
-              fontWeight: 700,
-              color: "#1e2d6b",
-              fontSize: "clamp(34px, 4.5vw, 38px)",
-              lineHeight: "1",
+              ...coconat,
+              fontSize: "clamp(30px, 4vw, 38px)",
+              lineHeight: "1.1",
+              letterSpacing: "-0.02em",
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(-12px)",
+              transition: "opacity 1s ease 0.3s, transform 1s ease 0.3s",
             }}
           >
-            demain.
-          </em>
-        </h2>
+            Construire{" "}
+            <em
+              style={{
+                fontFamily: "'Charis SIL', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                color: "#1e2d6b",
+                fontSize: "clamp(34px, 4.5vw, 38px)",
+                lineHeight: "1",
+              }}
+            >
+              ensemble
+            </em>
+            <br />
+            les infrastructures de{" "}
+            <em
+              style={{
+                fontFamily: "'Charis SIL', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                color: "#1e2d6b",
+                fontSize: "clamp(34px, 4.5vw, 38px)",
+                lineHeight: "1",
+              }}
+            >
+              demain.
+            </em>
+          </h2>
 
+          <div
+            style={{
+              opacity: visible ? 1 : 0,
+              transition: "opacity 1s ease 0.6s",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "'Charis SIL', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                fontSize: "15px",
+                color: "#1e2d6b",
+                lineHeight: "1.2",
+                marginBottom: "10px",
+              }}
+            >
+              La SEDIC place la collaboration au cœur de son action.
+            </p>
+            <p
+              className="max-w-xl"
+              style={{
+                ...commissioner,
+                fontSize: "15px",
+                fontWeight: 400,
+                lineHeight: "1.55",
+                color: "#222",
+                margin: "0 auto",
+                textAlign: "center",
+              }}
+            >
+              Nous travaillons avec des partenaires publics et privés pour
+              concevoir, financer, développer et exploiter des projets
+              structurants en République du Congo.
+            </p>
+          </div>
+        </div>
+
+        {/* ── "NOS PARTENAIRES" label ── */}
         <div
           style={{
+            backgroundColor: "#f0efea",
+            padding: "18px 0",
+            textAlign: "center",
             opacity: visible ? 1 : 0,
-            transition: "opacity 1s ease 0.6s",
+            transition: "opacity 1s ease 0.8s",
           }}
         >
           <p
+            className="uppercase text-[#1e2d6b]"
             style={{
-              fontFamily: "'Charis SIL', Georgia, serif",
-              fontStyle: "italic",
-              fontWeight: 700,
-              fontSize: "15px",
-              color: "#1e2d6b",
-              lineHeight: "1.2",
-              marginBottom: "10px",
-            }}
-          >
-            La SEDIC place la collaboration au cœur de son action.
-          </p>
-          <p
-            className="max-w-xl"
-            style={{
-              ...commissioner,
-              fontSize: "15px",
+              ...coconat,
+              fontSize: "20.5px",
+              letterSpacing: "0.02em",
+              lineHeight: "1.05",
               fontWeight: 400,
-              lineHeight: "1.55",
-              color: "#222",
-              margin: "0 auto",
-              textAlign: "center",
+              margin: 0,
             }}
           >
-            Nous travaillons avec des partenaires publics et privés pour
-            concevoir, financer, développer et exploiter des projets
-            structurants en République du Congo.
+            Nos Partenaires
           </p>
         </div>
-      </div>
 
-      {/* ── "NOS PARTENAIRES" label ── */}
-      <div
-        style={{
-          backgroundColor: "#f0efea",
-          padding: "18px 0",
-          textAlign: "center",
-          opacity: visible ? 1 : 0,
-          transition: "opacity 1s ease 0.8s",
-        }}
-      >
-        <p
-          className="uppercase text-[#1e2d6b]"
-          style={{
-            ...coconat,
-            fontSize: "20.5px",
-            letterSpacing: "0.02em",
-            lineHeight: "1.05",
-            fontWeight: 400,
-            margin: 0,
-          }}
-        >
-          Nos Partenaires
-        </p>
-      </div>
-
-      {/* ── Partners grid ── */}
-      <div className="grid grid-cols-4 gap-4">
-        {PARTNERS.map((partner, i) => (
-          <PartnerCard
-            key={partner.id}
-            partner={partner}
-            index={i}
-            visible={visible}
-          />
-        ))}
-      </div>
-    </section>
-    <Collaborate />
-    <Details />
-    <Contactform />
+        {/* ── Partners grid ── */}
+        <div className="grid grid-cols-4 gap-4">
+          {PARTNERS.map((partner, i) => (
+            <PartnerCard
+              key={partner.id}
+              partner={partner}
+              index={i}
+              visible={visible}
+            />
+          ))}
+        </div>
+      </section>
+      <Collaborate />
+      <Details />
+      <Contactform />
     </div>
   );
 }
 
-function MobilePartnerCard({
-  partner,
-}: {
-  partner: (typeof PARTNERS)[0];
-}) {
+function MobilePartnerCard({ partner }: { partner: (typeof PARTNERS)[0] }) {
   return (
     <a
       href={partner.link}
@@ -359,12 +355,11 @@ function MobilePartnerCard({
 function PartnersMobile() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
   const animRef = useRef<number | null>(null);
   const directionRef = useRef<1 | -1>(1);
   const posRef = useRef(0);
 
-useEffect(() => {
+  useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
 
@@ -441,9 +436,78 @@ useEffect(() => {
     <div>
       <section ref={sectionRef} className="w-full bg-white overflow-hidden">
         {/* HEADER */}
-        <div className="px-2 pt-28 pb-12 text-center">
-          {/* ... inchangé */}
-        </div>
+        {/* HEADER */}
+<div className="px-2 pt-28 pb-12 text-center">
+  <p
+    className="uppercase text-[#1e2d6b] mb-2"
+    style={{
+      ...coconat,
+      fontSize: "16px",
+      letterSpacing: "0.08em",
+    }}
+  >
+    Partenariats
+  </p>
+
+  <h2
+    style={{
+      ...coconat,
+      fontSize: "26px",
+      lineHeight: "0.95",
+      letterSpacing: "-0.04em",
+    }}
+    className="mb-6"
+  >
+    Construire{" "}
+    <em
+      style={{
+        fontFamily: "'Charis SIL', Georgia, serif",
+        fontStyle: "italic",
+        fontWeight: 700,
+        color: "#1e2d6b",
+      }}
+    >
+      ensemble
+    </em>{" "}
+    les infrastructures de{" "}
+    <em
+      style={{
+        fontFamily: "'Charis SIL', Georgia, serif",
+        fontStyle: "italic",
+        fontWeight: 700,
+        color: "#1e2d6b",
+      }}
+    >
+      demain.
+    </em>
+  </h2>
+
+  <p
+    style={{
+      fontFamily: "'Charis SIL', Georgia, serif",
+      fontStyle: "italic",
+      fontWeight: 700,
+      fontSize: "14px",
+      color: "#1e2d6b",
+      lineHeight: "1.3",
+    }}
+  >
+    La SEDIC place la collaboration au cœur de son action.
+  </p>
+
+  <p
+    style={{
+      ...commissioner,
+      fontSize: "14px",
+      lineHeight: "1.55",
+      color: "#222",
+    }}
+  >
+    Nous travaillons avec des partenaires publics et privés
+    pour concevoir, financer, développer et exploiter des
+    projets structurants en République du Congo.
+  </p>
+</div>
 
         {/* LABEL */}
         <div className="py-10" style={{ backgroundColor: "#E4E4E0" }}>

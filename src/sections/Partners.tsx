@@ -21,7 +21,6 @@ export default function Partners() {
   return (
     <section
       ref={sectionRef}
-      id="partners"
       className="relative flex overflow-hidden bg-white px-16"
       style={{ height: '1000px' }}
     >

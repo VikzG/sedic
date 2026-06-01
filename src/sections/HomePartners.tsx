@@ -437,7 +437,7 @@ function PartnersMobile() {
       <section ref={sectionRef} className="w-full bg-white overflow-hidden">
         {/* HEADER */}
         {/* HEADER */}
-<div className="px-2 pt-28 pb-12 text-center">
+<div className="px-2 pt-24 pb-12 text-center">
   <p
     className="uppercase text-[#1e2d6b] mb-2"
     style={{

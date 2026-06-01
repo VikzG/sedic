@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNav } from "../App";
- 
+
 function useIsMobile(breakpoint = 1100) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
   useEffect(() => {
@@ -10,24 +10,24 @@ function useIsMobile(breakpoint = 1100) {
   }, [breakpoint]);
   return isMobile;
 }
- 
+
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
   fontFamily: "Commissioner, sans-serif",
 };
- 
+
 /* ══════════════════════════════════════════════════════════
    MOBILE
 ══════════════════════════════════════════════════════════ */
 interface MobileNewsProps {
   compact?: boolean; // true → titre "ACTUALITÉS" visible, bouton masqué
 }
- 
+
 function MobileNews({ compact = false }: MobileNewsProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [triggered, setTriggered] = useState(false);
   const { navigate } = useNav();
- 
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -40,7 +40,7 @@ function MobileNews({ compact = false }: MobileNewsProps) {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, [triggered]);
- 
+
   return (
     <section
       ref={sectionRef}
@@ -69,53 +69,51 @@ function MobileNews({ compact = false }: MobileNewsProps) {
             ACTUALITÉS
           </h2>
         </div>
- 
+
         {/* Cadre bg_back — overflow hidden pour clipper l'image de fond */}
-<div
-  className="absolute overflow-hidden"
-  style={{
-    top: "70px",
-    left: "50%",
-    transform: "translateX(-50%)",
+        <div
+          className="absolute overflow-hidden"
+          style={{
+            top: "70px",
+            left: "50%",
+            transform: "translateX(-50%)",
 
-    width: "384px",
-    height: "150px",
+            width: "384px",
+            height: "150px",
 
-    zIndex: 2,
-  }}
->
-  <img
-    src="/images/actu_bg_back.jpg"
-    alt=""
-    style={{
-      position: "absolute",
-      left: 0,
-      top: 0,
+            zIndex: 2,
+          }}
+        >
+          <img
+            src="/images/actu_bg_back.jpg"
+            alt=""
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
 
-      width: "384px",
-      height: "200px",
+              width: "384px",
+              height: "200px",
 
-      minWidth: "384px",
-      minHeight: "200px",
-      maxWidth: "none",
+              minWidth: "384px",
+              minHeight: "200px",
+              maxWidth: "none",
 
-      objectFit: "cover",
-      objectPosition: "center",
-      display: "block",
+              objectFit: "cover",
+              objectPosition: "center",
+              display: "block",
 
-      transform: triggered
-        ? "translateY(-40px)"
-        : "translateY(-10px)",
+              transform: triggered ? "translateY(-40px)" : "translateY(-10px)",
 
-      transition: triggered
-        ? "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1s"
-        : "none",
+              transition: triggered
+                ? "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1s"
+                : "none",
 
-      willChange: "transform",
-    }}
-  />
-</div>
- 
+              willChange: "transform",
+            }}
+          />
+        </div>
+
         {/*
           bg_front — logique desktop reproduite en mobile :
           - position: absolute, bottom: 0 du CADRE bg_back (ancré en bas)
@@ -125,53 +123,53 @@ function MobileNews({ compact = false }: MobileNewsProps) {
                             traverse les lettres du titre (parallaxe/relief)
           - même timing que bg_back pour la synchronisation
         */}
-<div
-  className="absolute pointer-events-none"
-  style={{
-    top: "70px",
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            top: "70px",
 
-    width: "384px",          // même largeur que bg_back
-    height: "200px",
+            width: "384px", // même largeur que bg_back
+            height: "200px",
 
-    left: "50%",
-    transform: "translateX(-50%)",
+            left: "50%",
+            transform: "translateX(-50%)",
 
-    zIndex: 10,
-    overflow: "visible",
-  }}
->
-<img
-  src="/images/actu_bg_front.png"
-  alt=""
-  style={{
-    position: "absolute",
-    bottom: 0,
-    left: "50%",
+            zIndex: 10,
+            overflow: "visible",
+          }}
+        >
+          <img
+            src="/images/actu_bg_front.png"
+            alt=""
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: "50%",
 
-    width: "275px",
-    height: "100px",
+              width: "275px",
+              height: "100px",
 
-    minWidth: "275px",
-    minHeight: "100px",
-    maxWidth: "none",
-    flexShrink: 0,
+              minWidth: "275px",
+              minHeight: "100px",
+              maxWidth: "none",
+              flexShrink: 0,
 
-    display: "block",
+              display: "block",
 
-transform: triggered
-  ? "translateX(calc(-50% - 1px)) translateY(-130px)"
-  : "translateX(calc(-50% - 1px)) translateY(-100px)",
+              transform: triggered
+                ? "translateX(calc(-50% - 1px)) translateY(-130px)"
+                : "translateX(calc(-50% - 1px)) translateY(-100px)",
 
-    transition: triggered
-      ? "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1s"
-      : "none",
+              transition: triggered
+                ? "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1s"
+                : "none",
 
-    willChange: "transform",
-  }}
-/>
+              willChange: "transform",
+            }}
+          />
         </div>
       </div>
- 
+
       {/* ── Caption block ── */}
       <div
         className="bg-white px-6 pt-4 pb-4 flex flex-col items-center text-center"
@@ -195,7 +193,7 @@ transform: triggered
         >
           Avril 2026
         </p>
- 
+
         <h3
           className="font-normal text-[#1a1a1a] mb-5"
           style={{
@@ -209,7 +207,7 @@ transform: triggered
           Cérémonie d'ouverture du{" "}
           <span className="text-[#1e2d6b]">Musée National</span>
         </h3>
- 
+
         <p
           className="text-black mb-7"
           style={{
@@ -225,7 +223,7 @@ transform: triggered
           du Musée national, un projet structurant dédié à la valorisation du
           patrimoine culturel et historique du Congo.
         </p>
- 
+
         {/* Bouton — masqué en mode compact */}
         {!compact && (
           <button
@@ -246,13 +244,11 @@ transform: triggered
     </section>
   );
 }
- 
- 
 
 /* ══════════════════════════════════════════════════════════
    DESKTOP — code original inchangé
 ══════════════════════════════════════════════════════════ */
-function DesktopNews() {
+function DesktopNews({ compact = false }: { compact?: boolean }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [triggered, setTriggered] = useState(false);
   const { navigate } = useNav();
@@ -273,7 +269,7 @@ function DesktopNews() {
   return (
     <section
       id="news"
-      style={{ minHeight: "1000px" }}
+      style={{ minHeight: "900px" }}
       className="bg-white"
       ref={sectionRef}
     >
@@ -401,18 +397,20 @@ function DesktopNews() {
               d&apos;ouverture du Musée national, un projet structurant dédié à
               la valorisation du patrimoine culturel et historique du Congo.
             </p>
-            <button
-              onClick={() => navigate("news")}
-              className="px-6 py-3 border border-[#223078] rounded-xl bg-[#223078] text-white hover:bg-white hover:text-[#223078] transition-all duration-300"
-              style={{
-                fontFamily: "Coconat, Georgia, serif",
-                fontSize: "18px",
-                lineHeight: "1",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Lire les actualités
-            </button>
+            {!compact && (
+              <button
+                onClick={() => navigate("news")}
+                className="px-6 py-3 border border-[#223078] rounded-xl bg-[#223078] text-white hover:bg-white hover:text-[#223078] transition-all duration-300"
+                style={{
+                  fontFamily: "Coconat, Georgia, serif",
+                  fontSize: "18px",
+                  lineHeight: "1",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Lire les actualités
+              </button>
+            )}
           </div>
 
           <span
@@ -442,5 +440,5 @@ interface NewsProps {
 
 export default function News({ compact = false }: NewsProps) {
   const isMobile = useIsMobile();
-  return isMobile ? <MobileNews compact={compact} /> : <DesktopNews />;
+  return isMobile ? <MobileNews compact={compact} /> : <DesktopNews compact={compact} />;
 }

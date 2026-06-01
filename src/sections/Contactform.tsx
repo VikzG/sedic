@@ -452,6 +452,7 @@ export default function ContactForm() {
   if (isMobile) {
     return (
       <section
+        data-contact="true"
         className="w-full flex flex-col"
         style={{ backgroundColor: "#f0efea" }}
       >
@@ -513,7 +514,7 @@ export default function ContactForm() {
 
   // ── Layout DESKTOP (inchangé) ─────────────────────────────
   return (
-    <section className="w-full" style={{ backgroundColor: "#f0efea" }}>
+    <section className="w-full" data-contact="true" style={{ backgroundColor: "#f0efea" }}>
       <div
         className="flex items-center justify-center pt-20"
         style={{ minHeight: "680px" }}

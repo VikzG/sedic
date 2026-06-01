@@ -58,7 +58,7 @@ export default function Hero() {
               }}
             >
               <source
-                src="https://res.cloudinary.com/dynpasxkm/video/upload/q_auto:good/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
+                src="https://res.cloudinary.com/dynpasxkm/video/upload/q_auto:eco/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
                 type="video/mp4"
               />
             </video>
@@ -214,7 +214,7 @@ export default function Hero() {
             className="absolute top-0 right-0 h-full w-auto min-w-full object-cover"
           >
             <source
-              src="https://res.cloudinary.com/dynpasxkm/video/upload/q_auto:good/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
+              src="https://res.cloudinary.com/dynpasxkm/video/upload/q_auto:eco/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.mp4"
               type="video/mp4"
             />
           </video>
@@ -268,7 +268,14 @@ export default function Hero() {
 
               <div className="flex flex-wrap items-center gap-4">
                 <button
-                  onClick={() => navigate("contact")}
+                  onClick={() => {
+                    const slot = document.getElementById(current);
+                    const contact = slot?.querySelector("[data-contact]");
+                    contact?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }}
                   aria-label="Contact"
                   className="flex items-center justify-center transition-transform duration-200 hover:scale-110 group"
                 >

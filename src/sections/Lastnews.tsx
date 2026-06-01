@@ -322,6 +322,19 @@ function MobileLastnews() {
 // ── Composant desktop (inchangé) ─────────────────────────────
 function DesktopLastnews() {
   const [selectedNews, setSelectedNews] = useState(NEWS[0]);
+  const [displayedNews, setDisplayedNews] = useState(NEWS[0]);
+  const [animating, setAnimating] = useState(false);
+
+  const selectNews = (news: typeof NEWS[0]) => {
+    if (news.id === selectedNews.id) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setSelectedNews(news);
+      setDisplayedNews(news);
+      setAnimating(false);
+    }, 250);
+  };
+
 
   return (
     <section className="w-full" style={{ backgroundColor: "#efeeeb" }}>
@@ -338,7 +351,17 @@ function DesktopLastnews() {
       {/* Main content */}
       <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", minHeight: "610px" }}>
         {/* LEFT */}
-        <div className="flex items-center" style={{ padding: "60px", backgroundColor: "#efeeeb", height: "610px" }}>
+        <div
+          className="flex items-center"
+          style={{
+            padding: "60px",
+            backgroundColor: "#efeeeb",
+            height: "610px",
+            opacity: animating ? 0 : 1,
+            transform: animating ? "translateY(10px)" : "translateY(0)",
+            transition: "opacity 0.25s ease, transform 0.25s ease",
+          }}
+        >
           <div style={{ maxWidth: "620px", height: "100%", display: "flex", flexDirection: "column" }}>
             <div style={{ display: "inline-flex", width: "fit-content", alignSelf: "flex-start", backgroundColor: "#223078", padding: "10px 20px", marginBottom: "24px" }}>
               <span style={{ ...coconat, color: "white", fontSize: "20px", letterSpacing: "0.05em" }}>
@@ -360,8 +383,21 @@ function DesktopLastnews() {
         </div>
 
         {/* RIGHT */}
-        <div style={{ position: "relative", overflow: "hidden", height: "610px", backgroundColor: "#d9d9d9" }}>
-          <img src={selectedNews.photo} alt={selectedNews.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", transition: "opacity 0.4s ease" }} />
+        <div
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            height: "610px",
+            backgroundColor: "#d9d9d9",
+            opacity: animating ? 0 : 1,
+            transition: "opacity 0.25s ease",
+          }}
+        >
+          <img
+            src={displayedNews.photo}
+            alt={displayedNews.title}
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+          />
         </div>
       </div>
 
@@ -375,7 +411,7 @@ function DesktopLastnews() {
           {NEWS.map((news) => {
             const active = selectedNews.id === news.id;
             return (
-              <button key={news.id} onClick={() => setSelectedNews(news)}
+              <button key={news.id} onClick={() => selectNews(news)}
                 style={{ border: "none", background: "transparent", cursor: "pointer", textAlign: "center", padding: 0, width: "calc(25% - 14px)", flexShrink: 0 }}>
                 <div style={{ overflow: "hidden", marginBottom: "14px", opacity: active ? 1 : 0.75, transition: "all 0.25s ease" }}>
                   <img src={news.thumb} alt={news.title} style={{ width: "100%", height: "160px", objectFit: "cover", transform: active ? "scale(1.02)" : "scale(1)", transition: "transform 0.35s ease" }} />

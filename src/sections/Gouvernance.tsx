@@ -1,27 +1,18 @@
 import { useRef, useEffect, useState } from "react";
 import ProjectsSwiper from "../components/ProjectsSwiper";
 import { useNav } from "../App";
+import { projectStore } from "../store/projectStore";
+import { projects } from "./Projects";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
   fontFamily: "Commissioner, sans-serif",
 };
 
-const SLIDES = [
-  {
-    image: "/images/slider/img_slider_1.png",
-    title: "Centre International\nde Conférences",
-  },
-  {
-    image: "/images/slider/img_slider_2.png",
-    title: "grand hôtel\nde kintélé",
-  },
-  {
-    image: "/images/slider/img_slider_3.png",
-    title: "tours jumelles\nde mpila",
-  },
-  { image: "/images/slider/img_slider_4.png", title: "brazza\nmall" },
-];
+const SLIDES = projects.map((p) => ({
+  image: p.images[0],
+  title: p.title,
+}));
 
 const INTERVAL = 4000;
 
@@ -65,27 +56,35 @@ function useIsMobile(breakpoint = 768) {
 }
 
 /* ── Carousel (desktop only) ── */
-function Carousel() {
-  const [active, setActive] = useState(0);
+function Carousel({
+  onNavigate,
+  active,
+  onActiveChange,
+}: {
+  onNavigate: () => void;
+  active: number;
+  onActiveChange: (i: number) => void;
+}) {
   const [nextIndex, setNextIndex] = useState<number | null>(null);
   const [animating, setAnimating] = useState(false);
-  const [wheelRotation, setWheelRotation] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const activeRef = useRef(active); // ← ref pour éviter les re-créations d'interval
+
+  // Sync la ref à chaque changement
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
-      setActive((prev) => {
-        const next = (prev + 1) % SLIDES.length;
-        setNextIndex(next);
-        setWheelRotation((r) => r + 60);
-        setAnimating(true);
-        setTimeout(() => {
-          setActive(next);
-          setNextIndex(null);
-          setAnimating(false);
-        }, 650);
-        return prev;
-      });
+      const next = (activeRef.current + 1) % SLIDES.length; // ← utilise la ref
+      setNextIndex(next);
+      setAnimating(true);
+      setTimeout(() => {
+        onActiveChange(next);
+        setNextIndex(null);
+        setAnimating(false);
+      }, 650);
     }, INTERVAL);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -93,8 +92,7 @@ function Carousel() {
   }, []);
 
   return (
-    <div className="relative w-full h-full overflow-hidden"
-    >
+    <div className="relative w-full h-full overflow-hidden">
       {SLIDES.map((slide, i) => {
         const isCurrent = i === active;
         const isNext = i === nextIndex;
@@ -153,6 +151,7 @@ function Carousel() {
           })}
         </div>
         <button
+          onClick={() => onNavigate()}
           className="pointer-events-auto mt-7 px-6 py-3 border border-white/50 rounded-xl backdrop-blur-md text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
           style={{
             ...coconat,
@@ -328,6 +327,19 @@ function MobileGouvernance() {
 function DesktopGouvernance() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [carouselActive, setCarouselActive] = useState(0);
+  const carouselActiveRef = useRef(0); // ← ref
+  const { navigate } = useNav();
+  const handleCarouselChange = (i: number) => {
+    carouselActiveRef.current = i; // ← sync ref
+    setCarouselActive(i);
+  };
+const handleNavigate = () => {
+  console.log("carouselActiveRef.current =", carouselActiveRef.current);
+  console.log("project id =", projects[carouselActiveRef.current].id);
+  projectStore.set(projects[carouselActiveRef.current].id);
+  navigate("projects");
+};
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -475,7 +487,11 @@ function DesktopGouvernance() {
             borderRadius: "0 14px 14px 0",
           }}
         >
-          <Carousel />
+          <Carousel
+            active={carouselActive}
+            onActiveChange={handleCarouselChange}
+            onNavigate={handleNavigate}
+          />
         </div>
       </div>
     </section>

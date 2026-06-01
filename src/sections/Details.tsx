@@ -30,7 +30,7 @@ const CARDS = [
   },
 ];
 
-function useIsMobile(breakpoint = 1200) {
+function useIsMobile(breakpoint = 750) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
   useEffect(() => {
     const h = () => setIsMobile(window.innerWidth < breakpoint);

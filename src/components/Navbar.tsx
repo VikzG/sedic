@@ -22,8 +22,6 @@ const navLinkStyle: React.CSSProperties = {
   constantes — le reste du composant n'a pas besoin de changer.
 */
 const LOGO_MOBILE = "/logos/logo_nav_mob.svg";
-
-/* Logo desktop (inchangé) */
 const LOGO_DESKTOP = "/logos/logo_nav.svg";
 const LOGO_DESKTOP_HOVER = "/logos/logo_nav_hover.svg";
 const LOGO_DESKTOP_WHITE = "/logos/logo_nav_white.svg";

@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useNav } from "../App";
 import ProjectsSwiper from "../components/ProjectsSwiper";
+import { projects } from "./Projects";
+import { projectStore } from "../store/projectStore";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -10,24 +12,10 @@ const commissioner: React.CSSProperties = {
   fontFamily: "Commissioner, sans-serif",
 };
 
-const SLIDES = [
-  {
-    image: "/images/slider/img_slider_1.png",
-    title: "Centre International\nde Conférences",
-  },
-  {
-    image: "/images/slider/img_slider_2.png",
-    title: "grand hôtel\nde kintélé",
-  },
-  {
-    image: "/images/slider/img_slider_3.png",
-    title: "tours jumelles\nde mpila",
-  },
-  {
-    image: "/images/slider/img_slider_4.png",
-    title: "brazza\nmall",
-  },
-];
+const SLIDES = projects.map((p) => ({
+  image: p.images[0],
+  title: p.title,
+}));
 
 const INTERVAL = 4000;
 
@@ -314,7 +302,10 @@ export default function HomeCarousel() {
 
             {/* CTA */}
             <button
-              onClick={() => navigate("projects")}
+              onClick={() => {
+                projectStore.set(projects[active].id);
+                navigate("projects");
+              }}
               className="pointer-events-auto bg-white/10 backdrop-blur-md mt-7 px-6 py-2 border border-white/50 rounded-lg text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
               style={{
                 ...coconat,

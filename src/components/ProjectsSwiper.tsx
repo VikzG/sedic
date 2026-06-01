@@ -1,19 +1,21 @@
 // components/ProjectsSwiper.tsx
-import { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
+import { useState } from "react";
+import { projects } from "../sections/Projects";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow } from "swiper/modules";
+import { projectStore } from "../store/projectStore";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
 
-const coconat: React.CSSProperties = { fontFamily: 'Coconat, Georgia, serif' };
-const commissioner: React.CSSProperties = { fontFamily: 'Commissioner, sans-serif' };
+const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
+const commissioner: React.CSSProperties = {
+  fontFamily: "Commissioner, sans-serif",
+};
 
-const SLIDES = [
-  { image: '/images/slider/img_slider_1.png', title: 'Centre International\nde Conférences' },
-  { image: '/images/slider/img_slider_2.png', title: 'grand hôtel\nde kintélé' },
-  { image: '/images/slider/img_slider_3.png', title: 'tours jumelles\nde mpila' },
-  { image: '/images/slider/img_slider_4.png', title: 'brazza\nmall' },
-];
+const SLIDES = projects.map((p) => ({
+  image: p.images[0],
+  title: p.title,
+}));
 
 interface Props {
   height?: number;
@@ -21,7 +23,11 @@ interface Props {
   onSlideChange?: (index: number) => void;
 }
 
-export default function ProjectsSwiper({ height = 300, onNavigate, onSlideChange }: Props) {
+export default function ProjectsSwiper({
+  height = 300,
+  onNavigate,
+  onSlideChange,
+}: Props) {
   // On gère l'index actif nous-mêmes pour éviter le bug isActive du render-prop avec loop
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -50,8 +56,8 @@ export default function ProjectsSwiper({ height = 300, onNavigate, onSlideChange
         effect="coverflow"
         centeredSlides
         loopAdditionalSlides={1}
-        spaceBetween={50}     /* slides de marge pour éviter les trous */
-        slidesPerView={1.4}            /* légèrement réduit pour stabiliser le loop */
+        spaceBetween={50} /* slides de marge pour éviter les trous */
+        slidesPerView={1.4} /* légèrement réduit pour stabiliser le loop */
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
@@ -75,7 +81,7 @@ export default function ProjectsSwiper({ height = 300, onNavigate, onSlideChange
                   {/* Image */}
                   <img
                     src={slide.image}
-                    alt={slide.title.replace('\n', ' ')}
+                    alt={slide.title.replace("\n", " ")}
                     className="w-full h-full object-cover"
                   />
 
@@ -88,13 +94,13 @@ export default function ProjectsSwiper({ height = 300, onNavigate, onSlideChange
                       className="text-center text-white uppercase"
                       style={{
                         ...coconat,
-                        fontSize: '15px',
+                        fontSize: "15px",
                         fontWeight: 400,
-                        letterSpacing: '0.06em',
-                        lineHeight: '1.3',
-                        whiteSpace: 'pre-line',
+                        letterSpacing: "0.06em",
+                        lineHeight: "1.3",
+                        whiteSpace: "pre-line",
                         opacity: isActive ? 1 : 0,
-                        transition: 'opacity 0.35s ease',
+                        transition: "opacity 0.35s ease",
                       }}
                     >
                       {slide.title}
@@ -107,17 +113,20 @@ export default function ProjectsSwiper({ height = 300, onNavigate, onSlideChange
                       className="absolute bottom-0 left-0 right-0 px-4 pb-4"
                       style={{
                         opacity: isActive ? 1 : 0,
-                        transition: 'opacity 0.35s ease',
+                        transition: "opacity 0.35s ease",
                       }}
                     >
                       <button
-                        onClick={onNavigate}
+                        onClick={() => {
+                          projectStore.set(projects[i].id); // i = index du slide actif
+                          onNavigate?.();
+                        }}
                         className="w-full backdrop-blur-md px-5 py-1 border border-white/40 rounded-xl text-white active:bg-white/25"
                         style={{
                           ...coconat,
-                          fontSize: '18px',
-                          letterSpacing: '-0.01em',
-                          background: 'rgba(255,255,255,0.10)',
+                          fontSize: "18px",
+                          letterSpacing: "-0.01em",
+                          background: "rgba(255,255,255,0.10)",
                         }}
                       >
                         Parcourir

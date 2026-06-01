@@ -1,7 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useState,useRef } from "react";
+import { useMemo, useState,useRef,useEffect } from "react";
+import { projectStore } from '../store/projectStore';
 import useIsMobile from "../components/useIsmobile";
 import ContactForm from "./Contactform";
+import { useNav } from "../App";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
@@ -17,7 +19,7 @@ type Project = {
   url: string;
 };
 
-const projects: Project[] = [
+export const projects: Project[] = [
   {
     id: 1,
     title: "TOURS JUMELLES DE MPILA",
@@ -132,19 +134,33 @@ d’une offre résidentielle durable et qualitative à Brazzaville.`,
 ];
 
 function ProjectsDesktop() {
-  const [activeId, setActiveId] = useState(1);
+const { current } = useNav();
+const [activeId, setActiveId] = useState(projects[0].id);
+const [selectedImage, setSelectedImage] = useState(projects[0].cover);
 
-  const activeProject = useMemo(
-    () => projects.find((p) => p.id === activeId)!,
-    [activeId],
-  );
+useEffect(() => {
+  if (current === "projects") {
+    const stored = projectStore.get();
+    if (stored !== null) {
+      const project = projects.find((p) => p.id === stored);
+      if (project) {
+        setActiveId(stored);
+        setSelectedImage(project.cover);
+      }
+      projectStore.set(null);
+    }
+  }
+}, [current]);
 
-  const [selectedImage, setSelectedImage] = useState(activeProject.cover);
+const activeProject = useMemo(
+  () => projects.find((p) => p.id === activeId)!,
+  [activeId],
+);
 
-  const handleOpen = (project: Project) => {
-    setActiveId(project.id);
-    setSelectedImage(project.cover);
-  };
+const handleOpen = (project: Project) => {
+  setActiveId(project.id);
+  setSelectedImage(project.cover);
+};
 
   return (
     <div>
@@ -425,7 +441,22 @@ function ProjectsDesktop() {
 }
 
 function ProjectsMobile() {
-  const [activeId, setActiveId]       = useState(0);
+  const { current } = useNav();
+  const [activeId, setActiveId] = useState(0);
+
+  useEffect(() => {
+    if (current === 'projects') {
+      const stored = projectStore.get();
+      if (stored !== null) {
+        const idx = projects.findIndex(p => p.id === stored);
+        if (idx !== -1) {
+          setActiveId(idx);
+          setSelectedImage(projects[idx].cover);
+        }
+        projectStore.set(null);
+      }
+    }
+  }, [current]);
   const [selectedImage, setSelectedImage] = useState(projects[0].cover);
   const [direction, setDirection]     = useState(1); // 1 = next, -1 = prev
  

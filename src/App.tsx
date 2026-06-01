@@ -1,6 +1,5 @@
 import { createContext, useContext } from 'react';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import PageTransition from './components/PageTransition';
 import Hero from './sections/Hero';
 import About from './sections/About';
@@ -30,7 +29,6 @@ const PAGES: { id: PageId; component: React.ReactNode; withFooter?: boolean }[] 
   { id: 'projects',  component: <Projects /> },
   { id: 'partners',      component: <HomePartners /> },
   { id: 'news',      component: <Heronews /> },
-//  { id: 'contact',    withFooter: true },
 ];
 
 export default function App() {
@@ -40,7 +38,7 @@ export default function App() {
     <NavContext.Provider value={{ current: state.current, navigate }}>
       <Navbar />
       <div id="page-root">
-        {PAGES.map(({ id, component, withFooter }) => (
+        {PAGES.map(({ id, component }) => (
           <PageTransition
             key={id}
             id={id}
@@ -49,7 +47,6 @@ export default function App() {
             transition={state.transition}
           >
             {component}
-            {withFooter && <Footer />}
           </PageTransition>
         ))}
       </div>

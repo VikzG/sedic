@@ -45,7 +45,6 @@ function WhyCollaborateDesktop() {
   return (
     <section
       ref={sectionRef}
-      id="why-collaborate"
       className="w-full bg-[#E4E4E0]"
       style={{ padding: '80px 64px' }}
     >
@@ -249,7 +248,6 @@ function WhyCollaborateMobile() {
   return (
     <section
       ref={sectionRef}
-      id="why-collaborate"
       className="w-full bg-[#E4E4E0]"
       style={{
         padding: "72px 16px",

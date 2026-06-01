@@ -268,7 +268,6 @@ function DesktopNews({ compact = false }: { compact?: boolean }) {
 
   return (
     <section
-      id="news"
       style={{ minHeight: "900px" }}
       className="bg-white"
       ref={sectionRef}

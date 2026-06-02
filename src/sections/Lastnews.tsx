@@ -17,8 +17,8 @@ Notre mission s'articule autour de trois ambitions fortes : valoriser le patrimo
 
 Bénédicte Myriam DENGUET-ATTICKY
 Directrice Générale`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404528/news_1_wr3kr8.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404528/news_1_wr3kr8.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_1_mwxzle.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_1_mwxzle.webp",
   },
   {
     id: 2,
@@ -27,8 +27,8 @@ Directrice Générale`,
     description: `La SEDIC a marqué une étape importante avec la cérémonie d'ouverture du Musée de l'Histoire nationale de Mpila, un projet structurant dédié à la valorisation du patrimoine culturel et historique du Congo.
 
 Les travaux ont été achevés à 100% et réceptionnés le 15 avril. L'ouverture au public est prévue dans les prochains mois.`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404527/news_2_fzyor9.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404527/news_2_fzyor9.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405971/news_2_bkklpl.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405971/news_2_bkklpl.webp",
   },
   {
     id: 3,
@@ -37,8 +37,8 @@ Les travaux ont été achevés à 100% et réceptionnés le 15 avril. L'ouvertur
     description: `La Société d'Exploitation et de Développement des Infrastructures du Congo (SEDIC) poursuit activement sa mission de valorisation et de dynamisation de ses infrastructures commerciales à travers la signature d'un partenariat stratégique avec l'enseigne Franprix.
 
 La signature officielle de ce partenariat est intervenue le 25 février 2025, dans les locaux de la SEDIC, lors d'une cérémonie réunissant les deux dirigeants.`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404530/news_3_jjoeac.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404530/news_3_jjoeac.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405971/news_3_m1sjt9.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405971/news_3_m1sjt9.webp",
   },
   {
     id: 4,
@@ -49,50 +49,50 @@ La signature officielle de ce partenariat est intervenue le 25 février 2025, da
 Le Conseil d'administration des Tours Jumelles s'est tenu le 23 décembre dernier aux Tours Jumelles de Brazzaville.
 
 Cette session stratégique a porté sur deux points majeurs : la clôture de l'exercice 2024 des Tours Jumelles et l'adoption du budget 2026 des Tours Jumelles.`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404528/news_4_zr4mzi.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404528/news_4_zr4mzi.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405971/news_4_i3gqrw.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405971/news_4_i3gqrw.webp",
   },
   {
     id: 5, label: "STRATÉGIE", title: "Conseil d'Administration du 29 août 2025",
     description: `Le Conseil d'Administration de la SEDIC s'est réuni en session ordinaire le 29 août 2025, dans le cadre de ses activités de pilotage stratégique et de supervision de la performance des entités sous sa responsabilité.`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_5_gjbabg.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_5_gjbabg.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_5_o7elm7.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_5_o7elm7.webp",
   },
   {
     id: 6, label: "STRATÉGIE", title: "Signature d'un contrat de franchise entre la SEDIC et le groupe Doubletree",
     description: `Dans le cadre de sa stratégie de valorisation et de dynamisation du patrimoine hôtelier national, la SEDIC a procédé à la signature d'un important contrat de franchise avec le groupe international HILTON.`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_6_qmkjb0.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_6_qmkjb0.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_6_pyrtis.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_6_pyrtis.webp",
   },
   {
     id: 7, label: "STRATÉGIE", title: "Participation de la SEDIC à la Rencontre des Entrepreneurs Francophones",
     description: `La SEDIC a pris part, du 26 au 28 juin 2025 à Brazzaville, à la cinquième édition de la Rencontre des Entrepreneurs Francophones (REF).`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_7_l9ctsl.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_7_l9ctsl.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_7_xxzwat.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_7_xxzwat.webp",
   },
   {
     id: 8, label: "STRATÉGIE", title: "La SEDIC accueille 2 membres du Gouvernement en visite de terrain",
     description: `Le 15 mai 2025, Monsieur Christian Yoka, Ministre des Finances, accompagné de Madame Lydie Pongault, Ministre de l'Industrie culturelle, a effectué une visite conjointe sur trois sites emblématiques.`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_8_sgmkx4.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_8_sgmkx4.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_8_kvbfaw.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_8_kvbfaw.webp",
   },
   {
     id: 9, label: "STRATÉGIE", title: "Visite des membres de la Commission Économique et Financière de l'Assemblée Nationale",
     description: `Une délégation de la Commission Économique et Financière de l'Assemblée Nationale a effectué une visite de travail au siège de la société.`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_9_t1tzpf.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798770/news_9_t1tzpf.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_9_zynpbw.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_9_zynpbw.webp",
   },
   {
     id: 10, label: "STRATÉGIE", title: "La participation de la SEDIC à la réunion des dirigeants du Groupe Hilton à Dubaï",
     description: `Une délégation conduite par Mme Bénédicte Myriam DENGUET ATTICKY a séjourné au Maroc afin de rencontrer des partenaires techniques et financiers.`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798771/news_10_anplmo.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798771/news_10_anplmo.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_10_ospsgj.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405972/news_10_ospsgj.webp",
   },
   {
     id: 11, label: "ANNONCE", title: "Ouverture du Hilton Brazzaville Les Tours Jumelles Hotel & Residences",
     description: `Hilton a annoncé l'ouverture très attendue du Hilton Brazzaville Les Tours Jumelles Hotel & Residences, fruit d'un partenariat scellé en 2024 entre Hilton et la SEDIC.`,
-    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798771/news_11_zoi2e3.png",
-    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1779798771/news_11_zoi2e3.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405973/news_11_hgdokr.webp",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780405973/news_11_hgdokr.webp",
   },
 ];
 

@@ -21,7 +21,7 @@ export default function HoverDoorImage() {
     >
       {/* Image normale */}
       <img
-        src="/images/contact_form/door.png"
+        src="/images/contact_form/door.webp"
         alt="Porte fermée"
         style={{
           width: "100%",
@@ -36,7 +36,7 @@ export default function HoverDoorImage() {
 
       {/* Image hover */}
       <img
-        src="/images/contact_form/door_open.png"
+        src="/images/contact_form/door_open.webp"
         alt="Porte ouverte"
         style={{
           position: "absolute",

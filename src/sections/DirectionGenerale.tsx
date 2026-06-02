@@ -165,7 +165,7 @@ export default function DirectionGenerale() {
           }}
         >
           <img
-            src="/images/about_page/directrice_generale.png"
+            src="/images/about_page/directrice_generale.webp"
             alt="Bénédicte Myriam Denguet-Atticky"
             className="w-full object-cover object-top"
             style={{ maxHeight: '480px' }}
@@ -302,7 +302,7 @@ export default function DirectionGenerale() {
         >
           <div className="overflow-hidden h-full w-full">
             <img
-              src="/images/about_page/directrice_generale.png"
+              src="/images/about_page/directrice_generale.webp"
               alt="Bénédicte Myriam Denguet-Atticky"
               className="w-full h-full object-cover"
             />

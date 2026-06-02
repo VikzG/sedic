@@ -12,28 +12,28 @@ const commissioner: React.CSSProperties = {
 const PARTNERS = [
   {
     id: "icazi",
-    image: "/images/partners_page/partners_1.png",
+    image: "/images/partners_page/partners_1.webp",
     logo: "/images/partners_page/icazi_logo.png",
     name: "ICAZI Immobilier",
     link: "https://icazi.com/brazzaville-gestion-locative",
   },
   {
     id: "brazza",
-    image: "/images/partners_page/partners_2.png",
+    image: "/images/partners_page/partners_2.webp",
     logo: "/images/partners_page/brazza_logo.jpg",
     name: "Brazza Mall",
     link: "https://brazza-mall.com",
   },
   {
     id: "business",
-    image: "/images/partners_page/partners_3.png",
+    image: "/images/partners_page/partners_3.webp",
     logo: "/images/partners_page/business_logo.png",
     name: "Business Center",
     link: "https://businesscenter-tj.com/nos-evenements/",
   },
   {
     id: "vatel",
-    image: "/images/partners_page/partners_4.png",
+    image: "/images/partners_page/partners_4.webp",
     logo: "/images/partners_page/vatel_logo.svg",
     name: "Vatel Hotel & Tourism Business School",
     link: "https://www.vatel.cg/fr/ecole-hoteliere-congo/presentation-vatel-brazzaville",

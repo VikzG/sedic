@@ -17,8 +17,8 @@ Notre mission s'articule autour de trois ambitions fortes : valoriser le patrimo
 
 Bénédicte Myriam DENGUET-ATTICKY
 Directrice Générale`,
-    photo: "/images/news_page/news_1.png",
-    thumb: "/images/news_page/news_1.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404528/news_1_wr3kr8.png",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404528/news_1_wr3kr8.png",
   },
   {
     id: 2,
@@ -27,8 +27,8 @@ Directrice Générale`,
     description: `La SEDIC a marqué une étape importante avec la cérémonie d'ouverture du Musée de l'Histoire nationale de Mpila, un projet structurant dédié à la valorisation du patrimoine culturel et historique du Congo.
 
 Les travaux ont été achevés à 100% et réceptionnés le 15 avril. L'ouverture au public est prévue dans les prochains mois.`,
-    photo: "/images/news_page/news_2.png",
-    thumb: "/images/news_page/news_2.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404527/news_2_fzyor9.png",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404527/news_2_fzyor9.png",
   },
   {
     id: 3,
@@ -37,8 +37,8 @@ Les travaux ont été achevés à 100% et réceptionnés le 15 avril. L'ouvertur
     description: `La Société d'Exploitation et de Développement des Infrastructures du Congo (SEDIC) poursuit activement sa mission de valorisation et de dynamisation de ses infrastructures commerciales à travers la signature d'un partenariat stratégique avec l'enseigne Franprix.
 
 La signature officielle de ce partenariat est intervenue le 25 février 2025, dans les locaux de la SEDIC, lors d'une cérémonie réunissant les deux dirigeants.`,
-    photo: "/images/news_page/news_3.png",
-    thumb: "/images/news_page/news_3.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404530/news_3_jjoeac.png",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404530/news_3_jjoeac.png",
   },
   {
     id: 4,
@@ -49,8 +49,8 @@ La signature officielle de ce partenariat est intervenue le 25 février 2025, da
 Le Conseil d'administration des Tours Jumelles s'est tenu le 23 décembre dernier aux Tours Jumelles de Brazzaville.
 
 Cette session stratégique a porté sur deux points majeurs : la clôture de l'exercice 2024 des Tours Jumelles et l'adoption du budget 2026 des Tours Jumelles.`,
-    photo: "/images/news_page/news_4.png",
-    thumb: "/images/news_page/news_4.png",
+    photo: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404528/news_4_zr4mzi.png",
+    thumb: "https://res.cloudinary.com/dynpasxkm/image/upload/v1780404528/news_4_zr4mzi.png",
   },
   {
     id: 5, label: "STRATÉGIE", title: "Conseil d'Administration du 29 août 2025",

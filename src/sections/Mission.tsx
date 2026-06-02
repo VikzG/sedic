@@ -124,7 +124,7 @@ export default function Mission({ current }: { current: string }) {
         {/* Background image */}
         <div
           className="absolute inset-0 bg-bottom bg-cover bg-no-repeat"
-          style={{ backgroundImage: "url('/images/bg_mission.png')" }}
+          style={{ backgroundImage: "url('/images/bg_mission.webp')" }}
         />
 
         <div className="relative z-10 flex flex-col px-5 pt-14 pb-10 gap-7">
@@ -303,7 +303,7 @@ export default function Mission({ current }: { current: string }) {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-bottom bg-cover bg-no-repeat"
-        style={{ backgroundImage: "url('/images/bg_mission.png')" }}
+        style={{ backgroundImage: "url('/images/bg_mission.webp')" }}
       />
 
 {/* Full-column hover zones */}

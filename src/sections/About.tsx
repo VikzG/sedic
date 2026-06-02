@@ -12,25 +12,25 @@ const commissioner: React.CSSProperties = {
 const values = [
   {
     label: "Engagement",
-    image: "/images/about_page/about_hero_1.png",
+    image: "/images/about_page/about_hero_1.webp",
     texte:
       "Concevoir des projets à fort impact économique et social, contribuant directement à l'amélioration du cadre de vie des populations.",
   },
   {
     label: "Excellence",
-    image: "/images/about_page/about_hero_2.png",
+    image: "/images/about_page/about_hero_2.webp",
     texte:
       "Garantir des standards élevés dans la conception, la gestion et la valorisation des infrastructures afin d'offrir des espaces modernes, sûrs et performants.",
   },
   {
     label: "Innovation",
-    image: "/images/about_page/about_hero_3.png",
+    image: "/images/about_page/about_hero_3.webp",
     texte:
       "Encourager des solutions modernes et adaptées dans la construction, la gestion et l'exploitation des infrastructures.",
   },
   {
     label: "Transparence",
-    image: "/images/about_page/about_hero_4.png",
+    image: "/images/about_page/about_hero_4.webp",
     texte:
       "Assurer une gestion rigoureuse, intègre et conforme aux normes en vigueur dans toutes nos opérations et partenariats.",
   },

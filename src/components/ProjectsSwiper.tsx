@@ -8,9 +8,6 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
-const commissioner: React.CSSProperties = {
-  fontFamily: "Commissioner, sans-serif",
-};
 
 const SLIDES = projects.map((p) => ({
   image: p.images[0],
@@ -117,10 +114,10 @@ export default function ProjectsSwiper({
                       }}
                     >
                       <button
-                        onClick={() => {
-                          projectStore.set(projects[i].id); // i = index du slide actif
-                          onNavigate?.();
-                        }}
+onClick={() => {
+  projectStore.set(projects[activeIndex].id);
+  onNavigate?.();
+}}
                         className="w-full backdrop-blur-md px-5 py-1 border border-white/40 rounded-xl text-white active:bg-white/25"
                         style={{
                           ...coconat,

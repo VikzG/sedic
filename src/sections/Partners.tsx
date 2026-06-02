@@ -53,7 +53,7 @@ export default function Partners() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: 'url(https://res.cloudinary.com/dynpasxkm/image/upload/q_auto:good/v1780141454/bg_partenaires_gvl5u8.png)',
+            backgroundImage: 'url(https://res.cloudinary.com/dynpasxkm/image/upload/v1780405130/bg_partenaires_gvl5u8.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             mask: 'url(#strips-mask)',

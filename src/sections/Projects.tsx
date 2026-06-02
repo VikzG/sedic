@@ -29,11 +29,11 @@ standard international. Véritable hub économique, elles contribuent à
 renforcer l’attractivité de la capitale et à structurer un nouveau centre
 d’affaires.`,
     cover:
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795159/TOUR_1_a7q1hu.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408243/TOUR_1_xutzaj.webp",
     images: [
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795159/TOUR_1_a7q1hu.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795160/TOUR_2_dnucyl.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795160/TOUR_3_b2qqbc.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408243/TOUR_1_xutzaj.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408243/TOUR_2_k0utej.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408243/TOUR_3_rsssuo.webp",
     ],
     url: "https://www.rem-cg.com/fr-fr",
   },
@@ -45,11 +45,11 @@ conférences, sommets et rencontres internationales. Associé au Grand
 Hôtel de Kintélé, il positionne le Congo comme une destination majeure
 pour le tourisme d’affaires en Afrique centrale.`,
     cover:
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795019/CIC_1_e2rchb.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408248/CIC_1_qprxoc.webp",
     images: [
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795019/CIC_1_e2rchb.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795018/CIC_2_xdh7rd.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795019/CIC_3_uyqrae.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408248/CIC_1_qprxoc.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408246/CIC_2_dadawz.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408245/CIC_3_xm1xp1.webp",
     ],
     url: "http://www.cick-grandhotelkintele.com",
   },
@@ -61,11 +61,11 @@ du shopping à Brazzaville. En réunissant enseignes locales et
 internationales, il dynamise le commerce urbain en proposant offre
 commerciale de qualité.`,
     cover:
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779794701/BRAZZA_1_rfl2xk.jpg",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408249/BRAZZA_1_hlk5xj.webp",
     images: [
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779794701/BRAZZA_1_rfl2xk.jpg",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779797192/BRAZZA_2_hdlu1f.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779794702/BRAZZA_3_syol4p.jpg",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408249/BRAZZA_1_hlk5xj.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408248/BRAZZA_2_uih9vj.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408248/BRAZZA_3_yj5kd6.webp",
     ],
     url: "https://brazza-mall.com",
   },
@@ -76,11 +76,11 @@ commerciale de qualité.`,
 
 Il participe au rayonnement culturel du pays et constitue un espace de transmission, de mémoire et d’attractivité touristique.`,
     cover:
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795458/MNB_3_vlgnrs.jpg",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408245/MNB_1_zgwe4c.webp",
     images: [
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779795458/MNB_3_vlgnrs.jpg",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779794608/MNB_1_tcdezq.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779794608/MNB_2_dyemu0.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408245/MNB_1_zgwe4c.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408245/MNB_2_whahye.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408245/MNB_3_xemroj.webp",
     ],
     url: "",
   },
@@ -92,11 +92,11 @@ développement des compétences locales dans les métiers de l’hôtellerie
 et du tourisme. Il accompagne la professionnalisation du secteur et
 soutient l’employabilité des jeunes.`,
     cover:
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779796357/VATEL_1_hwtxcm.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408243/VATEL_1_noejww.webp",
     images: [
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779796357/VATEL_1_hwtxcm.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779797188/VATEL_2_sq0uat.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779797189/VATEL_3_h7xbkz.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408243/VATEL_1_noejww.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408242/VATEL_2_trgdpt.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408242/VATEL_3_r8pvnj.webp",
     ],
     url: "https://www.vatel.cg",
   },
@@ -108,11 +108,11 @@ adaptés aux besoins urbains actuels. Conçus selon des standards
 contemporains, ils contribuent à améliorer le cadre de vie et à structurer
 le développement de nouveaux quartiers.`,
     cover:
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779797704/PRM_1_jgnun7.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408244/PRM_1_qwiuhh.webp",
     images: [
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779797704/PRM_1_jgnun7.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779797705/PRM_2_prilgj.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779797706/PRM_3_d6qtye.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408244/PRM_1_qwiuhh.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408244/PRM_2_qyhzgf.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408244/PRM_3_g9xsyl.webp",
     ],
     url: "https://icazi.com",
   },
@@ -123,11 +123,11 @@ le développement de nouveaux quartiers.`,
 modernité et qualité. Ce projet s’inscrit dans la dynamique de d’expansion
 d’une offre résidentielle durable et qualitative à Brazzaville.`,
     cover:
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779796358/RLF_1_pnrpb6.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408244/RLF_1_g4cpsy.webp",
     images: [
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779796358/RLF_1_pnrpb6.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779797191/RLF_2_facsrs.png",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/v1779797190/RLF_3_d1b2fm.png",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408244/RLF_1_g4cpsy.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408244/RLF_2_tooip4.webp",
+      "https://res.cloudinary.com/dynpasxkm/image/upload/v1780408243/RLF_3_hraenh.webp",
     ],
     url: "https://icazi.com",
   },

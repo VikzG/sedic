@@ -52,6 +52,7 @@ export default function Hero() {
               muted
               loop
               playsInline
+              poster ="https://res.cloudinary.com/dynpasxkm/video/upload/q_auto:good,so_0/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.jpg"
               className="absolute top-0 right-0 h-full w-auto min-w-full object-cover"
               style={{
                 objectPosition: "30% center",

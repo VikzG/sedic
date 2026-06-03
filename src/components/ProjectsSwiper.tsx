@@ -77,6 +77,7 @@ export default function ProjectsSwiper({
                 <div className="relative w-full h-full">
                   {/* Image */}
                   <img
+                    loading="lazy"
                     src={slide.image}
                     alt={slide.title.replace("\n", " ")}
                     className="w-full h-full object-cover"
@@ -114,10 +115,10 @@ export default function ProjectsSwiper({
                       }}
                     >
                       <button
-onClick={() => {
-  projectStore.set(projects[activeIndex].id);
-  onNavigate?.();
-}}
+                        onClick={() => {
+                          projectStore.set(projects[activeIndex].id);
+                          onNavigate?.();
+                        }}
                         className="w-full backdrop-blur-md px-5 py-1 border border-white/40 rounded-xl text-white active:bg-white/25"
                         style={{
                           ...coconat,

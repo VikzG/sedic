@@ -309,6 +309,8 @@ function DesktopDetails() {
       style={{ minHeight: "80vh" }}
     >
       <img
+        loading="lazy"
+        decoding="async"
         src="/images/bg_details.png"
         alt=""
         className="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"

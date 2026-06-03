@@ -106,6 +106,8 @@ function Carousel({
             }}
           >
             <img
+              loading="lazy"
+              decoding="async"
               src={slide.image}
               alt={slide.title.replace("\n", " ")}
               className="w-full h-full object-cover"

@@ -165,6 +165,8 @@ export default function DirectionGenerale() {
           }}
         >
           <img
+            loading="lazy"
+            decoding="async"
             src="/images/about_page/directrice_generale.webp"
             alt="Bénédicte Myriam Denguet-Atticky"
             className="w-full object-cover object-top"
@@ -305,6 +307,8 @@ export default function DirectionGenerale() {
               src="/images/about_page/directrice_generale.webp"
               alt="Bénédicte Myriam Denguet-Atticky"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

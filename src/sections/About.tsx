@@ -69,6 +69,8 @@ function ValueCard({
       onMouseLeave={() => setHovered(false)}
     >
       <img
+        loading="lazy"
+        decoding="async"
         src={v.image}
         alt={v.label}
         className="w-full h-full object-cover"
@@ -149,6 +151,8 @@ function ValueCardMobile({
     >
       {/* Image — s'assombrit à l'ouverture */}
       <img
+        loading="lazy"
+        decoding="async"
         src={v.image}
         alt={v.label}
         className="w-full h-full object-cover"

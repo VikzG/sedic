@@ -250,6 +250,7 @@ export default function HomeCarousel() {
                 }}
               >
                 <img
+                  loading="lazy"
                   src={slide.image}
                   alt={slide.title.replace("\n", " ")}
                   className="w-full h-full object-cover"

@@ -121,10 +121,12 @@ export default function Mission({ current }: { current: string }) {
         className="relative flex flex-col overflow-hidden min-h-[850px]"
         style={{ background: "#0a1628" }}
       >
-        {/* Background image */}
-        <div
-          className="absolute inset-0 bg-bottom bg-cover bg-no-repeat"
-          style={{ backgroundImage: "url('/images/bg_mission.webp')" }}
+        <img
+          src="/images/bg_mission.webp"
+          alt="fond mission"
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none"
         />
 
         <div className="relative z-10 flex flex-col px-5 pt-14 pb-10 gap-7">
@@ -301,32 +303,35 @@ export default function Mission({ current }: { current: string }) {
       style={{ background: "#0a1628", minHeight: "90vh" }}
     >
       {/* Background image */}
-      <div
-        className="absolute inset-0 bg-bottom bg-cover bg-no-repeat"
-        style={{ backgroundImage: "url('/images/bg_mission.webp')" }}
+      <img
+        src="/images/bg_mission.webp"
+        alt="fond mission"
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none"
       />
 
-{/* Full-column hover zones */}
-{pillars.map(({ num }, i) => (
-  <button
-    key={`hover-zone-${num}`}
-    onClick={() => navigate("about")}
-    className="absolute"
-    style={{
-      left: `${i * 25}%`,
-      width: "25%",
-      top: cardTop,
-      bottom: 0,
-      zIndex: 20,
-      cursor: "pointer",
-      background: "transparent",
-      border: "none",
-      padding: 0,
-    }}
-    onMouseEnter={() => setHovered(num)}
-    onMouseLeave={() => setHovered(null)}
-  />
-))}
+      {/* Full-column hover zones */}
+      {pillars.map(({ num }, i) => (
+        <button
+          key={`hover-zone-${num}`}
+          onClick={() => navigate("about")}
+          className="absolute"
+          style={{
+            left: `${i * 25}%`,
+            width: "25%",
+            top: cardTop,
+            bottom: 0,
+            zIndex: 20,
+            cursor: "pointer",
+            background: "transparent",
+            border: "none",
+            padding: 0,
+          }}
+          onMouseEnter={() => setHovered(num)}
+          onMouseLeave={() => setHovered(null)}
+        />
+      ))}
 
       {/* Hover cards */}
       {pillars.map(({ num, desc, align }, i) => (

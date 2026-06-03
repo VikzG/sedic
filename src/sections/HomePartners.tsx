@@ -61,6 +61,8 @@ function PartnerCard({
     >
       {/* Full image */}
       <img
+        loading="lazy"
+        decoding="async"
         src={partner.image}
         alt={partner.name}
         style={{
@@ -321,6 +323,8 @@ function MobilePartnerCard({ partner }: { partner: (typeof PARTNERS)[0] }) {
         }}
       >
         <img
+          loading="lazy"
+          decoding="async"
           src={partner.image}
           alt={partner.name}
           className="w-full h-full object-cover"

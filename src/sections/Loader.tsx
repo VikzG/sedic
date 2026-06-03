@@ -41,15 +41,19 @@ export default function Loader({ onComplete }: LoaderProps) {
   const [ready, setReady] = useState(false);
 
   /* ── Attendre document.readyState complete ── */
-  useEffect(() => {
-    if (document.readyState === "complete") {
-      setReady(true);
-    } else {
-      const onLoad = () => setReady(true);
-      window.addEventListener("load", onLoad);
-      return () => window.removeEventListener("load", onLoad);
-    }
-  }, []);
+useEffect(() => {
+  if (document.readyState === "complete") {
+    setReady(true);
+  } else {
+    const onLoad = () => setReady(true);
+    window.addEventListener("load", onLoad);
+    const timeout = setTimeout(() => setReady(true), 3000);
+    return () => {
+      window.removeEventListener("load", onLoad);
+      clearTimeout(timeout);
+    };
+  }
+}, []);
 
   /* ── Séquence d'animation — ne démarre qu'une fois ready ── */
   useEffect(() => {

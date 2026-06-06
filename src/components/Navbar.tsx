@@ -4,7 +4,7 @@ import type { PageId } from "../hooks/usePage";
 
 const NAV_LINKS: { label: string; page: PageId }[] = [
   { label: "À PROPOS", page: "about" },
-  { label: "PROJETS", page: "projects" },
+  { label: "NOS ACTIFS EN EXPLOITATION", page: "projects" },
   { label: "PARTENARIATS", page: "partners" },
   { label: "ACTUALITÉS", page: "news" },
 ];

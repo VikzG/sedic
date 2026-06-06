@@ -12,27 +12,27 @@ const charisSIL: React.CSSProperties = {
 const pillars = [
   {
     num: "01",
-    label: "DÉVELOPPER",
+    label: "EXPLOITER",
     align: "left" as const,
-    desc: "Concevoir et structurer des programmes immobiliers stratégiques générateurs de revenus durables, au service des besoins du territoire congolais.",
+    desc: "Optimiser la performance et la valorisation durable des infrastructures",
   },
   {
     num: "02",
-    label: "EXPLOITER",
+    label: "GÉRER",
     align: "center" as const,
-    desc: "Gérer et valoriser un patrimoine immobilier public avec rigueur, en maximisant la performance opérationnelle et la satisfaction des usagers.",
+    desc: "Assurer la gestion rigoureuse, efficace et pérenne de nos actifs",
   },
   {
     num: "03",
-    label: "RAYONNER",
+    label: "CONCEVOIR",
     align: "center" as const,
-    desc: "Positionner la SEDIC comme un acteur incontournable du développement territorial, porteur d'une vision moderne et durable pour le Congo.",
+    desc: "Imaginer des infrastructures innovantes répondant aux besoin de demain",
   },
   {
     num: "04",
-    label: "PILOTER",
+    label: "DÉVELOPPER",
     align: "right" as const,
-    desc: "Assurer une gouvernance exemplaire des actifs publics grâce à des outils de pilotage performants et une transparence totale dans la gestion.",
+    desc: "Créer des projets à fort impact économique et social",
   },
 ];
 
@@ -160,8 +160,10 @@ export default function Mission({ current }: { current: string }) {
                 letterSpacing: "-0.01em",
               }}
             >
-              <span style={{ color: "#7A9BBF" }}>Des actions ciblées</span> pour
-              un impact économique, social et territorial durable.
+              <span style={{ color: "#7A9BBF" }}>
+                Des infrastructures créatrices
+              </span>{" "}
+              de valeur économique, sociale et territoriale.
             </h2>
           </div>
 
@@ -473,10 +475,12 @@ export default function Mission({ current }: { current: string }) {
                 letterSpacing: "0.02em",
               }}
             >
-              <span style={{ color: "#7A9BBF" }}>des actions ciblées</span> pour
-              un impact
+              <span style={{ color: "#7A9BBF" }}>
+                Des infrastructures créatrices
+              </span>{" "}
+              de valeur
               <br />
-              économique, social et territorial durable
+              économique, sociale et territoriale.
             </p>
             <p
               className="text-white/80 md:ml-auto"
@@ -487,10 +491,9 @@ export default function Mission({ current }: { current: string }) {
                 letterSpacing: "0",
               }}
             >
-              La SEDIC aspire à devenir l'acteur de référence dans la gestion et
-              le développement des infrastructures au Congo, en garantissant la
-              durabilité, la valorisation et la performance de ses actifs
-              publics.
+              La SEDIC aspire à devenir un acteur régional de référence en
+              matière d'exploitation, de gestion et de développement des
+              infrastructures.
             </p>
           </div>
         </div>

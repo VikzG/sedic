@@ -179,14 +179,12 @@ export default function HomeCarousel() {
               letterSpacing: "0",
             }}
           >
-            À travers ses initiatives, la SEDIC améliore le cadre de vie des
-            populations et concrétise les ambitions des programmes immobiliers
-            commerciaux, en incarnant le pilier 6 du{" "}
+            À travers une approche fondée sur l'innovation, la SEDIC{" "}
             <strong style={{ fontWeight: 700 }}>
-              Plan National de Développement 2022–2026
-            </strong>
-            , dédié au développement des infrastructures et à l'aménagement du
-            territoire.
+              développe des actifs à fort impact
+            </strong>{" "}
+            destinés a renforcer l'attractivité du Congo à l'échelle régionale
+            et internationale
           </p>
 
           <button
@@ -449,13 +447,9 @@ export default function HomeCarousel() {
               letterSpacing: "0",
             }}
           >
-            À travers ses initiatives, elle améliore le cadre de vie des
-            populations et concrétise les ambitions des programmes immobiliers
-            commerciaux, en incarnant le pilier 6 du Plan National de
-            Développement 2022–2026, dédié au développement des infrastructures
-            et à l'aménagement du territoire. Portée par des valeurs
-            d'excellence et d'engagement, la SEDIC agit comme un véritable
-            levier de modernisation et de rayonnement économique du pays.
+            À travers une approche fondée sur l'innovation, la SEDIC développe
+            des actifs à fort impact destinés a renforcer l' attractivité du
+            Congo à l'échelle régionale et internationale
           </p>
 
           <button

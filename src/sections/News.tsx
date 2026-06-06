@@ -220,8 +220,13 @@ function MobileNews({ compact = false }: MobileNewsProps) {
           }}
         >
           La SEDIC a marqué une étape importante avec la cérémonie d'ouverture
-          du Musée national, un projet structurant dédié à la valorisation du
-          patrimoine culturel et historique du Congo.
+          du Musée national, un projet dédié à la valorisation du patrimoine
+          culturel et historique du Congo.
+          <br/>
+          Chaque jour, nos équipes se mobilisent avec passion,
+professionnalisme et engagement pour donner vie à des projets
+structurants qui façonnent le visage d'un Congo moderne, attractif
+et inclusif.
         </p>
 
         {/* Bouton — masqué en mode compact */}
@@ -393,8 +398,13 @@ function DesktopNews({ compact = false }: { compact?: boolean }) {
               }}
             >
               La SEDIC a marqué une étape importante avec la cérémonie
-              d&apos;ouverture du Musée national, un projet structurant dédié à
-              la valorisation du patrimoine culturel et historique du Congo.
+              d&apos;ouverture du Musée national, un projet dédié à la
+              valorisation du patrimoine culturel et historique du Congo.
+              <br />
+              Chaque jour, nos équipes se mobilisent avec passion,
+              professionnalisme et engagement pour donner vie à des projets
+              structurants qui façonnent le visage d'un Congo moderne, attractif
+              et inclusif.
             </p>
             {!compact && (
               <button
@@ -439,5 +449,9 @@ interface NewsProps {
 
 export default function News({ compact = false }: NewsProps) {
   const isMobile = useIsMobile();
-  return isMobile ? <MobileNews compact={compact} /> : <DesktopNews compact={compact} />;
+  return isMobile ? (
+    <MobileNews compact={compact} />
+  ) : (
+    <DesktopNews compact={compact} />
+  );
 }

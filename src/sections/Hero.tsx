@@ -52,7 +52,7 @@ export default function Hero() {
               muted
               loop
               playsInline
-              poster ="https://res.cloudinary.com/dynpasxkm/video/upload/q_auto:good,so_0/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.jpg"
+              poster="https://res.cloudinary.com/dynpasxkm/video/upload/q_auto:good,so_0/v1779976784/SEDIC_ANIM_BG_DSK_rfbcoh.jpg"
               className="absolute top-0 right-0 h-full w-auto min-w-full object-cover"
               style={{
                 objectPosition: "30% center",
@@ -137,9 +137,10 @@ export default function Hero() {
                 maxWidth: "320px",
               }}
             >
-              Acteur stratégique de référence, nous développons, exploitons et
-              transformons des infrastructures immobilières modernes au service
-              des territoires et des populations de la République du Congo.
+              Nous valorisons, modernisons et exploitons les infestructures
+              immobilières confiés par l'État congolais. Nous développons aussi
+              des projets qui contribuent à la transformation urbaine et
+              économique du Congo.
             </p>
 
             {/* Boutons full-width empilés */}
@@ -174,7 +175,7 @@ export default function Hero() {
                   letterSpacing: "-0.01em",
                 }}
               >
-                Parcourir nos projets
+                Parcourir nos actifs en exploitation
               </button>
             </div>
           </div>
@@ -325,7 +326,7 @@ export default function Hero() {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  Parcourir nos projets
+                  Parcourir nos actifs en exploitation
                 </button>
               </div>
             </div>
@@ -362,10 +363,10 @@ export default function Hero() {
                   letterSpacing: "0",
                 }}
               >
-                Acteur stratégique de référence, nous développons, exploitons et
-                transformons des infrastructures immobilières modernes au
-                service des territoires et des populations de la République du
-                Congo.
+                Nous valorisons, modernisons et exploitons les infestructures
+                immobilières confiés par l'État congolais. Nous développons
+                aussi des projets qui contribuent à la transformation urbaine et
+                économique du Congo.
               </p>
             </div>
           </div>

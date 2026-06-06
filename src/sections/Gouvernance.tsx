@@ -3,6 +3,7 @@ import ProjectsSwiper from "../components/ProjectsSwiper";
 import { useNav } from "../App";
 import { projectStore } from "../store/projectStore";
 import { projects } from "./Projects";
+import Counter from "../components/Counter";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
@@ -18,32 +19,44 @@ const INTERVAL = 4000;
 
 const sectors = [
   [
-    "L'IMMOBILIER\nTERTIAIRE",
-    "L'HÔTELLERIE\nINTERNATIONALE",
-    "LE COMMERCE\nMODERNE",
+    {
+      title: "HOSPITALITY & BUSINESS",
+      subtitle:
+        "Développement de complexes hôteliers et infrastructures événementielles internationales",
+    },
+    {
+      title: "RETAIL & SERVICES",
+      subtitle: "Création de pôles commerciaux modernes et attractifs.",
+    },
   ],
   [
-    "LE TOURISME\nD'AFFAIRES",
-    "LA FORMATION\nET LA CULTURE",
-    "LE RÉSIDENTIEL\nSTRUCTURANT",
+    {
+      title: "ÉNERGIE & CONSTRUCTION",
+      subtitle: "Concilier performance technique et efficacité énergétique",
+    },
+    {
+      title: "FORMATION & CAPITAL HUMAIN",
+      subtitle:
+        "Développement des compétences à travers des partenariats académiques spécialisés.",
+    },
   ],
 ];
 
-const sectors_mob = [
-  [
-    "L'IMMOBILIER TERTIAIRE",
-    "L'HÔTELLERIE INTERNATIONALE",
-    "LE COMMERCE MODERNE",
-  ],
-  [
-    "LE TOURISME D'AFFAIRES",
-    "LA FORMATION ET LA CULTURE",
-    "LE RÉSIDENTIEL STRUCTURANT",
-  ],
-];
+const sectorsList = sectors.flat();
 
-// Flat list for mobile single column
-const sectorsList = sectors_mob.flat();
+// ── Chiffres clés ─────────────────────────────────────────
+const STATS = [
+  { number: 5, label: "Domaines\nd'expertise" },
+  { number: 200, prefix: "+", label: "Emplois directs et\nindirects créés" },
+  {
+    number: 4.9,
+    decimals: 1,
+    decimal: ",",
+    suffix: "MD",
+    label: "Chiffre d'affaires\nréalisé (2025)",
+  },
+  { number: 992, label: "Logements\ncommercialisables" },
+];
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
@@ -68,16 +81,15 @@ function Carousel({
   const [nextIndex, setNextIndex] = useState<number | null>(null);
   const [animating, setAnimating] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const activeRef = useRef(active); // ← ref pour éviter les re-créations d'interval
+  const activeRef = useRef(active);
 
-  // Sync la ref à chaque changement
   useEffect(() => {
     activeRef.current = active;
   }, [active]);
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
-      const next = (activeRef.current + 1) % SLIDES.length; // ← utilise la ref
+      const next = (activeRef.current + 1) % SLIDES.length;
       setNextIndex(next);
       setAnimating(true);
       setTimeout(() => {
@@ -201,7 +213,7 @@ function MobileGouvernance() {
         paddingBottom: "40px",
       }}
     >
-      {/* ── Titre + texte — colonne centrée ── */}
+      {/* ── Titre + texte ── */}
       <div
         className="flex flex-col items-center text-center px-6 pb-8"
         style={{
@@ -219,7 +231,7 @@ function MobileGouvernance() {
             letterSpacing: "-0.02em",
           }}
         >
-          Une gouvernance solide et une vision à long terme
+          Une expertise reconnue dans plusieurs domaines
         </h2>
         <p
           style={{
@@ -227,7 +239,6 @@ function MobileGouvernance() {
             fontSize: "14px",
             fontWeight: 400,
             lineHeight: "1.55",
-            letterSpacing: "0",
             color: "#222",
             textAlign: "center",
           }}
@@ -238,7 +249,7 @@ function MobileGouvernance() {
         </p>
       </div>
 
-      {/* ── Sector tags — 1 colonne ── */}
+      {/* ── Sector tags ── */}
       <div
         className="flex flex-col gap-3 px-6 pb-8"
         style={{
@@ -246,30 +257,117 @@ function MobileGouvernance() {
           transition: "opacity 0.9s ease 0.4s",
         }}
       >
-        {sectorsList.map((label) => (
+        {sectorsList.map((item) => (
           <div
-            key={label}
-            className="flex items-center justify-center text-center py-4 px-4"
+            key={item.title}
+            className="flex flex-col items-center justify-center text-center py-4 px-4 gap-1"
             style={{
-              ...coconat,
               backgroundColor: "#B3C2E9",
               border: "2px solid #223078",
               borderRadius: "10px",
-              fontSize: "16px",
-              fontWeight: 400,
-              letterSpacing: "0.04em",
-              lineHeight: "1.1",
-              textTransform: "uppercase",
-              color: "#223078",
-              whiteSpace: "pre-line",
             }}
           >
-            {label}
+            <span
+              style={{
+                ...coconat,
+                fontSize: "16px",
+                fontWeight: 400,
+                letterSpacing: "0.04em",
+                lineHeight: "1.1",
+                textTransform: "uppercase",
+                color: "#223078",
+              }}
+            >
+              {item.title}
+            </span>
+            <span
+              style={{
+                ...commissioner,
+                fontSize: "11px",
+                fontWeight: 400,
+                lineHeight: "1.3",
+                color: "#223078",
+                opacity: 0.8,
+              }}
+            >
+              {item.subtitle}
+            </span>
           </div>
         ))}
       </div>
 
-      {/* ── Showcase — texte seul, sans carousel ── */}
+      {/* ── Chiffres clés MOBILE ── */}
+      <div
+        className="px-6 pb-8"
+        style={{
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.9s ease 0.55s",
+        }}
+      >
+        <p
+          className="text-center mb-6 uppercase text-[#1e2d6b]"
+          style={{
+            ...coconat,
+            fontSize: "15px",
+            letterSpacing: "0.08em",
+            fontWeight: 400,
+          }}
+        >
+          Nos chiffres clés
+        </p>
+
+        <div className="grid grid-cols-2 gap-3">
+          {STATS.map((stat) => (
+            <div
+              key={stat.number}
+              className="flex flex-col items-center justify-center text-center py-6 px-4"
+              style={{
+                background: "#fff",
+                borderRadius: "12px",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.04)",
+                minHeight: "150px",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Charis SIL', Georgia, serif",
+                  fontSize: "34px",
+                  fontWeight: 700,
+                  fontStyle: "italic",
+                  color: "#1e2d6b",
+                  lineHeight: 1,
+                }}
+              >
+                <Counter end={stat.number} visible={visible} />
+              </span>
+
+              <div
+                style={{
+                  width: "24px",
+                  height: "2px",
+                  background: "#B3C2E9",
+                  borderRadius: "999px",
+                  margin: "12px 0",
+                }}
+              />
+
+              <span
+                style={{
+                  ...commissioner,
+                  fontSize: "12px",
+                  color: "#444",
+                  lineHeight: "1.4",
+                  whiteSpace: "pre-line",
+                }}
+              >
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Showcase ── */}
       <div
         className="mx-6 rounded-xl overflow-hidden py-4 px-2"
         style={{
@@ -310,6 +408,7 @@ function MobileGouvernance() {
           rayonnement économique du pays.
         </p>
       </div>
+
       <div
         className="mx-0 rounded-xl overflow-hidden"
         style={{
@@ -330,18 +429,18 @@ function DesktopGouvernance() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [carouselActive, setCarouselActive] = useState(0);
-  const carouselActiveRef = useRef(0); // ← ref
+  const carouselActiveRef = useRef(0);
   const { navigate } = useNav();
+
   const handleCarouselChange = (i: number) => {
-    carouselActiveRef.current = i; // ← sync ref
+    carouselActiveRef.current = i;
     setCarouselActive(i);
   };
-const handleNavigate = () => {
-  console.log("carouselActiveRef.current =", carouselActiveRef.current);
-  console.log("project id =", projects[carouselActiveRef.current].id);
-  projectStore.set(projects[carouselActiveRef.current].id);
-  navigate("projects");
-};
+
+  const handleNavigate = () => {
+    projectStore.set(projects[carouselActiveRef.current].id);
+    navigate("projects");
+  };
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -363,6 +462,7 @@ const handleNavigate = () => {
       className="w-full py-8"
       style={{ backgroundColor: "#f0efea" }}
     >
+      {/* Header */}
       <div className="flex items-start justify-between gap-12 px-16 pt-8 pb-10">
         <h2
           className="font-normal text-black"
@@ -378,7 +478,7 @@ const handleNavigate = () => {
             transition: "opacity 1.2s ease 0.1s, transform 1.2s ease 0.1s",
           }}
         >
-          Une gouvernance solide et une vision à long terme
+          Une expertise reconnue dans plusieurs domaines
         </h2>
         <p
           className="max-w-lg"
@@ -388,7 +488,6 @@ const handleNavigate = () => {
             fontSize: "15px",
             fontWeight: 400,
             lineHeight: "1.55",
-            letterSpacing: "0",
             color: "#222",
             textAlign: "right",
             margin: 0,
@@ -403,6 +502,7 @@ const handleNavigate = () => {
         </p>
       </div>
 
+      {/* Sector cards */}
       <div
         className="px-16 pb-10"
         style={{
@@ -411,31 +511,122 @@ const handleNavigate = () => {
         }}
       >
         {sectors.map((row, ri) => (
-          <div key={ri} className="grid grid-cols-3 gap-3 mb-3">
-            {row.map((label) => (
+          <div key={ri} className="grid grid-cols-2 gap-3 mb-3">
+            {row.map((item) => (
               <div
-                key={label}
-                className="flex items-center justify-center border-2 border-[#223078] text-center py-5 px-4"
+                key={item.title}
+                className="flex flex-col items-center justify-center border-2 border-[#223078] text-center py-5 px-4 gap-2"
                 style={{
                   ...coconat,
                   backgroundColor: "#B3C2E9",
                   borderRadius: "10px",
-                  fontSize: "20.5px",
-                  fontWeight: 400,
-                  letterSpacing: "0.02em",
-                  lineHeight: "1.05",
-                  textTransform: "uppercase",
                   color: "#223078",
-                  whiteSpace: "pre-line",
                 }}
               >
-                {label}
+                <span
+                  style={{
+                    fontSize: "20.5px",
+                    fontWeight: 400,
+                    letterSpacing: "0.02em",
+                    lineHeight: "1.05",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.title}
+                </span>
+                <span
+                  className="max-w-sm"
+                  style={{
+                    ...commissioner,
+                    fontSize: "15px",
+                    fontWeight: 400,
+                    lineHeight: "1.3",
+                    textTransform: "none",
+                    opacity: 0.8,
+                  }}
+                >
+                  {item.subtitle}
+                </span>
               </div>
             ))}
           </div>
         ))}
       </div>
 
+      {/* ── Chiffres clés DESKTOP ── */}
+      <div
+        className="px-16 pb-10"
+        style={{
+          opacity: visible ? 1 : 0,
+          transition: "opacity 1.2s ease 0.85s",
+        }}
+      >
+        <p
+          className="text-center mb-6 uppercase text-[#1e2d6b]"
+          style={{
+            ...coconat,
+            fontSize: "20.5px",
+            letterSpacing: "0.02em",
+            lineHeight: "1.05",
+            fontWeight: 400,
+          }}
+        >
+          Nos chiffres clés
+        </p>
+
+        <div className="grid grid-cols-4 gap-4">
+          {STATS.map((stat) => (
+            <div
+              key={stat.number}
+              className="flex flex-col items-center text-center py-8 px-6"
+              style={{
+                background: "#fff",
+                borderRadius: "14px",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.04)",
+                minHeight: "190px",
+                justifyContent: "center",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Charis SIL', Georgia, serif",
+                  fontSize: "46px",
+                  fontWeight: 700,
+                  fontStyle: "italic",
+                  color: "#1e2d6b",
+                  lineHeight: 1,
+                }}
+              >
+                <Counter end={stat.number} visible={visible} />
+              </span>
+
+              <div
+                style={{
+                  width: "32px",
+                  height: "2px",
+                  background: "#B3C2E9",
+                  borderRadius: "999px",
+                  margin: "14px 0",
+                }}
+              />
+
+              <span
+                style={{
+                  ...commissioner,
+                  fontSize: "15px",
+                  color: "#444",
+                  lineHeight: "1.45",
+                  whiteSpace: "pre-line",
+                }}
+              >
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Showcase + carousel */}
       <div
         className="mx-16 mb-10 flex overflow-hidden"
         style={{

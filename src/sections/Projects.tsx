@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useState,useRef,useEffect } from "react";
-import { projectStore } from '../store/projectStore';
+import { useMemo, useState, useRef, useEffect } from "react";
+import { projectStore } from "../store/projectStore";
 import useIsMobile from "../components/useIsmobile";
 import ContactForm from "./Contactform";
 import { useNav } from "../App";
@@ -22,12 +22,9 @@ type Project = {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "TOURS JUMELLES DE MPILA",
-    description: `Projet emblématique de Brazzaville, les Tours Jumelles de Mpila
-constituent un pôle moderne intégrant bureaux, services et hôtellerie de
-standard international. Véritable hub économique, elles contribuent à
-renforcer l’attractivité de la capitale et à structurer un nouveau centre
-d’affaires.`,
+    title: "Hilton Tours Jumelles et Business Center",
+    description: `Véritable hub économique intégrant bureaux, services et hôtellerie
+de standard international.`,
     cover:
       "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408243/TOUR_1_xutzaj.webp",
     images: [
@@ -39,11 +36,11 @@ d’affaires.`,
   },
   {
     id: 2,
-    title: "CENTRE INTERNATIONAL DE CONFÉRENCES",
+    title:
+      "Centre International de Conférence de Kintélé et Grand Hôtel de Kintélé",
     description: `Ce complexe stratégique dédié aux grands événements accueille
-conférences, sommets et rencontres internationales. Associé au Grand
-Hôtel de Kintélé, il positionne le Congo comme une destination majeure
-pour le tourisme d’affaires en Afrique centrale.`,
+conférences, sommets et rencontres internationales.
+Il intègre également un hôtel 5 étoiles.`,
     cover:
       "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408248/CIC_1_qprxoc.webp",
     images: [
@@ -56,10 +53,10 @@ pour le tourisme d’affaires en Afrique centrale.`,
   {
     id: 3,
     title: "BRAZZA MALL",
-    description: `Brazza Mall est un centre commercial moderne qui redéfinit l’expérience
-du shopping à Brazzaville. En réunissant enseignes locales et
-internationales, il dynamise le commerce urbain en proposant offre
-commerciale de qualité.`,
+    description: `Un centre commercial moderne qui redéfinit l’expérience du
+shopping à Brazzaville en réunissant enseignes locales et
+internationales telles que
+le supermarché Franprix.`,
     cover:
       "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408249/BRAZZA_1_hlk5xj.webp",
     images: [
@@ -71,10 +68,9 @@ commerciale de qualité.`,
   },
   {
     id: 4,
-    title: "MUSÉE DE L'HISTOIRE NATIONALE",
-    description: `Ce projet culturel majeur valorise le patrimoine historique et artistique du Congo.
-
-Il participe au rayonnement culturel du pays et constitue un espace de transmission, de mémoire et d’attractivité touristique.`,
+    title: "Musée National du Congo",
+    description: `Institution culturelle publique, ce musée sera dédié à la mise en
+valeur du patrimoine historique et artistique du Congo.`,
     cover:
       "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408245/MNB_1_zgwe4c.webp",
     images: [
@@ -87,10 +83,8 @@ Il participe au rayonnement culturel du pays et constitue un espace de transmiss
   {
     id: 5,
     title: "Vatel Brazzaville",
-    description: `Établissement de formation d’excellence, Vatel Brazzaville contribue au
-développement des compétences locales dans les métiers de l’hôtellerie
-et du tourisme. Il accompagne la professionnalisation du secteur et
-soutient l’employabilité des jeunes.`,
+    description: `Vatel Brazzaville est une école dédiée au métier de l'hôtellerie. Cette
+école fait partie du groupe international Vatel.`,
     cover:
       "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408243/VATEL_1_noejww.webp",
     images: [
@@ -134,33 +128,33 @@ d’une offre résidentielle durable et qualitative à Brazzaville.`,
 ];
 
 function ProjectsDesktop() {
-const { current } = useNav();
-const [activeId, setActiveId] = useState(projects[0].id);
-const [selectedImage, setSelectedImage] = useState(projects[0].cover);
+  const { current } = useNav();
+  const [activeId, setActiveId] = useState(projects[0].id);
+  const [selectedImage, setSelectedImage] = useState(projects[0].cover);
 
-useEffect(() => {
-  if (current === "projects") {
-    const stored = projectStore.get();
-    if (stored !== null) {
-      const project = projects.find((p) => p.id === stored);
-      if (project) {
-        setActiveId(stored);
-        setSelectedImage(project.cover);
+  useEffect(() => {
+    if (current === "projects") {
+      const stored = projectStore.get();
+      if (stored !== null) {
+        const project = projects.find((p) => p.id === stored);
+        if (project) {
+          setActiveId(stored);
+          setSelectedImage(project.cover);
+        }
+        projectStore.set(null);
       }
-      projectStore.set(null);
     }
-  }
-}, [current]);
+  }, [current]);
 
-const activeProject = useMemo(
-  () => projects.find((p) => p.id === activeId)!,
-  [activeId],
-);
+  const activeProject = useMemo(
+    () => projects.find((p) => p.id === activeId)!,
+    [activeId],
+  );
 
-const handleOpen = (project: Project) => {
-  setActiveId(project.id);
-  setSelectedImage(project.cover);
-};
+  const handleOpen = (project: Project) => {
+    setActiveId(project.id);
+    setSelectedImage(project.cover);
+  };
 
   return (
     <div>
@@ -179,7 +173,7 @@ const handleOpen = (project: Project) => {
               transition: "margin-bottom 0.45s cubic-bezier(0.22,1,0.36,1)",
             }}
           >
-            NOS PROJETS
+            NOS ACTIFS EN EXPLOITATION
           </p>
 
           <h2
@@ -205,7 +199,7 @@ const handleOpen = (project: Project) => {
               }}
               className="italic text-[#304674]"
             >
-              le Congo de demain.
+              le Congo.
             </span>
           </h2>
         </div>
@@ -451,10 +445,10 @@ function ProjectsMobile() {
   const [activeId, setActiveId] = useState(0);
 
   useEffect(() => {
-    if (current === 'projects') {
+    if (current === "projects") {
       const stored = projectStore.get();
       if (stored !== null) {
-        const idx = projects.findIndex(p => p.id === stored);
+        const idx = projects.findIndex((p) => p.id === stored);
         if (idx !== -1) {
           setActiveId(idx);
           setSelectedImage(projects[idx].cover);
@@ -464,27 +458,27 @@ function ProjectsMobile() {
     }
   }, [current]);
   const [selectedImage, setSelectedImage] = useState(projects[0].cover);
-  const [direction, setDirection]     = useState(1); // 1 = next, -1 = prev
- 
+  const [direction, setDirection] = useState(1); // 1 = next, -1 = prev
+
   // Touch swipe
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
- 
+
   const project = projects[activeId];
-  const total   = projects.length;
- 
+  const total = projects.length;
+
   const goTo = (idx: number, dir: number) => {
     const next = (idx + total) % total;
     setDirection(dir);
     setActiveId(next);
     setSelectedImage(projects[next].cover);
   };
- 
+
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
   };
- 
+
   const handleTouchEnd = (e: React.TouchEvent) => {
     const dx = touchStartX.current - e.changedTouches[0].clientX;
     const dy = Math.abs(touchStartY.current - e.changedTouches[0].clientY);
@@ -493,31 +487,47 @@ function ProjectsMobile() {
       dx > 0 ? goTo(activeId + 1, 1) : goTo(activeId - 1, -1);
     }
   };
- 
+
   /* Variants pour le slide */
   const variants = {
-    enter:  (dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 0 }),
+    enter: (dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 0 }),
     center: { x: 0, opacity: 1 },
-    exit:   (dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 0 }),
+    exit: (dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 0 }),
   };
- 
+
   return (
     <div>
       <section className="bg-white pt-20">
- 
         {/* HEADER */}
         <div className="px-6 mb-8 text-center">
-          <p className="uppercase text-[#1e2d6b] mb-3" style={{ ...coconat, fontSize: "16px", letterSpacing: "0.08em" }}>
-            NOS PROJETS
+          <p
+            className="uppercase text-[#1e2d6b] mb-3"
+            style={{ ...coconat, fontSize: "16px", letterSpacing: "0.08em" }}
+          >
+            NOS ACTIFS EN EXPLOITATION
           </p>
-          <h2 style={{ ...coconat, fontSize: "26px", lineHeight: "0.95", letterSpacing: "-0.04em" }}>
+          <h2
+            style={{
+              ...coconat,
+              fontSize: "26px",
+              lineHeight: "0.95",
+              letterSpacing: "-0.04em",
+            }}
+          >
             Des infrastructures qui façonnent{" "}
-            <em style={{ fontFamily: "'Charis SIL', Georgia, serif", fontStyle: "italic", fontWeight: 700, color: "#1e2d6b" }}>
-              le Congo de demain.
+            <em
+              style={{
+                fontFamily: "'Charis SIL', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                color: "#1e2d6b",
+              }}
+            >
+              le Congo.
             </em>
           </h2>
         </div>
- 
+
         {/* CARD SLIDER */}
         <div
           className="relative overflow-hidden"
@@ -536,7 +546,10 @@ function ProjectsMobile() {
               className="flex flex-col"
             >
               {/* MAIN IMAGE */}
-              <div className="relative w-full overflow-hidden" style={{ height: "350px" }}>
+              <div
+                className="relative w-full overflow-hidden"
+                style={{ height: "350px" }}
+              >
                 <AnimatePresence mode="wait">
                   <motion.img
                     loading="lazy"
@@ -551,16 +564,22 @@ function ProjectsMobile() {
                   />
                 </AnimatePresence>
                 <div className="absolute inset-0  flex items-start justify-center pt-6 px-6">
-                  <h3 className="uppercase text-center text-white"
-                    style={{ ...coconat, fontSize: "16px", lineHeight: "1.15", letterSpacing: "-0.01em" }}>
+                  <h3
+                    className="uppercase text-center text-white"
+                    style={{
+                      ...coconat,
+                      fontSize: "16px",
+                      lineHeight: "1.15",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
                     {project.title}
                   </h3>
                 </div>
               </div>
- 
+
               {/* BLOC BAS — fond flouté + overlay + contenu */}
               <div className="relative overflow-hidden">
- 
                 {/* Fond flouté */}
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -576,13 +595,12 @@ function ProjectsMobile() {
                     style={{ filter: "blur(18px)", transform: "scale(1.15)" }}
                   />
                 </AnimatePresence>
- 
+
                 {/* Overlay sombre */}
                 <div className="absolute inset-0 bg-black/50 pointer-events-none" />
- 
+
                 {/* ── Tout le contenu en relative z-10 ── */}
                 <div className="relative z-10 flex flex-col">
- 
                   {/* THUMBNAILS */}
                   <div
                     style={{
@@ -594,7 +612,10 @@ function ProjectsMobile() {
                       paddingRight: "8px",
                     }}
                   >
-                    <div className="flex gap-2" style={{ width: "max-content" }}>
+                    <div
+                      className="flex gap-2"
+                      style={{ width: "max-content" }}
+                    >
                       {project.images.map((img, i) => {
                         const active = selectedImage === img;
                         return (
@@ -602,20 +623,35 @@ function ProjectsMobile() {
                             key={i}
                             onClick={() => setSelectedImage(img)}
                             className="overflow-hidden rounded-sm flex-shrink-0"
-                            animate={{ opacity: active ? 1 : 0.55, scale: active ? 1 : 0.95 }}
+                            animate={{
+                              opacity: active ? 1 : 0.55,
+                              scale: active ? 1 : 0.95,
+                            }}
                             transition={{ duration: 0.3 }}
                             style={{ width: "140px", height: "100px" }}
                           >
-                            <img src={img} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                            <img
+                              src={img}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                              decoding="async"
+                            />
                           </motion.button>
                         );
                       })}
                     </div>
                   </div>
- 
+
                   {/* TEXTE + BOUTON SITE */}
                   <div className="px-5 py-5 text-center">
-                    <p style={{ ...commissioner, fontSize: "13px", lineHeight: "1.45", color: "white" }}>
+                    <p
+                      style={{
+                        ...commissioner,
+                        fontSize: "13px",
+                        lineHeight: "1.45",
+                        color: "white",
+                      }}
+                    >
                       {project.description}
                     </p>
                     {project.url && (
@@ -624,46 +660,63 @@ function ProjectsMobile() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-5 inline-flex py-1 items-center justify-center border border-white rounded-lg w-full backdrop-blur-sm"
-                        style={{ color: "white", background: "rgba(255,255,255,0.08)", ...coconat, fontSize: "16px" }}
+                        style={{
+                          color: "white",
+                          background: "rgba(255,255,255,0.08)",
+                          ...coconat,
+                          fontSize: "16px",
+                        }}
                       >
                         Voir le site
                       </a>
                     )}
                   </div>
- 
+
                   {/* NAVIGATION */}
                   <div className="flex items-center justify-between px-5 pb-5">
                     <button
                       onClick={() => goTo(activeId - 1, -1)}
                       className="rounded-full border border-white transition-all active:scale-95 backdrop-blur-md"
-                      style={{ width: "25px", height: "25px", background: "rgba(255,255,255,0.1)" }}
+                      style={{
+                        width: "25px",
+                        height: "25px",
+                        background: "rgba(255,255,255,0.1)",
+                      }}
                       aria-label="Projet précédent"
                     />
-                    <span className="text-white/70 tabular-nums"
-                      style={{ ...commissioner, fontSize: "15px", letterSpacing: "0.1em" }}>
+                    <span
+                      className="text-white/70 tabular-nums"
+                      style={{
+                        ...commissioner,
+                        fontSize: "15px",
+                        letterSpacing: "0.1em",
+                      }}
+                    >
                       {activeId + 1}/{total}
                     </span>
                     <button
                       onClick={() => goTo(activeId + 1, 1)}
                       className="rounded-full border border-white transition-all active:scale-95 backdrop-blur-md"
-                      style={{ width: "25px", height: "25px", background: "rgba(255,255,255,0.1)" }}
+                      style={{
+                        width: "25px",
+                        height: "25px",
+                        background: "rgba(255,255,255,0.1)",
+                      }}
                       aria-label="Projet suivant"
                     />
                   </div>
- 
-                </div>{/* fin relative z-10 */}
-              </div>{/* fin bloc bas */}
- 
+                </div>
+                {/* fin relative z-10 */}
+              </div>
+              {/* fin bloc bas */}
             </motion.div>
           </AnimatePresence>
         </div>
- 
       </section>
       <ContactForm />
     </div>
   );
 }
-
 
 export default function ProjectsSection() {
   const isMobile = useIsMobile();

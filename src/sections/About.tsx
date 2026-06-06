@@ -11,28 +11,26 @@ const commissioner: React.CSSProperties = {
 
 const values = [
   {
-    label: "Engagement",
-    image: "/images/about_page/about_hero_1.webp",
-    texte:
-      "Concevoir des projets à fort impact économique et social, contribuant directement à l'amélioration du cadre de vie des populations.",
-  },
-  {
     label: "Excellence",
     image: "/images/about_page/about_hero_2.webp",
     texte:
-      "Garantir des standards élevés dans la conception, la gestion et la valorisation des infrastructures afin d'offrir des espaces modernes, sûrs et performants.",
+      "Garantir des standards élevés dans la conception, la gestion et la valorisation des infrastructures.",
   },
+  {
+    label: "Engagement",
+    image: "/images/about_page/about_hero_1.webp",
+    texte: "Concevoir des projets à fort impact\néconomique et social.",
+  },
+
   {
     label: "Innovation",
     image: "/images/about_page/about_hero_3.webp",
-    texte:
-      "Encourager des solutions modernes et adaptées dans la construction, la gestion et l'exploitation des infrastructures.",
+    texte: "Encourager des solutions modernes\net avant-gardistes.",
   },
   {
     label: "Transparence",
     image: "/images/about_page/about_hero_4.webp",
-    texte:
-      "Assurer une gestion rigoureuse, intègre et conforme aux normes en vigueur dans toutes nos opérations et partenariats.",
+    texte: "Assurer une gestion agile,\nrigoureuse et intègre.",
   },
 ];
 
@@ -141,7 +139,7 @@ function ValueCardMobile({
     <div
       className="relative overflow-hidden w-full"
       style={{
-        height: isOpen ? "170px" : "120px",
+        height: isOpen ? "150px" : "100px",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(16px)",
         transition: `height 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.8s ease ${0.2 + i * 0.12}s, transform 0.8s ease ${0.2 + i * 0.12}s`,
@@ -183,7 +181,7 @@ function ValueCardMobile({
             lineHeight: "1.05",
             textTransform: "uppercase",
             fontWeight: 400,
-            marginBottom: isOpen ? "14px" : "0",
+            marginBottom: isOpen ? "10px" : "0",
             transition: "margin-bottom 0.45s cubic-bezier(0.22,1,0.36,1)",
           }}
         >
@@ -195,6 +193,7 @@ function ValueCardMobile({
           className="text-center text-white"
           style={{
             ...commissioner,
+            whiteSpace: "pre-line",
             fontSize: "14px",
             fontWeight: 400,
             lineHeight: "1.50",
@@ -307,11 +306,12 @@ export default function About() {
                 Société d'Exploitation et de Développement des Infrastructures
                 du Congo
               </strong>{" "}
-              (SEDIC) est une société anonyme à Conseil d'administration,
-              entièrement détenue par l'État congolais. Elle constitue un
-              véhicule patrimonial stratégique, se consacrant à la
-              structuration, à la valorisation et au développement des actifs
-              immobiliers publics à fort potentiel en République du Congo.
+              (SEDIC) est une société anonyme détenue à 100 % par l’État
+              congolais. La SEDIC a pour mission de valoriser, moderniser et
+              exploiter les infrastructures immobilières confiées par l’État
+              congolais. Elle a également pour vocation de développer des
+              projets qui contribuent à la transformation urbaine et économique
+              de la République du Congo.
             </p>
           </div>
 
@@ -337,8 +337,8 @@ export default function About() {
                 margin: 0,
               }}
             >
-              Quatre valeurs fondamentales, qui guident chacune de nos décisions
-              et engagements.
+              La SEDIC construit son action autour de 5 valeurs fondamentales
+              qui guident chacune de ses actions.
             </p>
           </div>
 
@@ -364,18 +364,6 @@ export default function About() {
               transition: "opacity 1s ease 1.2s",
             }}
           >
-            <p
-              className="uppercase text-[#1e2d6b] mb-6"
-              style={{
-                ...coconat,
-                fontSize: "16px",
-                letterSpacing: "0.15em",
-                lineHeight: "1.05",
-                fontWeight: 400,
-              }}
-            >
-              Notre Positionnement
-            </p>
             <p
               className="mb-7"
               style={{
@@ -489,11 +477,12 @@ export default function About() {
               Société d'Exploitation et de Développement des Infrastructures du
               Congo
             </strong>{" "}
-            (SEDIC) est une société anonyme à Conseil d'administration,
-            entièrement détenue par l'État congolais. Elle constitue un véhicule
-            patrimonial stratégique, se consacrant à la structuration, à la
-            valorisation et au développement des actifs immobiliers publics à
-            fort potentiel en République du Congo.
+            (SEDIC) est une société anonyme détenue à 100 % par l’État
+            congolais. La SEDIC a pour mission de valoriser, moderniser et
+            exploiter les infrastructures immobilières confiées par l’État
+            congolais. Elle a également pour vocation de développer des projets
+            qui contribuent à la transformation urbaine et économique de la
+            République du Congo.
           </p>
         </div>
 
@@ -518,8 +507,8 @@ export default function About() {
               margin: 0,
             }}
           >
-            La SEDIC construit son action sur quatre valeurs fondamentales, qui
-            guident chacune de ses décisions et engagements.
+            La SEDIC construit son action autour de 5 valeurs fondamentales qui
+            guident chacune de ses actions.
           </p>
         </div>
 
@@ -536,18 +525,6 @@ export default function About() {
             transition: "opacity 1.2s ease 2.2s",
           }}
         >
-          <p
-            className="uppercase text-[#1e2d6b] mb-5"
-            style={{
-              ...coconat,
-              fontSize: "20.5px",
-              letterSpacing: "0.02em",
-              lineHeight: "1.05",
-              fontWeight: 400,
-            }}
-          >
-            Notre Positionnement
-          </p>
           <p
             className="max-w-2xl mb-8"
             style={{

@@ -137,6 +137,27 @@ Cette session stratégique a porté sur deux points majeurs : la clôture de l'e
     thumb:
       "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780405973/news_11_hgdokr.webp",
   },
+    {
+    id: 12,
+    label: "ANNONCE",
+    title:
+      "La SEDIC reçoit le Prix du Partenariat Stratégique des Assises de la BAD 2026",
+    description: `La Société d'Équipement, de Développement Immobilier et de Construction (SEDIC) a été honorée lors des Assises de la Banque Africaine de Développement (BAD) 2026 en recevant le Prix du Partenariat Stratégique, une distinction qui vient saluer la qualité de son engagement et de sa collaboration dans le cadre de cet événement d'envergure internationale.
+
+Cette reconnaissance témoigne de la confiance accordée à la SEDIC en tant qu'acteur engagé dans le développement et la promotion de projets au service des populations. Elle souligne également la contribution active de l'entreprise à la réussite des Assises ainsi que sa capacité à développer des partenariats durables avec les institutions nationales et internationales.
+
+Durant les cinq jours de l'événement, la SEDIC a eu l'opportunité de présenter ses missions, ses réalisations et ses perspectives de développement à un public composé de décideurs, d'institutions financières, de partenaires techniques, d'entreprises et de représentants diplomatiques. Cette présence a permis de renforcer sa visibilité, de développer de nouvelles relations professionnelles et d'identifier plusieurs opportunités de collaboration.
+
+La remise du Prix du Partenariat Stratégique constitue l'un des temps forts de cette participation. 
+
+La SEDIC adresse ses sincères remerciements à la Banque Africaine de Développement pour cette marque de confiance.
+
+Cette distinction constitue une source de fierté pour l'ensemble des collaborateurs de la SEDIC et un encouragement à poursuivre avec ambition sa mission au service du développement.`,
+    photo:
+      "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780652901/bad_img_lh24me.webp",
+    thumb:
+      "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780652901/bad_img_lh24me.webp",
+  },
 ];
 
 // ── Détection mobile ──────────────────────────────────────────

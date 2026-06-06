@@ -6,24 +6,20 @@ const commissioner: React.CSSProperties = { fontFamily: 'Commissioner, sans-seri
 
 const REASONS = [
   {
-    title: 'Un partenaire institutionnel solide',
-    body: "Adossée à l'État congolais, la SEDIC offre un cadre sécurisé et une vision alignée avec les priorités nationales.",
+    title: 'Un partenariat durable',
+    body: "Un partenariat durable. Ce partenariat assure une collaboration à long terme qui favorise la stabilité et la croissance mutuelle.",
   },
   {
-    title: 'Des projets structurants',
-    body: 'Nous intervenons sur des actifs à fort impact économique dans des secteurs clés.',
+    title: 'Des actifs à fort impact économique et social',
+    body: 'Nos actifs génèrent des retombées économiques significatives, stimulant ainsi le développement.',
   },
   {
-    title: 'Une vision long terme',
-    body: 'Nos projets sont conçus pour durer et générer de la valeur dans le temps.',
-  },
-  {
-    title: 'Une expertise intégrée',
-    body: "De la structuration à l'exploitation, nous maîtrisons l'ensemble du cycle des projets.",
+    title: 'Une expertise reconnue',
+    body: 'Notre savoir-faire est largement salué, garantissant des solutions de haute qualité.',
   },
   {
     title: 'Un ancrage local fort',
-    body: 'Nous possédons une connaissance approfondie du marché et des enjeux territoriaux.',
+    body: "Nous entretenons des liens solides avec la communauté locale, ce qui renforce notre pertinence et notre influence sur le terrain.",
   },
 ];
 
@@ -52,24 +48,6 @@ function WhyCollaborateDesktop() {
 
         {/* ── Left column ── */}
         <div>
-
-          {/* Label */}
-          <p
-            className="uppercase text-[#1e2d6b] mb-4"
-            style={{
-              ...coconat,
-              fontSize: '20.5px',
-              letterSpacing: '0.02em',
-              lineHeight: '1.05',
-              fontWeight: 400,
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(-12px)',
-              transition: 'opacity 1s ease 0.1s, transform 1s ease 0.1s',
-            }}
-          >
-            Notre Approche
-          </p>
-
           {/* Title */}
           <h2
             className="font-normal text-black mb-10"
@@ -255,17 +233,6 @@ function WhyCollaborateMobile() {
     >
       {/* HEADER */}
       <div className="text-center">
-        <p
-          className="uppercase text-[#1e2d6b] mb-2"
-          style={{
-            ...coconat,
-            fontSize: "16px",
-            letterSpacing: "0.08em",
-          }}
-        >
-          Notre Approche
-        </p>
-
         <h2
           className="mb-8"
           style={{

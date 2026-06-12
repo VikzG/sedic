@@ -26,7 +26,7 @@ const pillars = [
     num: "03",
     label: "CONCEVOIR",
     align: "center" as const,
-    desc: "Imaginer des infrastructures innovantes répondant aux besoin de demain",
+    desc: "Imaginer des infrastructures innovantes répondant aux besoins de demain",
   },
   {
     num: "04",

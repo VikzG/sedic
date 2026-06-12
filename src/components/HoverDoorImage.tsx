@@ -148,7 +148,7 @@ export default function HoverDoorImage() {
           }}
         />
 
-        <span>+242 06 809 0880</span>
+        <span>+242 06 848 13 10</span>
       </div>
 
       {/* Mail */}
@@ -169,7 +169,7 @@ export default function HoverDoorImage() {
           }}
         />
 
-        <span>armel.samoue@sedic.cg</span>
+        <span>roannic.ololo@sedic.cg</span>
       </div>
 
       {/* Adresse */}
@@ -192,6 +192,8 @@ export default function HoverDoorImage() {
         />
 
         <span>
+          Business Center,
+          <br/>
           Tours Jumelles,
           <br />
           Brazzaville, 28e étage

@@ -69,7 +69,7 @@ le supermarché Franprix.`,
   {
     id: 4,
     title: "Musée National du Congo",
-    description: `Institution culturelle publique, ce musée sera dédié à la mise en
+    description: `Institution culturelle publique, ce musée est dédié à la mise en
 valeur du patrimoine historique et artistique du Congo.`,
     cover:
       "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408245/MNB_1_zgwe4c.webp",
@@ -199,7 +199,7 @@ function ProjectsDesktop() {
               }}
               className="italic text-[#304674]"
             >
-              le Congo.
+              Brazzaville.
             </span>
           </h2>
         </div>
@@ -523,7 +523,7 @@ function ProjectsMobile() {
                 color: "#1e2d6b",
               }}
             >
-              le Congo.
+              Brazzaville.
             </em>
           </h2>
         </div>

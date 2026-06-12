@@ -736,7 +736,7 @@ function DesktopLastnews() {
         </p>
         <a
           className="inline-block px-6 py-2 rounded-lg bg-[#223078] text-white hover:bg-[#B3C2E9] hover:text-[#223078] transition-all duration-300"
-          href="mailto:armel.samoue@sedic.cg"
+          href="mailto:roannic.ololo@sedic.cg"
           style={{
             ...coconat,
             fontSize: "18px",

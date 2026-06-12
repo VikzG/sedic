@@ -32,6 +32,11 @@ const values = [
     image: "/images/about_page/about_hero_4.webp",
     texte: "Assurer une gestion agile,\nrigoureuse et intègre.",
   },
+    {
+    label: "Developpement durable",
+    image: "/images/about_page/about_hero_5.webp",
+    texte: "Intégrer les principes de durabilité\npour un impact positif à long terme.",
+  },
 ];
 
 function useIsMobile(breakpoint = 768) {
@@ -73,7 +78,7 @@ function ValueCard({
         alt={v.label}
         className="w-full h-full object-cover"
         style={{
-          filter: hovered ? "brightness(0.45)" : "brightness(1)",
+          filter: hovered ? "brightness(0.45)" : "brightness(0.7)",
           transform: hovered ? "scale(1.04)" : "scale(1)",
           transition: "filter 0.5s ease, transform 0.5s ease",
         }}
@@ -512,7 +517,7 @@ export default function About() {
           </p>
         </div>
 
-        <div className="grid grid-cols-4" style={{ height: "550px" }}>
+        <div className="grid grid-cols-5" style={{ height: "550px" }}>
           {values.map((v, i) => (
             <ValueCard key={v.label} v={v} i={i} visible={visible} />
           ))}

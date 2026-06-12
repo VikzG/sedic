@@ -239,7 +239,7 @@ function PartnersDesktop() {
                 marginBottom: "10px",
               }}
             >
-              La SEDIC place la collaboration au cœur de son action.
+              La collaboration au cœur de notre action.
             </p>
             <p
               className="max-w-xl"
@@ -253,9 +253,9 @@ function PartnersDesktop() {
                 textAlign: "center",
               }}
             >
-              Nous travaillons avec des partenaires publics et privés pour
-              concevoir, financer, développer et exploiter des projets
-              structurants en République du Congo.
+              Nous collaborons avec des partenaires à la fois publics et privés
+              afin de concevoir, financer, développer et gérer des projets
+              ambitieux en République du Congo.
             </p>
           </div>
         </div>
@@ -441,77 +441,77 @@ function PartnersMobile() {
       <section ref={sectionRef} className="w-full bg-white overflow-hidden">
         {/* HEADER */}
         {/* HEADER */}
-<div className="px-2 pt-24 pb-12 text-center">
-  <p
-    className="uppercase text-[#1e2d6b] mb-2"
-    style={{
-      ...coconat,
-      fontSize: "16px",
-      letterSpacing: "0.08em",
-    }}
-  >
-    Partenariats
-  </p>
+        <div className="px-2 pt-24 pb-12 text-center">
+          <p
+            className="uppercase text-[#1e2d6b] mb-2"
+            style={{
+              ...coconat,
+              fontSize: "16px",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Partenariats
+          </p>
 
-  <h2
-    style={{
-      ...coconat,
-      fontSize: "26px",
-      lineHeight: "0.95",
-      letterSpacing: "-0.04em",
-    }}
-    className="mb-6"
-  >
-    Construire{" "}
-    <em
-      style={{
-        fontFamily: "'Charis SIL', Georgia, serif",
-        fontStyle: "italic",
-        fontWeight: 700,
-        color: "#1e2d6b",
-      }}
-    >
-      ensemble
-    </em>{" "}
-    les infrastructures de{" "}
-    <em
-      style={{
-        fontFamily: "'Charis SIL', Georgia, serif",
-        fontStyle: "italic",
-        fontWeight: 700,
-        color: "#1e2d6b",
-      }}
-    >
-      demain.
-    </em>
-  </h2>
+          <h2
+            style={{
+              ...coconat,
+              fontSize: "26px",
+              lineHeight: "0.95",
+              letterSpacing: "-0.04em",
+            }}
+            className="mb-6"
+          >
+            Construire{" "}
+            <em
+              style={{
+                fontFamily: "'Charis SIL', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                color: "#1e2d6b",
+              }}
+            >
+              ensemble
+            </em>{" "}
+            les infrastructures de{" "}
+            <em
+              style={{
+                fontFamily: "'Charis SIL', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                color: "#1e2d6b",
+              }}
+            >
+              demain.
+            </em>
+          </h2>
 
-  <p
-    style={{
-      fontFamily: "'Charis SIL', Georgia, serif",
-      fontStyle: "italic",
-      fontWeight: 700,
-      fontSize: "14px",
-      color: "#1e2d6b",
-      lineHeight: "1.3",
-    }}
-  >
-    La SEDIC place la collaboration au cœur de son action.
-  </p>
+          <p
+            style={{
+              fontFamily: "'Charis SIL', Georgia, serif",
+              fontStyle: "italic",
+              fontWeight: 700,
+              fontSize: "14px",
+              color: "#1e2d6b",
+              lineHeight: "1.3",
+            }}
+          >
+            La collaboration au cœur de notre action.
+          </p>
 
-  <p
-    style={{
-      ...commissioner,
-      fontSize: "14px",
-      lineHeight: "1.55",
-      color: "#222",
-    }}
-  >
-    Nous travaillons avec des partenaires publics et privés
-    pour concevoir, financer, développer et exploiter des
-    projets structurants en République du Congo.
-  </p>
-</div>
+          <p
+            style={{
+              ...commissioner,
+              fontSize: "14px",
+              lineHeight: "1.55",
+              color: "#222",
+            }}
+          >
+            Nous collaborons avec des partenaires à la fois publics et privés
+            afin de concevoir, financer, développer et gérer des projets
+            ambitieux en République du Congo.
+          </p>
+        </div>
 
         {/* LABEL */}
         <div className="py-10" style={{ backgroundColor: "#E4E4E0" }}>

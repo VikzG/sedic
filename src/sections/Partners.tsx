@@ -115,11 +115,12 @@ export default function Partners() {
               transition: 'opacity 1.2s ease 1.6s',
             }}
           >
-            La SEDIC place la collaboration au cœur de son action. Nous travaillons avec des
-            partenaires publics et privés pour concevoir, financer, développer et exploiter des
-            projets structurants en République du Congo. Forte d'une expertise intégrée sur
-            l'ensemble du cycle de projet, la SEDIC est votre interlocuteur privilégié pour
-            développer des opportunités durables et créatrices de valeur.
+            La collaboration au cœur de nos actions.
+            <br/>
+Nous collaborons avec des partenaires à la fois publics et privés afin de concevoir, financer, développer
+et gérer des projets ambitieux en République du Congo.
+<br/>
+Chaque partenariat est basé sur la confiance, la transparence et une vision commune du développement.
           </p>
         </div>
       </div>

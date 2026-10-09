@@ -7,6 +7,7 @@ import Partners from "./Partners";
 import Details from "./Details";
 import News from "./News";
 import Contactform from "./Contactform";
+import { getPageSlot, scrollPageTo, scrollPageToBottom } from "../lib/smoothScroll";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
@@ -150,10 +151,7 @@ export default function Hero() {
             >
               <button
                 onClick={() => {
-                  document.getElementById(current)?.scrollTo({
-                    top: document.getElementById(current)!.scrollHeight,
-                    behavior: "smooth",
-                  });
+                  scrollPageToBottom(current);
                 }}
                 className="w-full py-2 bg-white/10 backdrop-blur-md border border-white/50 rounded-lg text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
                 style={{
@@ -271,12 +269,9 @@ export default function Hero() {
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => {
-                    const slot = document.getElementById(current);
-                    const contact = slot?.querySelector("[data-contact]");
-                    contact?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    });
+                    const slot = getPageSlot(current);
+                    const contact = slot?.querySelector<HTMLElement>("[data-contact]");
+                    if (slot && contact) scrollPageTo(slot, contact);
                   }}
                   aria-label="Contact"
                   className="flex items-center justify-center transition-transform duration-200 hover:scale-110 group"
@@ -301,10 +296,7 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={() => {
-                    document.getElementById(current)?.scrollTo({
-                      top: document.getElementById(current)!.scrollHeight,
-                      behavior: "smooth",
-                    });
+                    scrollPageToBottom(current);
                   }}
                   className="px-6 py-2 bg-white/10 backdrop-blur-md border border-white/50 rounded-lg text-white hover:bg-[#E4E4E0] hover:text-[#223078] hover:border-[#E4E4E0] transition-all duration-300"
                   style={{

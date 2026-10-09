@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { projectStore } from "../store/projectStore";
 import useIsMobile from "../components/useIsmobile";
 import ContactForm from "./Contactform";
@@ -146,10 +146,6 @@ function ProjectsDesktop() {
     }
   }, [current]);
 
-  const activeProject = useMemo(
-    () => projects.find((p) => p.id === activeId)!,
-    [activeId],
-  );
 
   const handleOpen = (project: Project) => {
     setActiveId(project.id);
@@ -484,7 +480,8 @@ function ProjectsMobile() {
     const dy = Math.abs(touchStartY.current - e.changedTouches[0].clientY);
     // Swipe horizontal seulement si dx > 40px et plus horizontal que vertical
     if (Math.abs(dx) > 40 && Math.abs(dx) > dy) {
-      dx > 0 ? goTo(activeId + 1, 1) : goTo(activeId - 1, -1);
+      if (dx > 0) goTo(activeId + 1, 1);
+      else goTo(activeId - 1, -1);
     }
   };
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNav } from "../App";
 import type { PageId } from "../hooks/usePage";
+import { getPageSlot, scrollPageToBottom } from "../lib/smoothScroll";
 
 const NAV_LINKS: { label: string; page: PageId }[] = [
   { label: "À PROPOS", page: "about" },
@@ -98,7 +99,7 @@ export default function Navbar() {
       const target = e.target as HTMLElement;
       setScrolled(target.scrollTop > 10);
     };
-    const slot = document.getElementById(current);
+    const slot = getPageSlot(current);
     if (slot) {
       slot.addEventListener("scroll", onScroll, { passive: true });
       setScrolled(slot.scrollTop > 10);
@@ -252,11 +253,7 @@ export default function Navbar() {
           ))}
 
           <button
-            onClick={() => {
-              const slot = document.getElementById(current);
-              if (slot)
-                slot.scrollTo({ top: slot.scrollHeight, behavior: "smooth" });
-            }}
+            onClick={() => scrollPageToBottom(current)}
             aria-label="Contact"
             className="ml-1 hover:translate-y-0.5 transition-all duration-200 group"
           >

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNav } from "../App";
+import { scrollPageToBottom } from "../lib/smoothScroll";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
@@ -264,10 +265,7 @@ function MobileDetails() {
 
         <button
           onClick={() => {
-            document.getElementById(current)?.scrollTo({
-              top: document.getElementById(current)!.scrollHeight,
-              behavior: "smooth",
-            });
+            scrollPageToBottom(current);
           }}
           className="w-full py-2 rounded-lg bg-[#223078] text-[#E4E4E0] hover:bg-[#E4E4E0] hover:text-[#223078] transition-all duration-300"
           style={{
@@ -367,10 +365,7 @@ function DesktopDetails() {
 
         <button
           onClick={() => {
-            document.getElementById(current)?.scrollTo({
-              top: document.getElementById(current)!.scrollHeight,
-              behavior: "smooth",
-            });
+            scrollPageToBottom(current);
           }}
           className="group px-32 py-2 rounded-lg bg-[#223078] text-[#E4E4E0] hover:bg-[#E4E4E0] hover:text-[#223078] transition-all duration-300"
           style={{

@@ -3,6 +3,7 @@ import { useNav } from "../App";
 import Gouvernance from "./Gouvernance";
 import DirectionGenerale from "./DirectionGenerale";
 import Contacform from "./Contactform";
+import { scrollPageToBottom } from "../lib/smoothScroll";
 
 const coconat: React.CSSProperties = { fontFamily: "Coconat, Georgia, serif" };
 const commissioner: React.CSSProperties = {
@@ -224,7 +225,7 @@ export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const isMobile = useIsMobile();
-  const { navigate, current } = useNav();
+  const { current } = useNav();
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   useEffect(() => {
@@ -389,10 +390,7 @@ export default function About() {
             </p>
             <button
               onClick={() => {
-                document.getElementById(current)?.scrollTo({
-                  top: document.getElementById(current)!.scrollHeight,
-                  behavior: "smooth",
-                });
+                scrollPageToBottom(current);
               }}
               className="w-full py-3 rounded-xl bg-[#223078] text-white hover:bg-[#B3C2E9] hover:text-[#223078] transition-all duration-300"
               style={{
@@ -549,10 +547,7 @@ export default function About() {
           </p>
           <button
             onClick={() => {
-              document.getElementById(current)?.scrollTo({
-                top: document.getElementById(current)!.scrollHeight,
-                behavior: "smooth",
-              });
+              scrollPageToBottom(current);
             }}
             className="px-6 py-2 rounded-lg bg-[#223078] text-white hover:bg-[#B3C2E9] hover:text-[#223078] transition-all duration-300"
             style={{

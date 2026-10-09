@@ -102,10 +102,12 @@ useEffect(() => {
       {/* Overlay mix-blend */}
       <div
         className="fixed mix-blend-overlay inset-0 z-[100] flex items-center justify-center pointer-events-none"
-        style={{
-          isolation: "auto",
-          ["--sedic-shift" as any]: window.innerWidth < 1200 ? "0vw" : "25vw",
-        }}
+        style={
+          {
+            isolation: "auto",
+            "--sedic-shift": window.innerWidth < 1200 ? "0vw" : "25vw",
+          } as React.CSSProperties
+        }
       >
         {/* Logo hero anim */}
         <img

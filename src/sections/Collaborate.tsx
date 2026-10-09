@@ -204,24 +204,6 @@ function WhyCollaborateDesktop() {
 
 function WhyCollaborateMobile() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section

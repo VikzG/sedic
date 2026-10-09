@@ -56,7 +56,7 @@ export function usePage() {
         }
       }, TRANSITION_MS);
     }, TRANSITION_MS);
-  }, []); // eslint-disable-line
+  }, []);
 
   return { state, navigate };
 }

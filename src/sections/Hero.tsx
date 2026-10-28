@@ -138,7 +138,7 @@ export default function Hero() {
                 maxWidth: "320px",
               }}
             >
-              Nous valorisons, modernisons et exploitons les infestructures
+              Nous valorisons, modernisons et exploitons les infrastructures
               immobilières confiés par l'État congolais. Nous développons aussi
               des projets qui contribuent à la transformation urbaine et
               économique du Congo.
@@ -355,7 +355,7 @@ export default function Hero() {
                   letterSpacing: "0",
                 }}
               >
-                Nous valorisons, modernisons et exploitons les infestructures
+                Nous valorisons, modernisons et exploitons les infrastructures
                 immobilières confiés par l'État congolais. Nous développons
                 aussi des projets qui contribuent à la transformation urbaine et
                 économique du Congo.

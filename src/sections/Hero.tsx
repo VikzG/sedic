@@ -139,7 +139,7 @@ export default function Hero() {
               }}
             >
               Nous valorisons, modernisons et exploitons les infrastructures
-              immobilières confiés par l'État congolais. Nous développons aussi
+              immobilières confiées par l'État congolais. Nous développons aussi
               des projets qui contribuent à la transformation urbaine et
               économique du Congo.
             </p>
@@ -356,7 +356,7 @@ export default function Hero() {
                 }}
               >
                 Nous valorisons, modernisons et exploitons les infrastructures
-                immobilières confiés par l'État congolais. Nous développons
+                immobilières confiées par l'État congolais. Nous développons
                 aussi des projets qui contribuent à la transformation urbaine et
                 économique du Congo.
               </p>

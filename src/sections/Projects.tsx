@@ -114,7 +114,7 @@ le développement de nouveaux quartiers.`,
     id: 7,
     title: "Résidence Les Flamboyants",
     description: `La résidence Les Flamboyants offre un cadre de vie alliant confort,
-modernité et qualité. Ce projet s’inscrit dans la dynamique de d’expansion
+modernité et qualité. Ce projet s’inscrit dans la dynamique d’expansion
 d’une offre résidentielle durable et qualitative à Brazzaville.`,
     cover:
       "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408244/RLF_1_g4cpsy.webp",

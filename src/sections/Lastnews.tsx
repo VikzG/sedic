@@ -120,7 +120,7 @@ Cette session stratégique a porté sur deux points majeurs : la clôture de l'e
     label: "STRATÉGIE",
     title:
       "La participation de la SEDIC à la réunion des dirigeants du Groupe Hilton à Dubaï",
-    description: `Une délégation conduite par Mme Bénédicte Myriam DENGUET ATTICKY a séjourné au Maroc afin de rencontrer des partenaires techniques et financiers.`,
+    description: `Une délégation conduite par Mme Bénédicte Myriam DENGUET-ATTICKY a séjourné au Maroc afin de rencontrer des partenaires techniques et financiers.`,
     photo:
       "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780405972/news_10_ospsgj.webp",
     thumb:

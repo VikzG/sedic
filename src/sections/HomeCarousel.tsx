@@ -183,7 +183,7 @@ export default function HomeCarousel() {
             <strong style={{ fontWeight: 700 }}>
               développe des actifs à fort impact
             </strong>{" "}
-            destinés a renforcer l'attractivité du Congo à l'échelle régionale
+            destinés à renforcer l'attractivité du Congo à l'échelle régionale
             et internationale
           </p>
 
@@ -448,7 +448,7 @@ export default function HomeCarousel() {
             }}
           >
             À travers une approche fondée sur l'innovation, la SEDIC développe
-            des actifs à fort impact destinés a renforcer l' attractivité du
+            des actifs à fort impact destinés à renforcer l'attractivité du
             Congo à l'échelle régionale et internationale
           </p>
 

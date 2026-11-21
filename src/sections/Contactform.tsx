@@ -13,7 +13,7 @@ const CATEGORIES = [
     label: "Hébergement / Réservation",
     options: [
       "Je souhaite réserver une chambre d'hôtel (GHK)",
-      "Je souhaite obtenir des informations sur nos programmes de logement (ICAZI+REM+Liens logements)",
+      "Je souhaite obtenir des informations sur vos programmes de logement (ICAZI+REM+Liens logements)",
       "Je souhaite réserver une visite pour un appartement (ICAZI+REM)",
     ],
   },

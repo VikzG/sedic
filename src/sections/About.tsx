@@ -34,7 +34,7 @@ const values = [
     texte: "Assurer une gestion agile,\nrigoureuse et intègre.",
   },
     {
-    label: "Developpement durable",
+    label: "Développement durable",
     image: "/images/about_page/about_hero_5.webp",
     texte: "Intégrer les principes de durabilité\npour un impact positif à long terme.",
   },

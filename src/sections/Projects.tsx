@@ -67,20 +67,6 @@ le supermarché Franprix.`,
     url: "https://brazza-mall.com",
   },
   {
-    id: 4,
-    title: "Musée National du Congo",
-    description: `Institution culturelle publique, ce musée est dédié à la mise en
-valeur du patrimoine historique et artistique du Congo.`,
-    cover:
-      "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408245/MNB_1_zgwe4c.webp",
-    images: [
-      "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408245/MNB_1_zgwe4c.webp",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408245/MNB_2_whahye.webp",
-      "https://res.cloudinary.com/dynpasxkm/image/upload/f_auto/v1780408245/MNB_3_xemroj.webp",
-    ],
-    url: "",
-  },
-  {
     id: 5,
     title: "Vatel Brazzaville",
     description: `Vatel Brazzaville est une école dédiée au métier de l'hôtellerie. Cette
